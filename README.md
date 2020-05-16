@@ -1,27 +1,8 @@
-# awesome-java-leetcode
+# awesome-kotlin-leetcode
 
-我如今是一名 Android Developer，大学的我曾是一名 ACMer，我一直认为数据结构和算法是作为一名程序员必须掌握和善于利用的，为了不让数据结构和算法淡出我的记忆，所以我打算重拾 LeetCode 之 Algorithm，语言选择的是 Java，题库会一点点完善起来，按简单，中等，困难分类，相应难度下按题号排序，源代码在 [src][src] 目录中，相关解题都在 [note][note] 目录中，想要学习数据结构和算法或打算刷 LeetCode 的小伙伴们欢迎 star 哦。
-
-如今有机会面试 Facebook，附上 LeetCode 上 Facebook 的面试题目序号，希望可以帮助到以后想入 Facebook 的小伙伴:-)
-
-```
-1,10,13,15,17,20,23,25,26,28,33,38,43,44,49,50,56,57,67,68,69,71,75,76
-78,79,80,85,88,90,91,98,102,117,121,125,127,128,133,139,146,157,158,161
-168,173,200,206,208,209,210,211,215,218,221,234,235,236,238,252,253,257
-261,265,269,273,274,275,277,278,282,283,285,286,297,301,311,314,325,334
-341,377,380,398,404,410,461,477,494,523,525,534,535,543,554
-```
+借用 Blankj 大佬的模板，语言选用Kotlin，题库会一点点完善起来，按简单，中等，困难分类，相应难度下按题号排序，源代码在 [src][src] 目录中，相关解题都在 [note][note] 目录中，想要学习数据结构和算法或打算刷 LeetCode 的小伙伴们欢迎 star 哦。
 
 如果想知道更多公司 LeetCode 面试题，可以参看 [Companies.md][companies]。
-
-附上镇楼诗：
-
-> 明有科举八股，今有 LeetCode。  
-> 八股定格式而取文采心意，LeetCode 定题目且重答案背诵。  
-> 美其名曰："practice makes perfect."  
-> 为何今不如古？  
-> 非也非也，  
-> 科举为国取士，LeetCode 为 Google 筛码工，各取所需也。  
 
 
 ## Easy
@@ -88,7 +69,7 @@
 | 50   | [Pow(x, n)][050]                         | Math, Binary Search              |
 | 56   | [Merge Intervals][056]                   | Array, Sort                      |
 | 554  | [Brick Wall][554]                        | Hash Table                       |
-
+| 0406  | [Successor LCCI][0406]                        | Dfs                       |
 
 ## Hard
 
@@ -104,16 +85,10 @@
 | 68   | [Text Justification][068]                | String                                   |
 
 
-## 打个小广告
 
-欢迎加入我的知识星球「**[基你太美](https://t.zsxq.com/FmeqfYF)**」，我会在星球中分享 [AucFrame](https://blankj.com/2019/07/22/auc-frame/) 框架、大厂面经、[AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode) 更详尽的说明...一切我所了解的知识，你可以通过支付进入我的星球「**[基你太美](https://t.zsxq.com/FmeqfYF)**」进行体验，加入后优先观看星球中精华的部分，如果觉得星球的内容对自身没有收益，你可以自行申请退款退出星球，也没必要加我好友；**如果你已确定要留在我的星球，可以通过扫描如下二维码（备注：基你太美+你的星球昵称）加我个人微信，方便我后续拉你进群(PS：进得越早价格越便宜)。**
-
-![我的二维码](https://raw.githubusercontent.com/Blankj/AndroidUtilCode/master/art/wechat.png)
-
-
-[src]: https://github.com/Blankj/awesome-java-leetcode/tree/master/src
-[note]: https://github.com/Blankj/awesome-java-leetcode/tree/master/note
-[companies]: https://github.com/Blankj/awesome-java-leetcode/blob/master/Companies.md
+[src]: https://github.com/NightXLT/tree/master/src
+[note]: https://github.com/NightXLT/awesome-java-leetcode/tree/master/note
+[companies]: https://github.com/NightXLT/awesome-java-leetcode/blob/master/Companies.md
 
 [001]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/001/README.md
 [007]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/007/README.md
@@ -170,6 +145,7 @@
 [050]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/050/README.md
 [056]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/056/README.md
 [554]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/554/README.md
+[0406]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/0406/README.md
 
 [004]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/004/README.md
 [010]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/010/README.md
@@ -179,3 +155,4 @@
 [044]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/044/README.md
 [057]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/057/README.md
 [068]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/068/README.md
+
