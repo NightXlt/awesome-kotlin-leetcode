@@ -49,4 +49,4 @@ public class Solution {
 
 
 [title]: https://leetcode-cn.com/problems/successor-lcci/
-[akl]: https://github.com/NightXLT/awesome-kotlin-leetcode
+[akl]: https://github.com/NightXlt/awesome-kotlin-leetcode

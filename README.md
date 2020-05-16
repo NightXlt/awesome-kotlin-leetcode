@@ -86,9 +86,9 @@
 
 
 
-[src]: https://github.com/NightXLT/tree/master/src
-[note]: https://github.com/NightXLT/awesome-java-leetcode/tree/master/note
-[companies]: https://github.com/NightXLT/awesome-java-leetcode/blob/master/Companies.md
+[src]: https://github.com/NightXlt/awesome-kotlin-leetcode/tree/master/src
+[note]: https://github.com/NightXlt/awesome-kotlin-leetcode/tree/master/note
+[companies]: https://github.com/NightXlt/awesome-kotlin-leetcode/blob/master/Companies.md
 
 [001]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/001/README.md
 [007]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/007/README.md
@@ -145,7 +145,7 @@
 [050]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/050/README.md
 [056]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/056/README.md
 [554]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/554/README.md
-[0406]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/0406/README.md
+[0406]: https://github.com/NightXlt/awesome-kotlin-leetcode/tree/master/note/0406/README.md
 
 [004]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/004/README.md
 [010]: https://github.com/Blankj/awesome-java-leetcode/blob/master/note/010/README.md
