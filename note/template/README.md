@@ -1,0 +1,16 @@
+# [][title]
+
+## Solution
+没有地雷，将board[row]\[col] = 'B', 继续递归遍历四周的'E'方块。  
+
+```kotlin
+
+```
+## Conclusion
+
+如果你同我一样热爱数据结构、算法、LeetCode，可以关注我 GitHub 上的 LeetCode 题解：[awesome-kotlin-leetcode][akl]
+
+
+
+[title]: 
+[akl]: https://github.com/NightXlt/awesome-kotlin-leetcode
