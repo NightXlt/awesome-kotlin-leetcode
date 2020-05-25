@@ -1,7 +1,7 @@
 # [][title]
 
 ## Solution
-没有地雷，将board[row]\[col] = 'B', 继续递归遍历四周的'E'方块。  
+
 
 ```kotlin
 
