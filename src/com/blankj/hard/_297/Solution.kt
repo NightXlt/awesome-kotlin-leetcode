@@ -4,7 +4,7 @@ import com.blankj.structure.TreeNode
 import java.util.*
 
 class Solution {
-    // Encodes a URL to a shortened URL.
+    // Serialize a BiTree to a String
     fun serialize(root: TreeNode?): String {
         root ?: return "[]"
         val res = StringBuilder("[")
@@ -24,7 +24,7 @@ class Solution {
         return res.toString()
     }
 
-    // Decodes your encoded data to tree.
+    // Deserialize string to BiTree
     fun deserialize(data: String): TreeNode? {
         if (data == "[]") return null
         val nodes = data.substring(1, data.lastIndex).split(',')
