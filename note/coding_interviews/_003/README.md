@@ -19,13 +19,12 @@ class Solution {
                 continue
             }
             if (nums[i] == nums[nums[i]]) return nums[i]
-           nums[i] = nums[nums[i]].also { nums[nums[i]] = nums[i] }
+           nums[i] = nums[nums[i]].also { nums[nums[i]] = nums[i] } // Kotlin unique swap number way
         }
         return -1
     }
 }
 ```
-## Conclusion
 
 如果你同我一样热爱数据结构、算法、LeetCode，可以关注我 GitHub 上的 LeetCode 题解：[awesome-kotlin-leetcode][akl]
 

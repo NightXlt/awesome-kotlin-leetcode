@@ -1,4 +1,4 @@
-package com.blankj.codingInterviews._003
+package com.blankj.coding_interviews._003
 
 class Solution {
     fun findRepeatNumber(nums: IntArray): Int {
