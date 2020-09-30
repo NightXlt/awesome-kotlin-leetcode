@@ -32,5 +32,14 @@ fun main() {
 }
 
 fun Any.print() {
-    println(this.toString())
+    when (this){
+        is Collection<*> ->  {
+            println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
+        }
+        is IntArray -> {
+            println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
+        }
+        else ->  println(this.toString())
+
+    }
 }
