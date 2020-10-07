@@ -1,5 +1,7 @@
 package com.blankj.coding_interviews._004
 
+import com.blankj.structure.ListNode
+
 class Solution {
     fun findNumberIn2DArray(matrix: Array<IntArray>, target: Int): Boolean {
         if (matrix.isEmpty()) return false
@@ -38,6 +40,10 @@ fun Any.print() {
         }
         is IntArray -> {
             println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
+        }
+        is ListNode -> {
+            print("$`val` " )
+            next?.print() ?: println()
         }
         else ->  println(this.toString())
 
