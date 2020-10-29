@@ -26,7 +26,7 @@ public class ListNode {
      * @return {@link ListNode}
      */
     public static ListNode createTestData(String data) {
-        if (data.equals("[]")) return null;
+        if (data == null || data.equals("[]")) return null;
         data = data.substring(1, data.length() - 1);
         String[] split = data.split(",");
         int len = split.length;

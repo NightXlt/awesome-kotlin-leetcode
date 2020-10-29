@@ -44,6 +44,12 @@ class Solution {
 
 fun main() {
     Solution().exchange(intArrayOf()).print()
-    Solution().exchange(intArrayOf(2,3,4,5,6)).print()
-    Solution().exchange(intArrayOf(2, 3, 4, 5, 6)) { num -> num and 0x01 == 0x01 }.print()
+    Solution().exchange(intArrayOf(2, 3, 4, 5, 6)).print()
+    Solution().exchange(intArrayOf(2, 4, 6, 3, 5)).print()
+    Solution().exchange(intArrayOf(3, 5, 2, 4, 6)).print()
+    Solution().exchange(intArrayOf(2, 3, 4, 5, 6), ::oddPrior).print()
+}
+
+fun oddPrior(num: Int): Boolean {
+    return num and 0x01 == 0x01
 }
