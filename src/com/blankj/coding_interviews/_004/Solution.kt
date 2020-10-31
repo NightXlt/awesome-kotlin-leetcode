@@ -1,6 +1,7 @@
 package com.blankj.coding_interviews._004
 
 import com.blankj.structure.ListNode
+import com.blankj.structure.TreeNode
 
 class Solution {
     fun findNumberIn2DArray(matrix: Array<IntArray>, target: Int): Boolean {
@@ -44,6 +45,9 @@ fun Any.print() {
         is ListNode -> {
             print("$`val` " )
             next?.print() ?: println()
+        }
+        is TreeNode -> {
+            TreeNode.print(this)
         }
         else ->  println(this.toString())
 

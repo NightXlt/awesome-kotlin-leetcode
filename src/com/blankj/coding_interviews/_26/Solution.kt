@@ -27,5 +27,5 @@ fun main() {
 //    Solution().isSubtree(TreeNode.createTestData("[1,2,null,2,null,2,null]"), TreeNode.createTestData("[1,2,null,2,null,2,null]")).print()
 //    Solution().isSubtree(TreeNode.createTestData("[1,null,2,null,2,null,2]"), TreeNode.createTestData("[1,null,2,null,2,null,2]")).print()
 //    Solution().isSubtree(TreeNode.createTestData("[1,2,2,null,3,null,3]"), TreeNode.createTestData("[1,2,2,null,3,null,3]")).print()
-    Solution().isSubStructure(TreeNode.createTestData("[10,12,6,8,3,11]"), TreeNode.createTestData("[10,12,6,8]")).print()
+      Solution().isSubStructure(TreeNode.createTestData("[10,12,6,8,3,11]"), TreeNode.createTestData("[10,12,6,8]")).print()
 }
