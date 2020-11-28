@@ -31,7 +31,7 @@ class Solution {
         val root = TreeNode(nodes[0].toInt())
         val queue = LinkedList<TreeNode?>().apply { add(root) }
         var i = 1
-        while (queue.isNotEmpty()) {
+        while (queue.isNotEmpty() && i < nodes.size) {
             val node = queue.poll()
             if (nodes[i] != "null") {
                 node?.left = TreeNode(nodes[i].toInt())
@@ -44,6 +44,7 @@ class Solution {
             }
             i++
         }
+        queue.clear()
         return root
     }
 }
