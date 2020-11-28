@@ -10,13 +10,11 @@ class Solution {
     fun pathSum(root: TreeNode?, sum: Int): List<List<Int>> {
         root ?: return emptyList()
         res = mutableListOf()
-        val list = ArrayDeque<Int>()
-        list.add(root.`val`)
-        dfs(root, sum - root.`val`, list)
+        visitNode(root, mutableListOf(), sum)
         return res
     }
 
-    private fun dfs(root: TreeNode, sum: Int, list: ArrayDeque<Int>) {
+    private fun dfs(root: TreeNode, sum: Int, list:  MutableList<Int>) {
         if (isLeaf(root)) {
             if (sum == 0) {
                 res.add(list.toList())
@@ -27,11 +25,11 @@ class Solution {
         visitNode(root.right, list, sum)
     }
 
-    private fun visitNode(root: TreeNode?, list: ArrayDeque<Int>, sum: Int) {
+    private fun visitNode(root: TreeNode?, list: MutableList<Int>, sum: Int) {
         root?.run {
             list.add(`val`)
             dfs(this, sum - `val`, list)
-            list.removeLast()
+            list.removeAt(list.lastIndex)
         }
     }
 
