@@ -5,9 +5,8 @@ import com.blankj.coding_interviews._004.print
 class Solution {
     fun singleNumber(nums: IntArray): IntArray {
         val res = IntArray(2)
-        var xorRes = 0
-        nums.forEach {
-            xorRes = xorRes xor it
+        var xorRes = nums.foldRight(0) { cur, acc ->
+            acc xor cur
         }
         val diff = getLowestBits(xorRes)
         res[0] = 0
