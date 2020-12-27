@@ -12,7 +12,7 @@ class LengthOfLongestSubstring {
         for ((index, c) in s.withIndex()) {
             val cInt = c.toInt()
             val nearestPreCIndex = hashMap[cInt]
-            if (nearestPreCIndex >= startIndex) {
+            if (nearestPreCIndex >= startIndex) { // 遇到重复字符时更新起始节点
                 startIndex = nearestPreCIndex
             }
             val l = index - startIndex + 1

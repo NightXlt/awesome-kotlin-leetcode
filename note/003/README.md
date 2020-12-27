@@ -15,9 +15,12 @@ Given `"pwwkew"`, the answer is `"wke"`, with the length of 3. Note that the ans
 **Tags:** Hash Table, Two Pointers, String
 
 
-## 思路
-
-题意是计算不带重复字符的最长子字符串的长度，开辟一个 hash 数组来存储该字符上次出现的位置，比如 `hash[a] = 3` 就是代表 `a` 字符前一次出现的索引在 3，遍历该字符串，获取到上次出现的最大索引（只能向前，不能退后），与当前的索引做差获取的就是本次所需长度，从中迭代出最大值就是最终答案。
+## Solution
+计算不`带重复字符`的最长子字符串的长度，
+因为 ASCII码是有限的，只有 256 个，开辟一个 hash 数组来存储该字符上次出现的位置后面一个
+如abcabcbb, 遍历到第二个 a 前的起始和终止索引为【0，2】 , 这时遍历第二个 a， `hash[a] = 1` 就是代表 `a` 字符前一次出现的索引在 0，
+之所以记录上次索引 + 1是新的无重复子串的起始索引，也为了去除掉上一个 a。
+遍历该字符串，获取到当前遍历无重复子串的起始索引(preP)，与当前的索引做差获取的就是本次所需长度，从中迭代出最大值就是最终答案。
 
 ```java
 class Solution {
@@ -28,7 +31,7 @@ class Solution {
         int[] hash = new int[128];
         for (int i = 0; i < len; ++i) {
             char c = s.charAt(i);
-            if (hash[c] > preP) {
+            if (hash[c] > preP) { // 遇到重复字符时更新起始节点
                 preP = hash[c];
             }
             int l = i - preP + 1;
