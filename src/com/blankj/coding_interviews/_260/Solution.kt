@@ -5,7 +5,7 @@ import com.blankj.coding_interviews._004.print
 class Solution {
     fun singleNumber(nums: IntArray): IntArray {
         val res = IntArray(2)
-        var xorRes = nums.foldRight(0) { cur, acc ->
+        val xorRes = nums.foldRight(0) { cur, acc ->
             acc xor cur
         }
         val diff = getLowestBits(xorRes)
@@ -19,7 +19,7 @@ class Solution {
         return res
     }
 
-    // 获取数字只保留二进制 1 的一位。参考 Integer.lowestOneBit; 学习highestOneBit。 比如哈 6 的二进制是 110， -6 的二进制是 010. 计算得到010. 只保留数字最右侧的 0
+    // 获取数字只保留二进制 1 的一位。参考 Integer.lowestOneBit; 学习highestOneBit。 比如哈 6 的二进制是 110， -6 的二进制是 010. 计算得到010. 只保留数字最低位的 1
     private fun getLowestBits(xorRes: Int): Int {
         return xorRes and -xorRes
     }
