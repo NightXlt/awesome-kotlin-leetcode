@@ -1,6 +1,5 @@
 package com.blankj.structure;
 
-import com.sun.istack.internal.Nullable;
 
 /**
  * <pre>
@@ -13,7 +12,7 @@ import com.sun.istack.internal.Nullable;
 public class ListNode {
 
     public int      val;
-    @Nullable public ListNode next;
+     public ListNode next;
 
     public ListNode(int x) {
         val = x;

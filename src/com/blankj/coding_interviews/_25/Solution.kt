@@ -2,7 +2,6 @@ package com.blankj.coding_interviews._25
 
 import com.blankj.coding_interviews._004.print
 import com.blankj.structure.ListNode
-import sun.misc.Cleaner
 
 
 class Solution {
