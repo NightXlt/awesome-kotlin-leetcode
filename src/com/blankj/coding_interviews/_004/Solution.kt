@@ -35,21 +35,24 @@ fun main() {
 }
 
 fun Any.print() {
-    when (this){
-        is Collection<*> ->  {
+    when (this) {
+        is Collection<*> -> {
             println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
         }
         is IntArray -> {
             println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
         }
         is ListNode -> {
-            print("$`val` " )
+            print("$`val` ")
             next?.print() ?: println()
         }
         is TreeNode -> {
             TreeNode.print(this)
         }
-        else ->  println(this.toString())
+        is DoubleArray -> {
+            println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
+        }
+        else -> println(this.toString())
 
     }
 }
