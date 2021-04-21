@@ -17,4 +17,7 @@ class Solution {
 fun main() {
     Solution().lastRemaining(5, 3).print()
     Solution().lastRemaining(10, 17).print()
+    Solution().lastRemaining(10, 10).print()
+    Solution().lastRemaining(0, 0).print()
+    Solution().lastRemaining(4000, 997).print()
 }
