@@ -6,14 +6,15 @@ class Solution {
     fun constructArr(a: IntArray?): IntArray {
         if (a == null || a.isEmpty()) return intArrayOf()
         var result = IntArray(a.size)
-        result[0] = 1
-        for (i in 1..a.lastIndex) {
-            result[i] = result[i - 1] * a[i - 1]
+        var leftMultiplyResult = 1
+        for (i in a.indices) {
+            result[i] = leftMultiplyResult
+            leftMultiplyResult *= a[i]
         }
-        var temp = 1
+        var rightMultiplyResult = 1
         for (i in a.indices.reversed()) {
-            result[i] *= temp
-            temp *= a[i]
+            result[i] *= rightMultiplyResult
+            rightMultiplyResult *= a[i]
         }
         return result
     }
