@@ -53,6 +53,14 @@ public class TreeNode {
 
     private static final String space = "      ";
 
+    public static TreeNode createJustRightChild() {
+        return TreeNode.createTestData("[1,null,2,null,2,null,2]");
+    }
+
+    public static TreeNode createJustLeftChild() {
+        return TreeNode.createTestData("[1,2,null,2,null,2,null]");
+    }
+
     /**
      * 竖向打印二叉树
      *
