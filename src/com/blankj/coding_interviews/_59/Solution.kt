@@ -19,6 +19,7 @@ class Solution {
         res[0] = dequeue.first
         // move window
         for (i in k until nums.size) {
+            // removed element is the first element of queue
             if (dequeue.first == nums[i - k]) {
                 dequeue.removeFirst()
             }
