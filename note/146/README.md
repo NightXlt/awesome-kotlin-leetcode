@@ -18,6 +18,8 @@
 判断hash表中存在该元素，则直接更新节点的value，并将其移到头部，否则新建一个节点放到头部。
 并更新size，更新size后发现size > capacity的话，则移除尾巴上的元素。
   
+关于hash表的引入取决于该题是否需要一个数据结构进行get操作O(1)的时间复杂度。
+如 两数之和 及 最大不重复子串两道题都利用hash表来实现O(1)的查找操作。
 ```kotlin
 class LRUCache(val capacity: Int) {
 
