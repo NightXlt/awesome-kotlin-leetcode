@@ -85,5 +85,5 @@ class LRUCache(val capacity: Int) {
 
 
 
-[title]: https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
+[title]: https://leetcode-cn.com/problems/lru-cache/
 [akl]: https://github.com/NightXlt/awesome-kotlin-leetcode
