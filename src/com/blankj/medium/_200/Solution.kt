@@ -85,12 +85,12 @@ fun main() {
             charArrayOf('1', '1', '1', '1', '0'),
             charArrayOf('1', '1', '0', '1', '0'),
             charArrayOf('1', '1', '0', '0', '0'),
-            charArrayOf('0', '0', '0', '0', '0'),
+            charArrayOf('0', '0', '0', '0', '0')
     )).print()
     Solution().numIslands(arrayOf(
             charArrayOf('1','1','1'),
             charArrayOf('0','1','0'),
-            charArrayOf('1','1','1'),
+            charArrayOf('1','1','1')
     )).print()
 
 }
