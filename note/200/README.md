@@ -101,5 +101,5 @@ class Solution {
 
 
 
-[title]: https://leetcode-cn.com/problems/lru-cache/
+[title]: https://leetcode-cn.com/problems/number-of-islands/
 [akl]: https://github.com/NightXlt/awesome-kotlin-leetcode
