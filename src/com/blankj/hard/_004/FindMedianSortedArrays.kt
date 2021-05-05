@@ -82,6 +82,7 @@ class FindMedianSortedArrays {
         if (k == 1) return min(nums1[i], nums2[j]).toDouble()
         val p1 = i + k / 2 - 1
         val p2 = j + k / 2 - 1
+        // p1, p2可能会越界，越界时当做最大值兜底
         val mid1 = if (p1 >= nums1.size) Int.MAX_VALUE else nums1[p1]
         val mid2 = if (p2 >= nums2.size) Int.MAX_VALUE else nums2[p2]
         if (mid1 < mid2) {
