@@ -10,7 +10,7 @@ package com.blankj.structure;
  */
 public class TreeNode {
 
-    public int      val;
+    public int val;
     public TreeNode left;
     public TreeNode right;
 
@@ -53,12 +53,20 @@ public class TreeNode {
 
     private static final String space = "      ";
 
+    public static TreeNode oneNode() {
+        return createTestData("[1]");
+    }
+
     public static TreeNode createJustRightChild() {
-        return TreeNode.createTestData("[1,null,2,null,2,null,2]");
+        return createTestData("[1,null,2,null,2,null,2]");
     }
 
     public static TreeNode createJustLeftChild() {
-        return TreeNode.createTestData("[1,2,null,2,null,2,null]");
+        return createTestData("[1,2,null,2,null,2,null]");
+    }
+
+    public static TreeNode commonTree() {
+        return createTestData("[3,1,4,null,2,null,null]");
     }
 
     /**
