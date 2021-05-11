@@ -54,7 +54,7 @@ public class TreeNode {
     private static final String space = "      ";
 
     public static TreeNode oneNode() {
-        return createTestData("[1]");
+        return createTestData("[1,null,null]");
     }
 
     public static TreeNode createJustRightChild() {
