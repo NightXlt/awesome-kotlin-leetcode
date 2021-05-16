@@ -76,8 +76,12 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 * 小的数字（限于 Ⅰ、X 和 C）在大的数字的左边，所表示的数等于大数减小数得到的数，如 Ⅳ=4、Ⅸ=9。
 
 那么我们可以利用 map 来完成罗马数字的 7 个数字符号：I、V、X、L、C、D、M 和整数的映射关系，然后根据上面的解释来模拟完成即可。
+左侧可能比右侧小，如果是顺序遍历需要记录前一个数字，每次访问当前下标与前一个下标对应元素做比较，如果比其大，则加上，
+否则就减去前一个元素，遍历结束后额外加上最后一个节点的值。sum的初始值为-s\[0\].
+而如果是逆序遍历就方便的多，遍历到当前下标时, 直接对当前元素做处理即可，没那么多边界处理，更易理解
 
 ```java
+// 逆序
 class Solution {
     public int romanToInt(String s) {
         Map<Character, Integer> map = new HashMap<>();
@@ -102,6 +106,42 @@ class Solution {
 }
 ```
 
+```kotlin
+class Solution {
+    fun romanToInt(s: String): Int {
+        var res = -getValue(s[0])
+        var preNum = getValue(s[0])
+        s.forEachIndexed { _, c ->
+            if (preNum < getValue(c)) {
+                res -= preNum
+            } else {
+                res += preNum
+            }
+            preNum = getValue(c)
+        }
+        res += preNum
+        return res
+    }
+
+    private fun getValue(c: Char): Int {
+        return when (c) {
+            'I' -> 1
+            'V' ->
+                5;
+            'X' ->
+                10;
+            'L' ->
+                50;
+            'C' ->
+                100;
+            'D' ->
+                500;
+            'M' -> 1000
+            else -> -1
+        }
+    }
+}
+```
 
 ## 结语
 
