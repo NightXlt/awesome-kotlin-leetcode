@@ -38,6 +38,18 @@ public class ListNode {
         return listNode[0];
     }
 
+    public static  ListNode testCase0() {
+        return ListNode.createTestData("[0]");
+    }
+
+    public static  ListNode testCase1() {
+        return ListNode.createTestData("[4,5,1,9]");
+    }
+
+    public static  ListNode testCase2() {
+        return ListNode.createTestData("[5]");
+    }
+
     public static void print(ListNode listNode) {
         if (listNode == null) {
             System.out.println("null");
