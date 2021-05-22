@@ -15,17 +15,18 @@ class ReverseKGroup {
                 tail = tail?.next ?: return dummyHead.next
             }
             val nextHead = pre?.next
-            reverseNode(pre, tail)
+            reverseNode(nextHead, tail)
             pre?.next = tail
             pre = nextHead
+            // Recall to move tail to next tail node
             tail = nextHead?.next
         }
         return dummyHead.next
     }
 
-    private fun reverseNode(pre: ListNode?, tail: ListNode?) {
+    private fun reverseNode(head: ListNode?, tail: ListNode?) {
         var preNode: ListNode? = tail?.next
-        var curNode = pre?.next
+        var curNode = head
         while (preNode != tail) {
             val nextNode = curNode?.next
             curNode?.next = preNode

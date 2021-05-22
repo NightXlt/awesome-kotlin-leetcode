@@ -30,6 +30,10 @@ pre     上一次的pre.next
        pre tail
 ```
 
+这道题貌似很简单，但自己实操起来，还是栽了一些跟斗。
+比如
+1. 反转链表时，pre 应该是为tail的 next。下意思自己写成了反转链表的 null。
+2. 反转完一段链表后，需要把 pre,tail 指向下一段需要反转的链表哈
 ```kotlin
 class ReverseKGroup {
     fun reverseKGroup(head: ListNode?, k: Int): ListNode? {
@@ -43,17 +47,18 @@ class ReverseKGroup {
                 tail = tail?.next ?: return dummyHead.next
             }
             val nextHead = pre?.next
-            reverseNode(pre, tail)
+            reverseNode(nextHead, tail)
             pre?.next = tail
             pre = nextHead
+            // Recall to move tail to next tail node
             tail = nextHead?.next
         }
         return dummyHead.next
     }
 
-    private fun reverseNode(pre: ListNode?, tail: ListNode?) {
+    private fun reverseNode(head: ListNode?, tail: ListNode?) {
         var preNode: ListNode? = tail?.next
-        var curNode = pre?.next
+        var curNode = head
         while (preNode != tail) {
             val nextNode = curNode?.next
             curNode?.next = preNode
