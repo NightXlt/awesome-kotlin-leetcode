@@ -47,7 +47,11 @@ public class ListNode {
     }
 
     public static  ListNode testCase2() {
-        return ListNode.createTestData("[5]");
+        return ListNode.createTestData("[5,5,5,5]");
+    }
+
+    public static  ListNode testCase3() {
+        return ListNode.createTestData("[1,2,3,4,5]");
     }
 
     public static void print(ListNode listNode) {
