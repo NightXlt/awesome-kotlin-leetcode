@@ -18,23 +18,14 @@ import java.util.Map;
 public class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         if (strs == null || strs.length == 0) return Collections.emptyList();
-        List<List<String>> list = new ArrayList<>();
-        Map<String, Integer> hash = new HashMap<>();
-        int i = 0;
+        Map<String, List<String>> hash = new HashMap<>();
         for (String str : strs) {
             char[] c = str.toCharArray();
             Arrays.sort(c);
             String sortStr = String.valueOf(c);
-            if (!hash.containsKey(sortStr)) {
-                hash.put(sortStr, i++);
-                List<String> sub = new ArrayList<>();
-                sub.add(str);
-                list.add(sub);
-            } else {
-                list.get(hash.get(sortStr)).add(str);
-            }
+            hash.getOrDefault(sortStr, new ArrayList<>()).add(str);
         }
-        return list;
+        return new ArrayList<>(hash.values());
     }
 
     public static void main(String[] args) {
