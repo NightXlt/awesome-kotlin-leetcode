@@ -37,6 +37,9 @@ dp\[i\]\[j\]：表示 word1\[0..i - 1\] 匹配 word2\[0..j-1\] 变换所需距�
 
 终止的返回值：dp\[word1.length\]\[word2.length\]表示 word1和 word2 变换所需距离
 
+时间复杂度：O(mn) m: word1 的长度   n: word2 的长度
+空间复杂度：O(mn)
+
 ```kotlin
 class Solution {
     fun minDistance(word1: String, word2: String): Int {
