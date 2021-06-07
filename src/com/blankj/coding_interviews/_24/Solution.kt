@@ -7,20 +7,16 @@ import com.blankj.structure.ListNode
 class Solution {
 
     fun reverseList(head: ListNode?): ListNode? {
-        var reverseHeadNode: ListNode? = null
         var preNode: ListNode? = null
-        var nextNode: ListNode? = null
+        var nextNode: ListNode?
         var curNode = head
         while (curNode != null) {
             nextNode = curNode.next
-            if (nextNode == null) {
-                reverseHeadNode = curNode
-            }
             curNode.next = preNode
             preNode = curNode
             curNode = nextNode
         }
-        return reverseHeadNode
+        return preNode
     }
 
     fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
