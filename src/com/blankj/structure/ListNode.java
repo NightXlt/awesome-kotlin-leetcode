@@ -11,8 +11,8 @@ package com.blankj.structure;
  */
 public class ListNode {
 
-    public int      val;
-     public ListNode next;
+    public int val;
+    public ListNode next;
 
     public ListNode(int x) {
         val = x;
@@ -38,20 +38,24 @@ public class ListNode {
         return listNode[0];
     }
 
-    public static  ListNode testCase0() {
+    public static ListNode testCase0() {
         return ListNode.createTestData("[0]");
     }
 
-    public static  ListNode testCase1() {
+    public static ListNode testCase1() {
         return ListNode.createTestData("[4,5,1,9]");
     }
 
-    public static  ListNode testCase2() {
+    public static ListNode testCase2() {
         return ListNode.createTestData("[5,5,5,5]");
     }
 
-    public static  ListNode testCase3() {
+    public static ListNode testCase3() {
         return ListNode.createTestData("[1,2,3,4,5]");
+    }
+
+    public static ListNode palindromeLinkedList() {
+        return ListNode.createTestData("[1,2,2,1]");
     }
 
     public static void print(ListNode listNode) {
