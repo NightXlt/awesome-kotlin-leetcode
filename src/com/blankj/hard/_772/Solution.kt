@@ -17,7 +17,7 @@ class Solution {
     private fun calculate(ch: CharArray): Int {
         val stack: Deque<Int> = ArrayDeque()
         var num = 0
-        var sign = '+'
+        var preSign = '+'
         while (index < ch.size) {
             val c = ch[index]
             if (Character.isDigit(c)) {
@@ -32,7 +32,7 @@ class Solution {
             //遇到字符串末尾，肯定是要结算的
             if (!Character.isDigit(c) && c != ' ' || index == ch.size - 1) {
                 var pre: Int
-                when (sign) {
+                when (preSign) {
                     '+' -> stack.push(num)
                     '-' -> stack.push(-num)
                     '*' -> {
@@ -44,7 +44,7 @@ class Solution {
                         stack.push(pre / num)
                     }
                 }
-                sign = c
+                preSign = c
                 num = 0 //计数归位
             }
             if (c == ')') break // 开始计算局部结果，返回
@@ -55,9 +55,6 @@ class Solution {
 }
 
 fun main() {
-    Solution().calculate("1 + 1").print()
-    Solution().calculate("2-1 + 2").print()
-    Solution().calculate("(1+(4+5+2)-3)+(6+8)").print()
-    Solution().calculate("+48 + -48").print()
+    Solution().calculate("-48 + 24").print()
     Solution().calculate("2147483647").print()
 }
