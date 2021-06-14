@@ -8,29 +8,27 @@ import java.util.*
  * 224， 227的升级版；带括号的加减乘除
  */
 class Solution {
-    private var index = 0
-    fun calculate(s: String): Int {
-        val ch = s.toCharArray()
-        return calculate(ch)
-    }
 
-    private fun calculate(ch: CharArray): Int {
+    private var index = 0
+
+    fun calculate(s: String): Int {
         val stack: Deque<Int> = ArrayDeque()
         var num = 0
         var preSign = '+'
-        while (index < ch.size) {
-            val c = ch[index]
-            if (Character.isDigit(c)) {
+        while (index < s.length) {
+            val c = s[index]
+            val digitRange = '0'..'9'
+            if (c in digitRange) {
                 num = num * 10 + (c - '0')
             }
             if (c == '(') {
                 index++ //index指针指到下一个字符, 递归使问题变为不带括号的简单+-*/
-                num = calculate(ch) //计算得到这个()的结果
+                num = calculate(s) //计算得到这个()的结果
             }
             //当遇到了新的运算符，就要对上一个运算符sign和累计的数字num作运算
             //空格直接无视，i继续前进
             //遇到字符串末尾，肯定是要结算的
-            if (!Character.isDigit(c) && c != ' ' || index == ch.size - 1) {
+            if (c !in digitRange && c != ' ' || index == s.lastIndex) {
                 var pre: Int
                 when (preSign) {
                     '+' -> stack.push(num)
@@ -52,6 +50,7 @@ class Solution {
         }
         return stack.fold(0) { acc, i -> acc + i }
     }
+
 }
 
 fun main() {
