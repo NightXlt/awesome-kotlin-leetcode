@@ -8,6 +8,17 @@
 
 遍历结束即得所求
 
+举个例子 3-(1 + 2)
+```
+1. s[i] = 3   res = 3 , sign = 1, stack=[]
+2. s[i] = -   res = 3 , sign = -1, stack=[]
+3. s[i] = (   res = 0 , sign = 1, stack=[3, -1]
+4. s[i] = 1   res = 1 , sign = 1, stack=[3, -1]
+5. s[i] = +   res = 1 , sign = 1, stack=[3, -1]
+6. s[i] = 2   res = 3 , sign = 1, stack=[3, -1]
+7. s[i] = )   res = 3 * -1(符号) + 3(左括号前面的累计和) = 0 , sign = 1, stack=[]
+```
+
 这里入栈两个元素的行为很巧妙，有些类似 Class结构排布的规则。
 
 ```kotlin
