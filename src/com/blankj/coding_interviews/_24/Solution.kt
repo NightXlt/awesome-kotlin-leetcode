@@ -8,10 +8,9 @@ class Solution {
 
     fun reverseList(head: ListNode?): ListNode? {
         var preNode: ListNode? = null
-        var nextNode: ListNode?
         var curNode = head
         while (curNode != null) {
-            nextNode = curNode.next
+            val nextNode = curNode.next
             curNode.next = preNode
             preNode = curNode
             curNode = nextNode
