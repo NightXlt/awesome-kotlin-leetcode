@@ -10,6 +10,7 @@ class Solution {
         var fastNode: ListNode? = head ?: return head
         var slowNode = head
         repeat(k) {
+            // size is less than K
             if (fastNode == null) return null
             fastNode = fastNode?.next
         }

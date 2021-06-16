@@ -23,15 +23,16 @@ class Solution {
             return head
         }
         // just one node
-        if (head.`val` == deletedNode.`val`) return null
+        if (head == deletedNode) return null
 
-        // traverse nodes
+        // delete last node in many nodes, so traverse all nodes
         var cur = head
         while (cur?.next != null && cur.next != deletedNode) {
             cur = cur.next
         }
         if (cur?.next != null) {
-            cur.next = cur.next?.next
+            // update last next pointer
+            cur.next = null
             return head
         }
         throw IllegalArgumentException("deleted node isn't in list")
