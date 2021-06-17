@@ -8,9 +8,9 @@ import java.util.*
 class Solution {
     //    fun mirrorTree(root: TreeNode?): TreeNode? {
 //        root ?: return root
-//        val temp = root.left
-//        root.left = root.right
-//        root.right = temp
+//        root.left = root.right.also {
+//            root.right = root.left
+//        }
 //        root.left.apply {
 //            mirrorTree(this)
 //        }
@@ -27,9 +27,9 @@ class Solution {
             val node = stack.pop()
             node?.left?.apply { stack.add(this) }
             node?.right?.apply { stack.add(this) }
-            val temp = root.left
-            root.left = root.right
-            root.right = temp
+            root.left = root.right.also {
+                root.right = root.left
+            }
         }
         return root
     }
