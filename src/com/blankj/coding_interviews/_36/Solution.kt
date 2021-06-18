@@ -1,33 +1,37 @@
-package com.blankj.coding_interviews._36;
+package com.blankj.coding_interviews._36
 
-import com.blankj.structure.TreeNode;
+import com.blankj.structure.TreeNode
 
-public class Solution {
+class Solution {
 
-    TreeNode head, pre;
+    var head: TreeNode? = null
+    var pre: TreeNode? = null
 
-    public TreeNode treeToDoublyList(TreeNode root) {
-        if (root == null) return null;
-        convertNode(root);
-        head.left = pre;
-        pre.right = head;
-        return head;
+    fun treeToDoublyList(root: TreeNode?): TreeNode? {
+        if (root == null) return null
+        convertNode(root)
+        head?.left = pre
+        pre?.right = head
+        return head
     }
 
-    private void convertNode(TreeNode root) {
-        if (root == null) return;
-        convertNode(root.left);
+    private fun convertNode(root: TreeNode?) {
+        if (root == null) return
+        convertNode(root.left)
         if (pre != null) {
-            pre.right = root;
-            root.left = pre;
+            pre?.right = root
+            root.left = pre
         } else {
-            head = root;
+            head = root
         }
-        pre = root;
-        convertNode(root.right);
+        pre = root
+        convertNode(root.right)
     }
 
-    public static void main(String[] args) {
-        new Solution().treeToDoublyList(TreeNode.createTestData("[4,2,5,1,3,null,null]"));
-    }
+
+}
+
+fun main(args: Array<String>) {
+    Solution().treeToDoublyList(TreeNode.createTestData("[4,2,5,1,3,null,null]"))
+    Solution().treeToDoublyList(TreeNode.createTestData("[5,3,7,2,4,6,8]"))
 }
