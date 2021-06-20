@@ -23,16 +23,21 @@ class HeapSort {
         for (i in len downTo 1) {
             swap(nums, i, 0)
             len -= 1
+            // 自顶向下得到一个最小堆,这样遍历数组即是有序的
             maxHeapify(nums, 0, len)
         }
     }
 
     private fun buildMaxHeap(nums: IntArray, len: Int) {
+        // 自底向上平衡得到一个最大堆，
         for (i in len / 2 downTo 0) {
             maxHeapify(nums, i, len)
         }
     }
 
+    /**
+     * 维护 i..length 为一个最大堆
+     */
     private fun maxHeapify(nums: IntArray, i: Int, len: Int) {
         var i = i
         while ((i shl 1) + 1 <= len) {
@@ -49,7 +54,7 @@ class HeapSort {
             }
             if (large != i) {
                 swap(nums, i, large)
-                i = large
+                i = large // 交换后的子树 i 可能不平衡，需要再次以子树 i 递归维持平衡
             } else {
                 break
             }
@@ -57,9 +62,9 @@ class HeapSort {
     }
 
     private fun swap(nums: IntArray, i: Int, j: Int) {
-        val temp = nums[i]
-        nums[i] = nums[j]
-        nums[j] = temp
+        nums[i] = nums[j].also {
+            nums[j] = nums[i]
+        }
     }
 
 }
