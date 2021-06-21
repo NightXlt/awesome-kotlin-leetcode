@@ -30,7 +30,7 @@ class Solution {
             d *= -1
         }
         for (i in 1..d) {
-            longNodes = longNodes?.next
+            longNodes = longNodes?.next ?: break
         }
         while (longNodes != null) {
             if (longNodes == shortNodes) {
