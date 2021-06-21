@@ -5,7 +5,7 @@ import com.blankj.coding_interviews._004.print
 class Solution {
 
     fun reverseLeftWords(s: String?, n: Int): String {
-        if (n < 0) throw IllegalArgumentException("n must be 0 or greater")
+        if (n < 0) throw IllegalArgumentException("n must be greater than or equal to 0")
         if (s.isNullOrEmpty()) return ""
         val k = n % s.length
         // 右旋转则用下面的枢轴

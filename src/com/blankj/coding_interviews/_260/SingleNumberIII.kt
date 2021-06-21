@@ -5,7 +5,7 @@ import com.blankj.coding_interviews._004.print
 class SingleNumberIII {
     fun singleNumbers(nums: IntArray): IntArray {
         if (nums.isEmpty()) return intArrayOf(-1, -1)
-        val xorRes = nums.foldRight(0) { cur, acc ->
+        val xorRes = nums.fold(0) { cur, acc ->
             acc xor cur
         }
         val diff = xorRes and -xorRes
