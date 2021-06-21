@@ -27,7 +27,7 @@ class Search {
     }
 
     private fun getFirst(nums: IntArray, target: Int): Int {
-        var (left, right) = Pair(0, nums.lastIndex)
+        var (left, right) = 0 to nums.lastIndex
         while (left <= right) {
             val mid = (left + right) shr 1
             when {
@@ -49,7 +49,7 @@ class Search {
     }
 
     private fun getLast(nums: IntArray, target: Int, firstIndex: Int): Int {
-        var (left, right) = Pair(firstIndex, nums.lastIndex) // 把左边界作为起始遍历的左边界, 减少重复遍历
+        var (left, right) = firstIndex to nums.lastIndex // 把左边界作为起始遍历的左边界, 减少重复遍历
         while (left <= right) {
             val mid = (left + right) shr 1
             when {
