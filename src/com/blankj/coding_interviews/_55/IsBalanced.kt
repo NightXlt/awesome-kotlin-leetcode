@@ -7,12 +7,15 @@ import kotlin.math.max
 
 // https://leetcode-cn.com/problems/balanced-binary-tree/submissions/
 class IsBalanced {
-    fun isBalanced(root: TreeNode?): Boolean {
-        return if (root == null) {
-            true
-        } else isBalanced(root, 1) != -1
+    fun isBalanced(root: TreeNode?): Boolean = if (root == null) {
+        true
+    } else {
+        isBalanced(root, 1) != -1
     }
 
+    /**
+     * dfs: from bottom to up
+     */
     private fun isBalanced(root: TreeNode?, depth: Int): Int {
         root ?: return 0
         val leftDepth = isBalanced(root.left, depth + 1)
