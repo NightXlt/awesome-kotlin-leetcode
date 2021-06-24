@@ -5,7 +5,7 @@ import com.blankj.coding_interviews._004.print
 class Solution {
     fun sumNums(n: Int): Int {
         var temp = n
-        val flag = temp > 1 && temp.apply {
+        temp > 1 && temp.apply {
             temp += sumNums(n - 1)
         } > 0
         return temp
