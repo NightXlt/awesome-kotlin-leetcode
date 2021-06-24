@@ -5,11 +5,11 @@ import com.blankj.coding_interviews._004.print
 class Solution {
 
     fun strToInt(str: String?): Int {
-        var str = str ?: return 0
+        var str = str ?: throw IllegalArgumentException("String is null")
         str = str.trim()
         val len = str.length
         if (str.isEmpty()) {
-            return 0
+            throw IllegalArgumentException("String is blank or empty")
         }
         var c = str[0]
         var flag = 1
@@ -27,13 +27,13 @@ class Solution {
             }
             // pre char is non-digit char, so return directly
             else -> {
-                return 0
+                throw IllegalArgumentException("String contains illegal character")
             }
         }
         for (i in 1 until len) {
             c = str[i]
             if (!Character.isDigit(c)) {
-                break
+                throw IllegalArgumentException("String contains illegal character")
             } else if (digit == 0L && c == '0') {
                 continue
             }
