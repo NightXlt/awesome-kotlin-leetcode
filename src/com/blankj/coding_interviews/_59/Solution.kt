@@ -8,7 +8,8 @@ class Solution {
         // If k is bigger than nums' size, index out of exception would happen.
         if (nums.isEmpty() || k - 1 !in nums.indices) return intArrayOf()
         val res = IntArray(nums.size - k + 1)
-        val dequeue: Deque<Int> = LinkedList<Int>()
+        // monotonically decreasing stack; First element of queue is max
+        val dequeue: Deque<Int> = ArrayDeque<Int>()
         // construct first window
         for (i in 0 until k) {
             while (dequeue.isNotEmpty() && dequeue.last < nums[i]) {
