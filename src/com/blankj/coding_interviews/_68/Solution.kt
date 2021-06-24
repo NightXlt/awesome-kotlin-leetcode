@@ -35,11 +35,14 @@ class Solution {
 
 fun main() {
     var target = Solution.TreeNode(2)
-    target.leftChild = Solution.TreeNode(1).apply {
+    target.leftChild = Solution.TreeNode(0).apply {
         parent = target
     }
     target.rightChild = Solution.TreeNode(3).apply {
         parent = target
     }
-    Solution().nextNode(target)
+    target.leftChild?.rightChild = Solution.TreeNode(1).apply {
+        parent = target.leftChild
+    }
+    Solution().nextNode(target.leftChild?.rightChild)
 }
