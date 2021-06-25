@@ -10,6 +10,7 @@
 addNum: O(n)
 findMedian: O(1)
 
+空间复杂度：O(n)
 ```kotlin
 class MedianFinder() {
 
@@ -50,6 +51,11 @@ class MedianFinder() {
 那么对于左半边元素使用最大堆记录最右侧的值， 右半边元素使用最小堆记录最左侧值。
 保证最大堆和最小堆数量差不超过一。
 为了能够区分奇数的情况， 奇数时保证左半边元素始终比右半边元素多一个。
+时间复杂度：
+addNum: O(logn)
+findMedian: O(1)
+
+空间复杂度：O(n)
 ```kotlin
 class MedianFinderHeap() {
 
