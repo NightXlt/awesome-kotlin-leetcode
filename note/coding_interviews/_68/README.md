@@ -3,7 +3,6 @@
 ## Solution
 中序遍历的下一个节点，这似乎在考研过程中看过这道题。善用给到的父节点线索。
 伪代码逻辑是
-
 ```伪代码
 if node.right != null
     // find the leftest child of node.right
