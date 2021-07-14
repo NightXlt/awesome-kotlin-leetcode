@@ -3,7 +3,7 @@
 ## Solution
 确定空树和空树是否相等
 先比较根节点对应是否相等，不等再比较s的左子树和 t的根节点比较，不等再比较s的右子树和 t的根节点比较，不等s就不是t树的子结构
-判断两个数是否类似的条件，一定要依题而定，有的是比较到 s 和 t 均为空。本题是比较到 t 为空即可
+判断两个树是否类似的条件，一定要依题而定，有的是比较到 s 和 t 均为空。本题是比较到 t 为空即可
 ```kotlin
 class Solution {
     fun isSubStructure(s: TreeNode?, t: TreeNode?): Boolean {
