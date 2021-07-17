@@ -9,12 +9,11 @@ class Solution {
             acc xor cur
         }
         val diff = getLowestBits(xorRes)
-        res[0] = 0
-        nums.forEach {
-            if (it and diff != 0) {
-                res[0] = res[0] xor it
-            }
-        }
+        res[0] = nums.asSequence()
+                .filter { it and diff != 0 }
+                .fold(0) { cur, acc ->
+                    acc xor cur
+                }
         res[1] = xorRes xor res[0]
         return res
     }
