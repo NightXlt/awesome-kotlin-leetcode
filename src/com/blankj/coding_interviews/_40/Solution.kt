@@ -1,6 +1,7 @@
 package com.blankj.coding_interviews._40
 
 import com.blankj.coding_interviews._004.print
+import kotlin.random.Random
 
 
 class Solution {
@@ -9,12 +10,19 @@ class Solution {
         var pivot = partition(arr, 0, arr.size - 1)
         while (pivot != k - 1) {
             pivot = if (pivot > k - 1) {
-                partition(arr, 0, pivot - 1)
+                randomPartition(arr, 0, pivot - 1)
             } else {
-                partition(arr, pivot + 1, arr.size - 1)
+                randomPartition(arr, pivot + 1, arr.size - 1)
             }
         }
         return arr.copyOf(k)
+    }
+
+    private fun randomPartition(nums: IntArray, low: Int, high: Int): Int {
+        val len = high - low
+        val index = low + (len * Random.nextFloat()).toInt()
+        nums[low] = nums[index].also { nums[index] = nums[low] }
+        return partition(nums, low, high)
     }
 
     private fun partition(nums: IntArray, low: Int, high: Int): Int {
