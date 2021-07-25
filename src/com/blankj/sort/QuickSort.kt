@@ -28,11 +28,10 @@ class QuickSort {
     private fun partition(left: Int, right: Int, data: IntArray): Int {
         var small = left - 1
         for (index in left until right) {
-            if (data[index] < data[right]) {
-                ++small
-                if (small != index) {
-                    swap(data, index, small)
-                }
+            if (data[index] >= data[right]) continue
+            ++small
+            if (small != index) {
+                swap(data, index, small)
             }
         }
         ++small
