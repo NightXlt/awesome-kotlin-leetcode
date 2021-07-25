@@ -56,9 +56,13 @@ class QuickSort {
 
 fun main() {
     var data = intArrayOf(5, 4, 3, 2, 1)
-    QuickSort().sort(data)
+    val quickSort = QuickSort()
+    quickSort.sort(data)
     data.print()
     data = intArrayOf(5, 2, 3, 4, 1)
-    QuickSort().sort(data)
+    quickSort.sort(data)
+    data.print()
+    data = intArrayOf(1)
+    quickSort.sort(data)
     data.print()
 }
