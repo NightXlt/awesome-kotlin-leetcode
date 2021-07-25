@@ -20,7 +20,6 @@ class QuickSort {
     }
 
     private fun randomPartition(@NotNull data: IntArray, length: Int, left: Int, right: Int): Int {
-        if (length < 0 || left < 0 || right < 0) throw IllegalArgumentException("Illegal argument")
         val index = left + (length * Random.nextFloat()).toInt()
         swap(data, index, right)
         return partition(left, right, data)
