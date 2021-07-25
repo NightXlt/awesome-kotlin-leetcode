@@ -36,7 +36,8 @@ class MergeSort {
         var right = mid + 1
         var i = start
         while (left <= mid && right <= end) {
-            temp[i++] = if (arr[left] < arr[right]) {
+            // sign of equal keeps stability
+            temp[i++] = if (arr[left] <= arr[right]) {
                 arr[left++]
             } else {
                 arr[right++]
