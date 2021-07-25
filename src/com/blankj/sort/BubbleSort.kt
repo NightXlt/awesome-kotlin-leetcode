@@ -3,7 +3,7 @@ package com.blankj.sort
 /**
  *  Time: O(n^2)
  *  Memory: O(1)
- *  Stable: No
+ *  Stable: Y
  *  Method: Exchanging
  */
 
