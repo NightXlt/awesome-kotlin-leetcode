@@ -7,7 +7,11 @@ import kotlin.collections.HashSet
 import kotlin.math.max
 
 class Solution {
-    fun findLadders(beginWord: String, endWord: String, wordList: List<String>): List<List<String>> {
+    fun findLadders(
+        beginWord: String,
+        endWord: String,
+        wordList: List<String>
+    ): List<List<String>> {
         val dict = HashSet(wordList) //未访问过的节点集合
         val res: MutableList<List<String>> = mutableListOf()
         if (!dict.contains(endWord)) return res
@@ -22,7 +26,13 @@ class Solution {
         return res
     }
 
-    private fun dfs(map: HashMap<String, MutableList<String>>, res: MutableList<List<String>>, beginWord: String, endWord: String, queue: ArrayDeque<String>) {
+    private fun dfs(
+        map: HashMap<String, MutableList<String>>,
+        res: MutableList<List<String>>,
+        beginWord: String,
+        endWord: String,
+        queue: ArrayDeque<String>
+    ) {
         queue.add(beginWord) //beginWord 可能不在集合中，需要单独添加
         if (beginWord == endWord) {
             res.add(queue.toList())
@@ -41,11 +51,11 @@ class Solution {
      * 寻找每个节点的邻居节点
      */
     fun doubleBfs(
-            dict: HashSet<String>,
-            begin: Set<String>,
-            end: Set<String>,
-            map: HashMap<String, MutableList<String>>,
-            isTopDown: Boolean
+        dict: HashSet<String>,
+        begin: Set<String>,
+        end: Set<String>,
+        map: HashMap<String, MutableList<String>>,
+        isTopDown: Boolean
     ): Boolean {
         //当一个方向节点数为空仍未找到 中间联通节点时，返回 false
         if (begin.isEmpty()) return false

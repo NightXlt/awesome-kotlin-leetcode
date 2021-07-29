@@ -19,7 +19,8 @@ class QuickSort {
         quickSort(data, 0, data.lastIndex)
     }
 
-    private fun randomPartition(@NotNull data: IntArray, length: Int, left: Int, right: Int): Int {
+    private fun randomPartition(@NotNull data: IntArray, left: Int, right: Int): Int {
+        val length = right - left + 1
         val index = left + (length * Random.nextFloat()).toInt()
         swap(data, index, right)
         return partition(left, right, data)
@@ -42,7 +43,7 @@ class QuickSort {
     private fun quickSort(data: IntArray?, left: Int, right: Int) {
         if (data == null) return
         if (left < right) {
-            val p = randomPartition(data, right - left + 1, left, right)
+            val p = randomPartition(data, left, right)
             quickSort(data, left, p - 1)
             quickSort(data, p + 1, right)
         }

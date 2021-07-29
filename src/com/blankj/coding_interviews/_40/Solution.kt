@@ -19,7 +19,7 @@ class Solution {
     }
 
     private fun randomPartition(nums: IntArray, low: Int, high: Int): Int {
-        val len = high - low
+        val len = high - low + 1
         val index = low + (len * Random.nextFloat()).toInt()
         nums[low] = nums[index].also { nums[index] = nums[low] }
         return partition(nums, low, high)
