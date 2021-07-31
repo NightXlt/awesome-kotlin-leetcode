@@ -21,7 +21,11 @@ class GroupAnagrams {
         val sb = StringBuilder()
         for (i in map.indices) {
             if (map[i] != 0) {
-                sb.append('a' + i + "_${map[i]}")
+                val c = 'a' + i
+                // Avoid creating extra String builder
+                sb.append(c)
+                sb.append('_')
+                sb.append(map[i])
             }
         }
         return sb.toString()
@@ -30,10 +34,10 @@ class GroupAnagrams {
 
 fun main() {
     GroupAnagrams().groupAnagrams(
-            arrayOf("eat", "tea", "tan", "ate", "nat", "bat")
+        arrayOf("eat", "tea", "tan", "ate", "nat", "bat")
     ).print()
     GroupAnagrams().groupAnagrams(
-            arrayOf("cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc")
+        arrayOf("cab", "tin", "pew", "duh", "may", "ill", "buy", "bar", "max", "doc")
     ).print()
     print('a' + 2)
 }
