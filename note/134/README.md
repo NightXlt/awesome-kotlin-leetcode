@@ -6,7 +6,7 @@
  
 取余是因为可能最小的累计剩余油量为最后一个索引，那么起始索引应该为 0
 具体可参考这个题解所画的图，很直观.留意蓝色虚线内容。
-https://leetcode-cn.com/problems/gas-station/solution/shi-yong-tu-de-si-xiang-fen-xi-gai-wen-ti-by-cyayc/
+[link](https://leetcode-cn.com/problems/gas-station/solution/shi-yong-tu-de-si-xiang-fen-xi-gai-wen-ti-by-cyayc/)
 
 ```kotlin
 class Solution {
