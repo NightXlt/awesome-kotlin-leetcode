@@ -7,7 +7,7 @@ class Solution {
 
     // Double pointer point two string.
     // Time-Complexity: O(max(m, n)); m,n: two string length
-    // Space-Complexity: O(1)
+    // Space-Complexity: O(m + n), substring would consume two string size
     private fun getNextChunk(version: String, n: Int, p: Int): Pair<Int, Int> {
         // if pointer is set to the end of string
         // return 0
