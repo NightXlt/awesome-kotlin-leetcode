@@ -12,6 +12,7 @@
         val map = mutableMapOf(0 to 1)
         for (num in nums) {
             sum += num
+            // key: sum   value: count
             if (map.containsKey(sum - k)) {
                 count += map[sum - k]!!
             }
