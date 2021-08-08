@@ -27,17 +27,17 @@ class QuickSort {
     }
 
     private fun partition(left: Int, right: Int, data: IntArray): Int {
-        var small = left - 1
+        var pivot = left - 1 // point num less than data[right]
         for (index in left until right) {
             if (data[index] >= data[right]) continue
-            ++small
-            if (small != index) {
-                swap(data, index, small)
+            ++pivot
+            if (pivot != index) {
+                swap(data, index, pivot)
             }
         }
-        ++small
-        swap(data, small, right)
-        return small
+        ++pivot
+        swap(data, pivot, right)
+        return pivot
     }
 
     private fun quickSort(data: IntArray?, left: Int, right: Int) {
