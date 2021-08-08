@@ -6,19 +6,19 @@ import com.blankj.structure.TreeNode
 class Solution {
 
     var preOrder: IntArray = intArrayOf()
-    var map = hashMapOf<Int, Int>()
+    var inorderMap = hashMapOf<Int, Int>()
 
     fun buildTree(preOrder: IntArray, inorder: IntArray): TreeNode? {
         if (preOrder.isEmpty() || inorder.isEmpty()) return null
         if (preOrder.size != inorder.size) throw IllegalArgumentException("two order array size should be equal")
         this.preOrder = preOrder
-        inorder.forEachIndexed { index, i -> map[i] = index }
+        inorder.forEachIndexed { index, i -> inorderMap[i] = index }
         return build(0, preOrder.size - 1, 0, inorder.size - 1)
     }
 
     private fun build(startPreorder: Int, endPreorder: Int, startInorder: Int, endInorder: Int): TreeNode? {
         val root = TreeNode(preOrder[startPreorder])
-        val rootInorder = map[preOrder[startPreorder]] // root index in inorder array
+        val rootInorder = inorderMap[preOrder[startPreorder]] // root index in inorder array
                 ?: throw IllegalArgumentException("Could not find out preorder number ${preOrder[startPreorder]} in inorder")
         val leftChildLen = rootInorder - startInorder
         val rightChildLen = endInorder - rootInorder
