@@ -16,10 +16,15 @@ class Solution {
         return build(0, preOrder.size - 1, 0, inorder.size - 1)
     }
 
-    private fun build(startPreorder: Int, endPreorder: Int, startInorder: Int, endInorder: Int): TreeNode? {
+    private fun build(
+        startPreorder: Int,
+        endPreorder: Int,
+        startInorder: Int,
+        endInorder: Int
+    ): TreeNode? {
         val root = TreeNode(preOrder[startPreorder])
         val rootInorder = inorderMap[preOrder[startPreorder]] // root index in inorder array
-                ?: throw IllegalArgumentException("Could not find out preorder number ${preOrder[startPreorder]} in inorder")
+            ?: throw IllegalArgumentException("Could not find out preorder number ${preOrder[startPreorder]} in inorder")
         val leftChildLen = rootInorder - startInorder
         val rightChildLen = endInorder - rootInorder
         val leftPreorderEnd = startPreorder + leftChildLen
@@ -39,7 +44,10 @@ fun main() {
       Solution().buildTree(intArrayOf(0), intArrayOf(2))?.print() // can't find number in in order
       Solution().buildTree(intArrayOf(0), intArrayOf(2, 3))?.print() // size isn't equal
   */
-    Solution().buildTree(intArrayOf(1, 2, 4, 7, 3, 5, 6, 8), intArrayOf(4, 7, 2, 1, 5, 3, 8, 6))?.print() // non-complete binary tree.
+    Solution().buildTree(
+        intArrayOf(1, 2, 4, 7, 3, 5, 6, 8),
+        intArrayOf(4, 7, 2, 1, 5, 3, 8, 6)
+    )?.print() // non-complete binary tree.
     Solution().buildTree(intArrayOf(1, 2, 3), intArrayOf(2, 1, 3))?.print() // complete binary tree.
     Solution().buildTree(intArrayOf(1, 2, 3), intArrayOf(3, 2, 1))?.print() // just left subtree
     Solution().buildTree(intArrayOf(1, 2, 3), intArrayOf(1, 2, 3))?.print() // just right subtree
