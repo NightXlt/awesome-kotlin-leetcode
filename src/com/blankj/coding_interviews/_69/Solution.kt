@@ -69,8 +69,8 @@ class Solution {
             CharType.CHAR_SPACE to State.STATE_END
         )
         transfer[State.STATE_END] = endMap
-        val length = s.length
 
+        val length = s.length
         var state: State? = State.STATE_INITIAL
         for (i in 0 until length) {
             val type: CharType = toCharType(s[i])
