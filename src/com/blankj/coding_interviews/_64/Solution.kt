@@ -1,6 +1,6 @@
 package com.blankj.coding_interviews._64
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 class Solution {
     fun sumNums(n: Int): Int {

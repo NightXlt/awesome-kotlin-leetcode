@@ -1,6 +1,6 @@
 package com.blankj.coding_interviews._54
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 import com.blankj.structure.TreeNode
 import java.util.*
 import kotlin.math.max

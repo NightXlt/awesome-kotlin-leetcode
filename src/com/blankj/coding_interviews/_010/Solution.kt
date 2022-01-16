@@ -1,6 +1,6 @@
 package com.blankj.coding_interviews._010
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 class Solution {
     fun fib(n: Int): Int {

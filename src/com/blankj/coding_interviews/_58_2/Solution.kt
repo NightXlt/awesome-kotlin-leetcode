@@ -1,6 +1,6 @@
 package com.blankj.coding_interviews._58_2
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 class Solution {
 

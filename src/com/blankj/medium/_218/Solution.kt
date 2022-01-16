@@ -1,6 +1,6 @@
 package com.blankj.medium._218
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 import kotlin.math.max
 // https://leetcode-cn.com/problems/the-skyline-problem/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--45/
 class Solution {

@@ -1,6 +1,6 @@
 package com.blankj.medium.linkedin
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 class Solution2 {
     val digitRange = '0'..'9'

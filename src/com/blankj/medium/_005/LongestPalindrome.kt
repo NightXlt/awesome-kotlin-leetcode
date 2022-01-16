@@ -1,6 +1,6 @@
 package com.blankj.medium._005
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 class LongestPalindrome {
     var leftIndex = 0

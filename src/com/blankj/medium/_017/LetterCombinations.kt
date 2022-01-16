@@ -1,6 +1,6 @@
 package com.blankj.medium._017
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 class LetterCombinations {
     fun letterCombinations(digits: String): List<String> {

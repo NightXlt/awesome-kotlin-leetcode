@@ -1,6 +1,6 @@
 package com.blankj.medium._46
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 internal class Solution {
     fun permute(nums: IntArray): List<List<Int>> {

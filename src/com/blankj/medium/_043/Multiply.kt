@@ -1,6 +1,6 @@
 package com.blankj.medium._043
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 
 
 class Multiply {

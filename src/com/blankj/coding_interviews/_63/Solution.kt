@@ -1,6 +1,6 @@
 package com.blankj.coding_interviews._63
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 import kotlin.math.max
 import kotlin.math.min
 

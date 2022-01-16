@@ -1,6 +1,6 @@
 package com.blankj.sort
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 import com.sun.istack.internal.NotNull
 import kotlin.random.Random
 

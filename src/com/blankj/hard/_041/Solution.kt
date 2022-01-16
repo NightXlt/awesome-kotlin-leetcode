@@ -1,6 +1,6 @@
 package com.blankj.hard._041
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 import kotlin.math.max
 
 class Solution {

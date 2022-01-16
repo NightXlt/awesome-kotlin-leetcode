@@ -1,6 +1,6 @@
 package com.blankj.hard._72
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 import kotlin.math.min
 
 class Solution {

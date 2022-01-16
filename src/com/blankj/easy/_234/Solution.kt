@@ -1,6 +1,6 @@
 package com.blankj.easy._234
 
-import com.blankj.coding_interviews._004.print
+import com.blankj.ext.print
 import com.blankj.structure.ListNode
 
 class Solution {
