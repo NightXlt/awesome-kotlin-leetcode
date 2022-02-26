@@ -10,17 +10,17 @@ class IsBalanced {
     fun isBalanced(root: TreeNode?): Boolean = if (root == null) {
         true
     } else {
-        isBalanced(root, 1) != -1
+        maxChildDep(root) != -1
     }
 
     /**
      * dfs: from bottom to up
      */
-    private fun isBalanced(root: TreeNode?, depth: Int): Int {
+    private fun maxChildDep(root: TreeNode?): Int {
         root ?: return 0
-        val leftDepth = isBalanced(root.left, depth + 1)
+        val leftDepth = maxChildDep(root.left)
         if (leftDepth == -1) return -1
-        val rightDepth = isBalanced(root.right, depth + 1)
+        val rightDepth = maxChildDep(root.right)
         if (rightDepth == -1) return -1
         val diff = abs(leftDepth - rightDepth)
         return if (diff <= 1) max(leftDepth, rightDepth) + 1 else -1

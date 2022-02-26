@@ -12,7 +12,7 @@ class Solution {
         }
         val queue: Queue<Int> = ArrayDeque()
         for ((index, i) in inDegree.withIndex()) {
-            if (i == 0) queue.add(index)
+            if (i == 0) queue.offer(index)
         }
         val res = mutableListOf<Int>()
         while (queue.isNotEmpty()) {

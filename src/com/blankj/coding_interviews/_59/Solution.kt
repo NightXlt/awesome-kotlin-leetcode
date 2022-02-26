@@ -36,6 +36,7 @@ class Solution {
 
 fun main() {
     Solution().maxSlidingWindow(intArrayOf(1,3,-1,-3,5,3,6,7), 3).print()
+    Solution().maxSlidingWindow(intArrayOf(1,3,-1-3,5,3), 3).print()
     Solution().maxSlidingWindow(intArrayOf(-1, -1, -1, -1, -1), 3).print()
     Solution().maxSlidingWindow(intArrayOf(1), 1).print()
     Solution().maxSlidingWindow(intArrayOf(), 1).print()
