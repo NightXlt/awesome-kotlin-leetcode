@@ -10,6 +10,7 @@ class FindMedianSortedArrays {
         val length1 = nums1.size
         val length2 = nums2.size
         var low = 0
+        // 留意 i + j = total_len / 2
         // 之所以是 length，是因为想找到中位数后面一位数下标i,j，
         // 这样中位数根据数组的奇偶性可以得到是
         // 奇：max(nums1[i - 1], nums2[j - 1])

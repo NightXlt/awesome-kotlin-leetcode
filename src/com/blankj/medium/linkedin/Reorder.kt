@@ -1,5 +1,8 @@
 package com.blankj.medium.linkedin
 
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
+
 class ListNode(
     val value: Int
 ) {
@@ -35,7 +38,14 @@ class DoubleLinkedList {
         tail = curTailNode
     }
 }
+public inline fun <T> T.also(block: (T) -> Unit) : T {
+    block(this)
+    return this
+}
 
+public inline fun <T, R> T.run(block: (T) -> R) : R {
+    return block(this)
+}
 fun main() {
     /** test cases
      * - [1, 2, 3, 4, 5]

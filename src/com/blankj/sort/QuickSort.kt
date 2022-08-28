@@ -1,7 +1,6 @@
 package com.blankj.sort
 
 import com.blankj.ext.print
-import com.sun.istack.internal.NotNull
 import kotlin.random.Random
 
 /**
@@ -19,7 +18,7 @@ class QuickSort {
         quickSort(data, 0, data.lastIndex)
     }
 
-    private fun randomPartition(@NotNull data: IntArray, left: Int, right: Int): Int {
+    private fun randomPartition(data: IntArray, left: Int, right: Int): Int {
         val length = right - left + 1
         val index = left + (length * Random.nextFloat()).toInt()
         swap(data, index, right)

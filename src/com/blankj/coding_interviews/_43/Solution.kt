@@ -34,7 +34,7 @@ class Solution {
 }
 
 fun main() {
-    Solution().countDigitOne(0).print()
-    Solution().countDigitOne(1).print()
+//    Solution().countDigitOne(0).print()
+    Solution().countDigitOne(204).print()
     Solution().countDigitOne(12).print()
 }

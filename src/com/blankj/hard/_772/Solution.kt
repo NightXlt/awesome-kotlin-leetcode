@@ -48,7 +48,7 @@ class Solution {
             if (c == ')') break // 开始计算局部结果，返回
             index++
         }
-        return stack.fold(0) { acc, i -> acc + i }
+        return stack.sum()
     }
 
 }

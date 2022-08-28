@@ -35,12 +35,14 @@ class Solution2 {
     fun getNum(s: String, start: Int): Pair<Int, Int> {
         var left = start
         var res = 0
-        while (s[left] in digitRange) {
+        val illegalResult = left to -1
+        while (left < s.length && s[left] in digitRange) {
             val num = s[left] - '0'
-            if (num == 0 && left == start) return left to -1
+            if (num == 0 && left == start) return illegalResult
             res = res * 10 + num
             left++
         }
+        if (left == s.length) return illegalResult
         return left to res
     }
 }
