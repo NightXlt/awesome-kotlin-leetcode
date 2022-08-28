@@ -5,7 +5,7 @@ import com.blankj.ext.print
 
 class Solution {
     fun movingCount(m: Int, n: Int, k: Int): Int {
-        if (k < 0) throw IllegalArgumentException("Illegal argument exception")
+        if (k < 0) error("Illegal argument exception")
         val visited = Array(m) { BooleanArray(n) }
 
         fun dfs(

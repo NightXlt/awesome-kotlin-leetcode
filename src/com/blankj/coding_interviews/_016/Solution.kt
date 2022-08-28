@@ -12,7 +12,7 @@ class Solution {
         var i = n
         var x = x
         // double cant use == op comparison simply
-        if (abs(x) < 0.00000001 && n < 0) throw IllegalArgumentException("base is 0, but exponent is less than 0")
+        if (abs(x) < 0.00000001 && n < 0) error("base is 0, but exponent is less than 0")
         while (i != 0) {
             if (i % 2 != 0) {
                 res *= x

@@ -10,7 +10,7 @@ class Solution {
 
     fun buildTree(preOrder: IntArray, inorder: IntArray): TreeNode? {
         if (preOrder.isEmpty() || inorder.isEmpty()) return null
-        if (preOrder.size != inorder.size) throw IllegalArgumentException("two order array size should be equal")
+        if (preOrder.size != inorder.size) error("two order array size should be equal")
         this.preOrder = preOrder
         inorder.forEachIndexed { index, i -> inorderMap[i] = index }
         return build(0, preOrder.size - 1, 0, inorder.size - 1)
