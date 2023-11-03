@@ -1,11 +1,5 @@
 package com.blankj.hard._127
 
-import com.blankj.ext.print
-import java.util.*
-import kotlin.collections.HashMap
-import kotlin.collections.HashSet
-import kotlin.math.max
-
 class Solution {
 
     var count = 0
@@ -19,20 +13,19 @@ class Solution {
         begin.add(beginWord)
         val end = HashSet<String>()
         end.add(endWord)
-        val map = HashMap<String, MutableList<String>>()
         count = 1
-        if (!doubleBfs(dict, begin, end, map, true)) {
+        if (!doubleBfs(dict, begin, end, true)) {
             count = 0
         }
         return count
     }
 
-    fun doubleBfs(dict: HashSet<String>, begin: Set<String>, end: Set<String>, map: HashMap<String, MutableList<String>>, isTopDown: Boolean): Boolean {
+    fun doubleBfs(dict: HashSet<String>, begin: Set<String>, end: Set<String>, isTopDown: Boolean): Boolean {
         if (begin.isEmpty()) {
             return false
         }
         if (begin.size > end.size) {
-            return doubleBfs(dict, end, begin, map, !isTopDown)
+            return doubleBfs(dict, end, begin, !isTopDown)
         }
         dict.removeAll(begin)
         dict.removeAll(end)
@@ -49,27 +42,19 @@ class Solution {
                     }
                     chars[i] = c
                     val neighborWord = String(chars)
-                    val key = if (isTopDown) word else neighborWord
-                    val value = if (isTopDown) neighborWord else word
-                    val neighborWords = map.getOrDefault(key, mutableListOf())
-
                     if (end.contains(neighborWord)) {
                         isTraversalEnd = true
-                        neighborWords.add(value)
-                        map[key] = neighborWords
                     }
                     if (isTraversalEnd) return true
                     if (!dict.contains(neighborWord)) {
                         continue
                     }
                     visited.add(neighborWord)
-                    neighborWords.add(value)
-                    map[key] = neighborWords
                 }
                 chars[i] = temp
             }
         }
-        return doubleBfs(dict, visited, end, map, isTopDown)
+        return doubleBfs(dict, visited, end, isTopDown)
     }
 }
 
