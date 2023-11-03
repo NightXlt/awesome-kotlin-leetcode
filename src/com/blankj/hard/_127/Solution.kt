@@ -4,6 +4,7 @@ class Solution {
 
     var count = 0
 
+    // 这道题因为不需要记录完整的路径，所以不需要啥 map
     fun ladderLength(beginWord: String, endWord: String, wordList: List<String>): Int {
         val dict = HashSet(wordList)
         if (!dict.contains(endWord)) {
