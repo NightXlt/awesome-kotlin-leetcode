@@ -1,4 +1,4 @@
-package com.blankj.medium._685
+package com.blankj.hard._685
 
 import com.blankj.ext.print
 import com.blankj.structure.MultiDimensionArray
