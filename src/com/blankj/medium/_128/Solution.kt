@@ -24,10 +24,48 @@ class Solution {
         return maxLength
     }
 
+    private fun merge(find: MutableMap<Int, Int>, x: Int, y: Int, count: MutableMap<Int, Int>): Boolean {
+        val fx = find(find, x)
+        val fy = find(find, y)
+        if (fx != fy) {
+            find[fx] = fy
+            count[fy] = count[fx]!! + count[fy]!!
+            return true
+        }
+        return false
+    }
+
+    private fun find(find: MutableMap<Int, Int>, x: Int): Int {
+        var index = x
+        while (find[index] != index) {
+            index = find[index]!!
+        }
+        return index
+    }
+
+    fun longestConsecutiveUnionFind(nums: IntArray): Int {
+        val find = mutableMapOf<Int, Int>()
+        val count = mutableMapOf<Int, Int>()
+        val all = mutableSetOf<Int>()
+        for (num in nums) {
+            find[num] = num
+            count[num] = 1
+            all.add(num)
+        }
+        for (num in nums) {
+            if (all.contains(num - 1)) {
+                merge(find, num, num - 1, count)
+            }
+            if (all.contains(num + 1)) {
+                merge(find, num, num + 1, count)
+            }
+        }
+        return count.values.maxOrNull() ?: 0
+    }
 }
 
 fun main() {
     Solution().longestConsecutive(intArrayOf(100, 4, 200, 1, 3, 2)).print()
     Solution().longestConsecutive(intArrayOf(1)).print()
-    Solution().longestConsecutive(intArrayOf(1,5,4,2,3)).print()
+    Solution().longestConsecutive(intArrayOf(1, 5, 4, 2, 3)).print()
 }
