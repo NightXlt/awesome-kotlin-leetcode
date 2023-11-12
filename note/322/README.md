@@ -19,6 +19,8 @@ min(当前i 的兑换零钱数目， (i - coin)的兑换零钱数目 + 1)
 ```
 dp\[i\]：表示 i 块钱的最小兑换数目
 
+时间复杂度：O(nt) // t 为 硬币数目, n 为 coins 长度
+空间复杂度：O(t)
 ```kotlin
     fun coinChange(coins: IntArray, amount: Int): Int {
         val dp = IntArray(amount + 1) { amount + 1 }

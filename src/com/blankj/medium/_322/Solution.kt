@@ -8,10 +8,8 @@ class Solution {
         val dp = IntArray(amount + 1) { amount + 1 }
         dp[0] = 0
         for (coin in coins) {
-            for (i in 0..amount) {
-                if (coin <= i) {
-                    dp[i] = min(dp[i], dp[i - coin] + 1)
-                }
+            for (i in coin..amount) {
+                dp[i] = min(dp[i], dp[i - coin] + 1)
             }
         }
         return if (dp[amount] > amount) -1 else dp[amount]
