@@ -2,7 +2,7 @@
 
 ## Solution
 通过一个 Map 记录 0..i 的和sum，当遍历 sum 时，如果发现 sum - k 存在于 map中，那么必存在 0..j 的和= sum - k。
-
+map 中 0 to 1 的键值对初始化是为了漏解， 因为在刚好 sum == k 时， 如果 map 中没有记录结果就会漏掉这一个子数组
 那么 j..i 的和即为 k， count 即是 map\[sum - k\]
 
 ```kotlin
