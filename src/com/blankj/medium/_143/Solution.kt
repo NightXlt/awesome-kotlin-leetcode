@@ -15,11 +15,10 @@ class Solution {
     private fun mergeList(head: ListNode?, mid: ListNode?) {
         var l1 = head
         var l2 = mid
-        var nextTemp1: ListNode?
-        var nextTemp2: ListNode?
+
         while (l1 != null && l2 != null) {
-            nextTemp1 = l1.next
-            nextTemp2 = l2.next
+            var nextTemp1 = l1.next
+            var nextTemp2 = l2.next
             l1.next = l2
             l1 = nextTemp1
 
