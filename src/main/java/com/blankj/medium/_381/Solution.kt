@@ -8,7 +8,6 @@ class RandomizedCollection {
     private val numToLocation = mutableMapOf<Int, MutableSet<Int>>()
 
     fun insert(`val`: Int): Boolean {
-
         numToLocation.putIfAbsent(`val`, mutableSetOf())
         numToLocation.getValue(`val`).add(nums.size)
         nums.add(`val`)
