@@ -25,7 +25,7 @@ class Solution {
     }
 
     fun findBottomLeftValueByBFS(root: TreeNode?): Int {
-        val root = root ?: throw IllegalArgumentException("root must be not null")
+        val root = root ?: error("root must be not null")
         var queue = ArrayDeque<TreeNode>()
         queue.add(root)
         var result = root
