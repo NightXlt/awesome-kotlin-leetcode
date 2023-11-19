@@ -13,22 +13,21 @@ class GroupAnagrams {
         return map.values.toList()
     }
 
+    private val map = IntArray(26)
+
     private fun getBitmapKey(str: String): String {
-        val map = IntArray(26)
+        map.fill(0)
         for (c in str) {
             map[c - 'a']++
         }
-        val sb = StringBuilder()
-        for (i in map.indices) {
-            if (map[i] != 0) {
-                val c = 'a' + i
-                // Avoid creating extra String builder
-                sb.append(c)
-                sb.append('_')
-                sb.append(map[i])
-            }
+        return buildString {
+            map.indices.filter { map[it] != 0 }
+                .forEach {
+                    append('a' + it)
+                    append('_')
+                    append(map[it])
+                }
         }
-        return sb.toString()
     }
 }
 

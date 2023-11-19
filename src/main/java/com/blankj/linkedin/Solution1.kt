@@ -1,4 +1,4 @@
-package com.blankj.medium.linkedin
+package com.blankj.linkedin
 
 import com.blankj.ext.print
 import java.util.*

@@ -1,4 +1,4 @@
-package com.blankj.medium.linkedin
+package com.blankj.linkedin
 
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
