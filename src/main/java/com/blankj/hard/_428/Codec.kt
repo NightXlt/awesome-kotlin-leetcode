@@ -1,7 +1,6 @@
 package com.blankj.hard._428
 
 import com.blankj.ext.print
-import java.util.*
 
 class Codec {
     // Serialize a BiTree to a String
@@ -15,7 +14,8 @@ class Codec {
     }
 
     private fun buildString(root: Node?, res: StringBuilder) {
-        val (value, children) = root ?: return
+        root ?: return
+        val (value, children) = root.`val` to root.children
         res.append(value)
         res.append(',')
         res.append(children?.size ?: 0)
@@ -28,35 +28,39 @@ class Codec {
     // Deserialize string to BiTree
     fun deserialize(data: String?): Node? {
         if (data.isNullOrEmpty()) return null
-        val queue: Queue<String> = LinkedList()
+        val queue: ArrayDeque<String> = ArrayDeque()
         data.splitToSequence(',')
             .toCollection(queue)
         return buildTree(queue)
     }
 
-    private fun buildTree(queue: Queue<String>): Node {
-        val value = queue.poll().toInt()
-        val childrenSize = queue.poll().toInt()
+    private fun buildTree(queue: ArrayDeque<String>): Node {
+        val value = queue.removeFirst().toInt()
+        val childrenSize = queue.removeFirst().toInt()
         val root = Node(value)
-        root.children = mutableListOf()
+        val children = mutableListOf<Node>()
         repeat(childrenSize) {
-            root.children?.add(buildTree(queue))
+            children.add(buildTree(queue))
         }
+        root.children = children
         return root
     }
 }
 
-data class Node(
-    val value: Int,
-    var children: MutableList<Node>? = null
-)
+class Node(
+    val `val`: Int
+) {
+    var children: List<Node>? = null
+}
 
 fun main() {
-    Codec().deserialize("1,2,2,0,3,0")
+    Codec().deserialize("1,3,2,0,3,0,4,0")
     Node(1).apply {
-        children = mutableListOf()
-        children?.add(Node(2))
-        children?.add(Node(3))
+        this.children = listOf(
+            Node(2),
+            Node(3),
+            Node(4)
+        )
         Codec().serialize(this).print()
     }
 }
