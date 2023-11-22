@@ -1,22 +1,21 @@
 package com.blankj.medium._173
 
 import com.blankj.structure.TreeNode
-import java.util.*
 
 class BSTIterator(root: TreeNode?) {
 
     var cur = root
-    val stack: Deque<TreeNode> = ArrayDeque<TreeNode>()
+    val stack = ArrayDeque<TreeNode>()
 
     fun next(): Int {
         while (cur != null) {
-            stack.push(cur)
+            stack.add(cur!!)
             cur = cur?.left
         }
-        cur = stack.pop()
+        cur = stack.removeLast()
         val res = cur?.`val`
         cur = cur?.right
-        return res ?: throw IllegalStateException("Stack is empty!!!")
+        return res ?: error("Stack is empty!!!")
     }
 
     fun hasNext(): Boolean = cur != null || stack.isNotEmpty()
