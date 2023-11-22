@@ -27,6 +27,6 @@ fun main() {
     Solution().goodNodes(TreeNode.oneNode()).print()
     Solution().goodNodes(TreeNode.createJustLeftChild()).print()
     Solution().goodNodes(TreeNode.createJustRightChild()).print()
-    Solution().goodNodes(TreeNode.commonTree()).print()
+    Solution().goodNodes(TreeNode.commonBSTTree()).print()
     Solution().goodNodes(TreeNode.createTestData("[3,1,4,3,null,1,5,null,null]")).print()
 }

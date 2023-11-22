@@ -65,7 +65,7 @@ public class TreeNode {
         return createTestData("[1,2,null,2,null,2,null]");
     }
 
-    public static TreeNode commonTree() {
+    public static TreeNode commonBSTTree() {
         return createTestData("[3,1,4,null,2,null,null]");
     }
 
