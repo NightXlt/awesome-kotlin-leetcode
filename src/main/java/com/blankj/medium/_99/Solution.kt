@@ -34,7 +34,7 @@ class Solution {
 
 fun main() {
     Solution().recoverTree(TreeNode.createTestData("[1,3,null,null,2]"))
-    Solution().recoverTree(TreeNode.commonTree())
-    Solution().recoverTree(TreeNode.commonTree())
-    Solution().recoverTree(TreeNode.commonTree())
+    Solution().recoverTree(TreeNode.commonBSTTree())
+    Solution().recoverTree(TreeNode.commonBSTTree())
+    Solution().recoverTree(TreeNode.commonBSTTree())
 }
