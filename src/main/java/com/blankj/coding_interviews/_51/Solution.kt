@@ -6,7 +6,7 @@ import com.blankj.ext.print
 class Solution {
 
     fun reversePairs(nums: IntArray?): Int {
-        if (nums == null || nums.isNotEmpty()) return 0
+        if (nums == null || nums.isEmpty()) return 0
         val copy = IntArray(nums.size)
         return mergeSort(nums, copy, 0, nums.size - 1)
     }
@@ -28,8 +28,11 @@ class Solution {
         var j = high
         var k = high
         var count = 0
+        // 9, 7, 5, 4, 6
+        // 7,9, 4,5,6
         while (i >= low && j > mid) {
             if (copy[i] > copy[j]) {
+                // 发现一个逆序对时， 后半段 j 前面的都比 j 小， 必然也都是逆序对
                 count += j - mid
                 nums[k--] = copy[i--]
             } else {
