@@ -1,4 +1,4 @@
-package com.blankj.medium._46
+package com.blankj.medium._47
 
 import com.blankj.ext.print
 
@@ -10,6 +10,7 @@ class Solution {
     }
 
     private fun swap(nums: IntArray, m: Int, n: Int) {
+        if (m == n) return
         nums[m] = nums[n].also {
             nums[n] = nums[m]
         }
@@ -21,13 +22,21 @@ class Solution {
             return
         }
         for (i in start until nums.size) {
-            swap(nums, i, start)
-            dfs(nums, start + 1, lists)
-            swap(nums, i, start)
+            if (!isSwapped(nums, start, i)) {
+                swap(nums, i, start)
+                dfs(nums, start + 1, lists)
+                swap(nums, i, start)
+            }
         }
+    }
+
+    private fun isSwapped(nums: IntArray, start: Int, end: Int): Boolean {
+        val range = start..<end
+        return nums.indices.filter { it in range }
+            .any { nums[it] == nums[end] }
     }
 }
 
 fun main() {
-    Solution().permute(intArrayOf(1, 2, 3, 4, 5)).print()
+    Solution().permute(intArrayOf(1,1,2)).print()
 }
