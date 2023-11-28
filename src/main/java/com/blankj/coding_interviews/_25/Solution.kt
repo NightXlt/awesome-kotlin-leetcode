@@ -23,8 +23,8 @@ class Solution {
     fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
         var l1: ListNode? = l1 ?: return l2
         var l2: ListNode? = l2 ?: return l1
-        val dummyHead: ListNode? = ListNode(-1)
-        var p = dummyHead
+        val dummyHead = ListNode(-1)
+        var p: ListNode? = dummyHead
         while (l1 != null && l2 != null) {
             if (l1.`val` > l2.`val`) {
                 p?.next = l2
@@ -36,7 +36,7 @@ class Solution {
             p = p?.next
         }
         p?.next = l1 ?: l2
-        return dummyHead?.next
+        return dummyHead.next
     }
 }
 
