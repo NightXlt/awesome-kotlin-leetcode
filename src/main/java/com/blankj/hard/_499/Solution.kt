@@ -51,6 +51,7 @@ class Solution {
             }
         } else if (!visited[x][y][dir]) {
             visited[x][y][dir] = true
+            // 如果需要追溯全链路， 下面补上 , path = node.path + dirToPath[node.dir] 就好了
             queue.add(node.copy(x = x, y = y))
         }
     }
