@@ -134,38 +134,85 @@ class Solution {
 ## 思路 2
 
 另一种思路就是动态规划了，我们定义 `dp[i][j]` 的真假来表示 `s[0..i)` 是否匹配 `p[0..j)`，通过思路 1，我们可以确定其状态转移方程如下所示：
+其中 dp[i][j - 2] 表示 * 不包含前一个元素的情况， 后面的或是包含的情况，
+(p[j - 2] == s[i - 1] || p[j - 2] == '.') && dp[i - 1][j]
 
-* 如果 `p[j - 1] == '*'`, `dp[i][j] = dp[i][j - 2] || (pc[j - 2] == sc[i - 1] || pc[j - 2] == '.') && dp[i - 1][j];`；
+* 如果 `p[j - 1] == '*'`, `dp[i][j] = dp[i][j - 2] || (p[j - 2] == s[i - 1] || p[j - 2] == '.') && dp[i - 1][j];`；
 
-* 如果 `p[j - 1] != '*'`，`dp[i][j] = dp[i - 1][j - 1] && (pc[j - 1] == '.' || pc[j - 1] == sc[i - 1]);`。
+* 如果 `p[j - 1] != '*'`，`dp[i][j] = dp[i - 1][j - 1] && (p[j - 1] == '.' || p[j - 1] == s[i - 1]);`。
 
-```java
-class Solution {
-    public boolean isMatch(String s, String p) {
-        if (p.length() == 0) return s.length() == 0;
-        int sL = s.length(), pL = p.length();
-        boolean[][] dp = new boolean[sL + 1][pL + 1];
-        char[] sc = s.toCharArray(), pc = p.toCharArray();
-        dp[0][0] = true;
-        for (int i = 2; i <= pL; ++i) {
-            if (pc[i - 1] == '*' && dp[0][i - 2]) {
-                dp[0][i] = true;
-            }
+
+补充下柯基这个思路我之前没想到的一些点，之前自己写的是逆序版本， 没有深度思考为啥要逆序，正序也是可以求解的
+这个版本是顺序的。 上面的动规方程， 柯基讲的很明白，
+可以看到这里顺序处理起来会比较麻烦， 考虑的情况也比较多, 需要单独初始化二维 dp 第一行 s 为空串的情况， p 存在 '*' 的情况。
+
+```kotlin
+class RegexMatchWithSerialOrder {
+    fun isMatch(s: String, p: String): Boolean {
+        // length + 1： match empty string
+        val m = s.length + 1
+        val n = p.length + 1
+        val dp = Array(m) { Array(n) { false } }
+        dp[0][0] = true
+        for (i in 2..<n step 2) {
+            dp[0][i] = dp[0][i - 2] && p[i - 1] == '*'
         }
-        for (int i = 1; i <= sL; ++i) {
-            for (int j = 1; j <= pL; ++j) {
-                if (pc[j - 1] == '*') {
-                    dp[i][j] = dp[i][j - 2] || (pc[j - 2] == sc[i - 1] || pc[j - 2] == '.') && dp[i - 1][j];
+        for (i in 1..<m) {
+            for (j in 1..<n) {
+                dp[i][j] = if (p[j - 1] == '*') {
+                    dp[i][j - 2] || (dp[i - 1][j] && (s[i - 1] == p[j - 2] || p[j - 2] == '.'))
                 } else {
-                    dp[i][j] = dp[i - 1][j - 1] && (pc[j - 1] == '.' || pc[j - 1] == sc[i - 1]);
+                    dp[i - 1][j - 1] && (s[i - 1] == p [j - 1] || p[j - 1] == '.')
                 }
             }
         }
-        return dp[sL][pL];
+        return dp.last().last()
+    }
+
+}
+
+```
+
+## 思路3
+逆序的 dp. dp[i][j] 数组的含义是 (i..<s.length)(j..<p.length) 是否相等
+那么 最后一行和最后一列分别表示 s 空串和 p 空串。
+状态方程为：
+* `curMatch = i < s.length && (s[i] == p[j] || p[j] == '.')`
+* 如果 `p[j + 1] == '*'`, ` dp[i][j] = dp[i][j + 2] || curMatch && dp[i + 1][j]  (j < p.length - 1)`； 
+
+* 如果 `p[j - 1] != '*'`，`  dp[i][j] = curMatch && dp[i + 1][j + 1].`。
+
+其中 * 的情况有点复杂， 自己已经记不清含义了， 前面一般是 * 不包含的情况， 比较好理解,
+* 包含的情况的话， 除了判断当前 s[i] 和 p[j] 的匹配情况， 还要看 (i + 1..s.length) 与 (jj..p.length) 的匹配情况， 因为，因为，因为 j 在这开始重复了
+后面的 dp[i + 1][j] 需要时间领会， 而且根据以前自己的思考看， 这里的时序是不能调整的， || 前面隐含贪心思想。
+正序对我而言，最难的思考出状态转移方程，因为里面的 dp[i][j] 对应的是 （0..i-1) 和 （0.. j-1）转换起来比较头疼。
+
+```kotlin
+
+class RegexMatch {
+
+    fun isMatch(s: String, p: String): Boolean {
+        // length + 1： match empty string
+        val dp = Array(s.length + 1) { Array(p.length + 1) { false } }
+        // "" == ""
+        dp[s.length][p.length] = true
+        // i from s.length is for empty string match p
+        for (i in dp.indices.reversed()) {
+            for (j in p.indices.reversed()) {
+                //  i < s.length: prevent OOB
+                val curMatch = i < s.length && (s[i] == p[j] || p[j] == '.')
+                // j + 1 < p.length: prevent OOB
+                dp[i][j] = if (j + 1 < p.length && p[j + 1] == '*') {
+                    dp[i][j + 2] || (curMatch && dp[i + 1][j])
+                } else {
+                    curMatch && dp[i + 1][j + 1]
+                }
+            }
+        }
+        return dp[0][0]
     }
 }
 ```
-
 
 ## 结语
 

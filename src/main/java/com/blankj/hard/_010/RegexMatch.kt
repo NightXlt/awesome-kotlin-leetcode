@@ -1,19 +1,15 @@
-package com.blankj.hard._044
+package com.blankj.hard._010
 // https://nightxlt.github.io/2020/04/04/REMatch/
 class RegexMatch {
 
     fun isMatch(s: String, p: String): Boolean {
         // length + 1： match empty string
-        val dp = Array(s.length + 1) {
-            Array(p.length + 1) {
-                false
-            }
-        }
+        val dp = Array(s.length + 1) { Array(p.length + 1) { false } }
         // "" == ""
         dp[s.length][p.length] = true
         // i from s.length is for empty string match p
         for (i in dp.indices.reversed()) {
-            for (j in p.length - 1 downTo 0) {
+            for (j in p.indices.reversed()) {
                 //  i < s.length: prevent OOB
                 val curMatch = i < s.length && (s[i] == p[j] || p[j] == '.')
                 // j + 1 < p.length: prevent OOB
