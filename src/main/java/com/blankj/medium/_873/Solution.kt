@@ -11,7 +11,6 @@ class Solution {
         var res = 2
         val map = arr.mapIndexed { index, i -> i to index }
             .associate { it }
-            .toMutableMap()
         for (i in 1 until arr.size) {
             for (j in 0 until i) {
                 val k = map.getOrDefault(arr[i] - arr[j], -1)
