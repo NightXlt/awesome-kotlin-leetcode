@@ -44,6 +44,7 @@ babgbag
 那么对S\[i]有两个选择：
 一个是用S[i]去匹配T[j]，那么S[0..i]中等于T[0..j]的子序列的数目等于S\[0..i-1]中等于T\[0..j-1]的子序列的数目；
 另一个是舍去S[i]，那么S[0..i]中等于 T[0..j] 的子序列的数目等于S[0..i-1]中等于 T[0..j] 的子序列的数目。因此，当 S[i] 等于 T[j] 时，f（i，j）等于f（i-1，j-1）+f（i-1，j）。
+
 如果 S[i] 和 T[j] 不相同，则只能舍去 S[i]，此时 f（i，j）等于f（i-1，j）。
 
 接着考虑字符串S和T为空的情形。由于f（0，j）表示S\[0..0]（子字符串的长度为1）中等于T\[0..j]的子序列的数目，因此f（-1，j）表示字符串S为空。
@@ -51,6 +52,7 @@ babgbag
 如果字符串S为空而字符串T不为空，那么字符串S中不可能存在等于字符串T的子序列，即当j大于或等于0时f（-1，j）等于0。
 如果字符串S不为空而字符串T为空，那么字符串S的空子序列（舍去字符串S的所有字符）等于字符串T，即当i大于或等于0时f（i，-1）等于1。
 
+留意的是， j 访问的上界是 i + 1, t.length 的最小值。 因为当 j > i 时， s 的子序列一定不包含 t
 ```
 class Solution {
     fun numDistinct(s: String, t: String): Int {
@@ -100,5 +102,5 @@ class Solution {
 
 
 
-[title]: https://leetcode.com/problems/maximum-subarray
+[title]: https://leetcode.cn/problems/distinct-subsequences/
 [ajl]: https://github.com/Blankj/awesome-java-leetcode

@@ -23,25 +23,21 @@ f（i）=f（i-1）；当输入字符串中下标为i的字符是'1'时，f（i�
 dp中每行的长度为2，f（i）和g（i）的值保存在对应行“i%2”的位置。
 ```kotlin
 import kotlin.math.min
+fun minFlipsMonoIncr(s: String): Int {
+    if (s.isEmpty()) return 0
+    val dp = Array(2) { IntArray(2) }
+    dp[0][0] = if (s[0] == '0') 0 else 1
+    dp[1][0] = if (s[0] == '1') 0 else 1
 
-class Solution {
-    fun minCost(costs: Array<IntArray>): Int {
-        if (costs.isEmpty()) return 0
-        val dp = Array(3) { IntArray(2) }
-        for (i in 0..2) {
-            dp[i][0] = costs[0][i]
-        }
-        for (i in 1 until costs.size) {
-            for (j in 0..2) {
-                val prev1 = dp[(j + 2) % 3][(i - 1) % 2]
-                val prev2 = dp[(j + 1) % 3][(i - 1) % 2]
-                dp[j][i % 2] = min(prev1, prev2) + costs[i][j]
-            }
-        }
-        val lastIndex = (costs.lastIndex) % 2
-        return min(dp[0][lastIndex], min(dp[1][lastIndex], dp[2][lastIndex]))
+    for (i in 1 until s.length) {
+        val prev0 = dp[0][(i - 1) % 2]
+        val prev1 = dp[1][(i - 1) % 2]
+        dp[0][i % 2] = prev0 + if (s[i] == '1') 1 else 0
+        dp[1][i % 2] = min(prev1, prev0) + if (s[i] == '0') 1 else 0
     }
+    return min(dp[0][s.lastIndex % 2], dp[1][s.lastIndex % 2])
 }
+
 ```
 
 ## Conclusion
