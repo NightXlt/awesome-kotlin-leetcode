@@ -21,21 +21,24 @@ dp\[i\]：表示 i 块钱的最小兑换数目
 
 时间复杂度：O(nt) // t 为 硬币数目, n 为 coins 长度
 空间复杂度：O(t)
+
+值得留意的是这里有个处理小细节, 数组初始化为一个较大值, 用来防止影响 min 的比较.
+但不能取 Int.Max_VALUE 哈, 取了迭代时 +1 的话, 会出现越界.
+
 ```kotlin
     fun coinChange(coins: IntArray, amount: Int): Int {
         val dp = IntArray(amount + 1) { amount + 1 }
         dp[0] = 0
         for (coin in coins) {
-            for (i in 0..amount) {
-                if (coin <= i) {
-                    dp[i] = min(dp[i], dp[i - coin] + 1)
-                }
+            for (i in coin..amount) {
+                dp[i] = min(dp[i], dp[i - coin] + 1)
             }
         }
         return if (dp[amount] > amount) -1 else dp[amount]
     }
-
 ```
+
+
 ## Conclusion
 如果你同我一样热爱数据结构、算法、LeetCode，可以关注我 GitHub 上的 LeetCode 题解：[awesome-kotlin-leetcode][akl]
 

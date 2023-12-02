@@ -22,5 +22,5 @@ fun main() {
     Solution().coinChange(intArrayOf(2), 1).print()
     Solution().coinChange(intArrayOf(1), 0).print()
     Solution().coinChange(intArrayOf(1), 2).print()
-    Solution().coinChange(intArrayOf(), 5).print()
+    Solution().coinChange(intArrayOf(3, 6, 7, 8, 9), 5).print()
 }

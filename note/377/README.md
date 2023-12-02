@@ -17,7 +17,7 @@ dp\[i\]：表示和为 i 的排列的数目, 为了得到和为i的排列，
 class Solution {
     fun combinationSum4(nums: IntArray, target: Int): Int {
         val dp = IntArray(target + 1)
-        dp[0] = 1
+        dp[0] = 1 // 空排列为 1
         for (i in 1 .. target) {
             for (num in nums) {
                 if (i >= num) {
