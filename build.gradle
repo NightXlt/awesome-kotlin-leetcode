@@ -1,15 +1,6 @@
-import org.gradle.api.Plugin
-import org.gradle.api.flow.FlowAction
-import org.gradle.api.flow.FlowParameters;
-import org.gradle.api.flow.FlowProviders;
-import org.gradle.api.flow.FlowScope;
-import org.gradle.api.initialization.Settings
-import org.gradle.api.services.ServiceReference;
 
-import javax.inject.Inject;
-import java.io.File;
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.20'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.21'
     id 'java'
 }
 
@@ -34,46 +25,9 @@ dependencies {
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
         freeCompilerArgs = ['-Xjvm-default=all'] //enable or compatibility
-        jvmTarget = "17"
+        jvmTarget = "11"
     }
 }
 
-public abstract class SoundPlay implements FlowAction<Parameters> {
-    interface Parameters extends FlowParameters {
-        @ServiceReference
-        Property<SoundService> getSoundService();
 
-        @Input
-        Property<File> getMediaFile();
-    }
 
-    @Override
-    public void execute(Parameters parameters) {
-        parameters.getSoundService().get().playSoundFile(parameters.getMediaFile().get());
-    }
-}
-
-public abstract class SoundFeedbackPlugin implements Plugin<Settings> {
-    @Inject
-    protected abstract FlowScope getFlowScope();
-
-    @Inject
-    protected abstract FlowProviders getFlowProviders();
-
-    @Override
-    public void apply(Settings settings) {
-        final File soundsDir = new File(settings.getSettingsDir(), "sounds");
-        getFlowScope().always(
-                SoundPlay.class,
-                spec ->
-                        spec.getParameters().getMediaFile().set(
-                                getFlowProviders().getBuildWorkResult().map(result ->
-                                        new File(
-                                                soundsDir,
-                                                result.getFailure().isPresent() ? "sad-trombone.mp3" : "tada.mp3"
-                                        )
-                                )
-                        )
-        );
-    }
-}
