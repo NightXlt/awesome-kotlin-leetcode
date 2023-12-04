@@ -29,8 +29,14 @@
 i: 1 ~ word1.length + 1 j: 1 ~ word2.length + 1
                 dp[i-1][j - 1]                                             word1[i - 1] = word2[j - 1] 
 dp[i][j] =   {
-                1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])      word1[i - 1] != word2[j - 1]   
+                1 + min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1])      word1[i - 1] != word2[j - 1]
+                
+dp[i - 1][j]: 删
+dp[i][j - 1]: 加
+dp[i - 1][j - 1]: 替换
 ```
+
+
 dp\[i\]\[j\]：表示 word1\[0..i - 1\] 匹配 word2\[0..j-1\] 变换所需距离。
 
 起始状态： dp\[i\]\[0\], dp\[0\]\[j\] 会被初始化为i，j. 表示空串的情况下所需的编辑距离
