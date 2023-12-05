@@ -4,7 +4,7 @@ class Solution {
     fun updateMatrix(mat: Array<IntArray>): Array<IntArray> {
         val rows = mat.size
         val cols = mat[0].size
-        val dists = Array(rows) { IntArray(cols) { 0 } }
+        val dists = Array(rows) { IntArray(cols) }
         val queue = ArrayDeque<IntArray>()
         repeat(rows) { i ->
             repeat(cols) { j ->
