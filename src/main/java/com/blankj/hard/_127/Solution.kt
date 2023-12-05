@@ -15,48 +15,52 @@ class Solution {
         val end = HashSet<String>()
         end.add(endWord)
         count = 1
-        if (!doubleBfs(dict, begin, end, true)) {
+        if (!doubleBfs(dict, begin, end)) {
             count = 0
         }
         return count
     }
 
-    fun doubleBfs(dict: HashSet<String>, begin: Set<String>, end: Set<String>, isTopDown: Boolean): Boolean {
+    fun doubleBfs(unVisited: HashSet<String>, begin: Set<String>, end: Set<String>): Boolean {
         if (begin.isEmpty()) {
             return false
         }
         if (begin.size > end.size) {
-            return doubleBfs(dict, end, begin, !isTopDown)
+            return doubleBfs(unVisited, end, begin)
         }
-        dict.removeAll(begin)
-        dict.removeAll(end)
+        unVisited.removeAll(begin)
+        unVisited.removeAll(end)
         var isTraversalEnd = false //是否遍历结束
-        val visited = HashSet<String>()
+        val validNeibors = HashSet<String>()
         count++
         for (word in begin) {
-            val chars = word.toCharArray()
-            for (i in chars.indices) {
-                val temp = chars[i]
-                for (c in 'a'..'z') {
-                    if (c == temp) {
-                        continue
-                    }
-                    chars[i] = c
-                    val neighborWord = String(chars)
-                    if (end.contains(neighborWord)) {
-                        isTraversalEnd = true
-                    }
-                    if (isTraversalEnd) return true
-                    if (!dict.contains(neighborWord)) {
-                        continue
-                    }
-                    visited.add(neighborWord)
+            val neighbors: List<String> = getNeighbors(word)
+            for (neighborWord in neighbors) {
+                if (end.contains(neighborWord)) {
+                    isTraversalEnd = true
                 }
-                chars[i] = temp
+                if (isTraversalEnd) return true
+                if (!unVisited.contains(neighborWord)) continue
+                validNeibors.add(neighborWord)
             }
         }
-        return doubleBfs(dict, visited, end, isTopDown)
+        return doubleBfs(unVisited, validNeibors, end)
     }
+
+    private fun getNeighbors(word: String): List<String> {
+        val builder = StringBuilder(word)
+        val res = mutableListOf<String>()
+        for ((i, c) in word.withIndex()) {
+            for (newChar in 'a'..'z') {
+                if (newChar == c) continue
+                builder[i] = newChar
+                res.add(builder.toString())
+            }
+            builder[i] = c
+        }
+        return res
+    }
+
 }
 
 fun main() {
