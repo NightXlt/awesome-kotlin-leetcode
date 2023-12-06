@@ -9,15 +9,11 @@ class Solution {
         // graph stores outDegree's chars(value) of char(key)
         val graph = mutableMapOf<Char, MutableSet<Char>>()
         val inDegrees = mutableMapOf<Char, Int>()
-        for (word in words) {
-            for (c in word.toCharArray()) {
-                graph.putIfAbsent(c, mutableSetOf())
-                inDegrees.putIfAbsent(c, 0)
-            }
-        }
+        initGraph(words, graph, inDegrees)
         for (i in 1 until words.size) {
             val w1 = words[i - 1]
             val w2 = words[i]
+            // 如果 sta 排在了 star 前面肯定是有问题的， 直接返回空串。
             if (w1.startsWith(w2) && w1 != w2) return ""
             var j = 0
             while (j < w1.length && j < w2.length) {
@@ -33,6 +29,27 @@ class Solution {
                 j++
             }
         }
+        val builder = bfs(inDegrees, graph)
+        return if (builder.length == graph.size) builder.toString() else ""
+    }
+
+    private fun initGraph(
+        words: Array<String>,
+        graph: MutableMap<Char, MutableSet<Char>>,
+        inDegrees: MutableMap<Char, Int>
+    ) {
+        for (word in words) {
+            for (c in word.toCharArray()) {
+                graph.putIfAbsent(c, mutableSetOf())
+                inDegrees.putIfAbsent(c, 0)
+            }
+        }
+    }
+
+    private fun bfs(
+        inDegrees: MutableMap<Char, Int>,
+        graph: MutableMap<Char, MutableSet<Char>>
+    ): StringBuilder {
         val queue = ArrayDeque<Char>()
         queue.addAll(inDegrees.keys.filter { inDegrees[it] == 0 })
         val builder = StringBuilder()
@@ -46,7 +63,7 @@ class Solution {
                 }
             }
         }
-        return if (builder.length == graph.size) builder.toString() else ""
+        return builder
     }
 }
 

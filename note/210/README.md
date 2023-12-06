@@ -1,15 +1,13 @@
-package com.blankj.medium._210
+# [Course Schedule II][title]
 
-import com.blankj.ext.print
-import java.util.*
+## Solution
+可行的修课序列实际上是图的拓扑排序序列。图中的每条边都是从先修课程指向后修课程，而拓扑排序能够保证任意一条边的起始节点一定排在终止节点的前面，因此拓扑排序得到的序列与先修顺序一定不会存在冲突，于是这个问题转变成如何求有向图的拓扑排序序列。
 
+对有向图进行拓扑排序的算法是每次找出一个入度为0的节点添加到序列中，然后删除该节点及所有以该节点为起点的边。重复这个过程，直到图为空或图中不存在入度为0的节点。
+
+
+```kotlin
 class Solution {
-    /**
-     *   1. add 0 degree edge into queue
-     *   2. traverse queue, and remove node
-     *   3. update node value(minus 1), and add node of value == 0 status
-     *   4. until queue is empty
-     */
     fun findOrder(numCourses: Int, prerequisites: Array<IntArray>): IntArray {
         if (numCourses <= 0) return intArrayOf()
         val inDegree = IntArray(numCourses)
@@ -36,22 +34,10 @@ class Solution {
     }
 }
 
-fun main() {
-    Solution().findOrder(
-        2, arrayOf(
-            intArrayOf(1, 0)
-        )
-    ).print()
-    Solution().findOrder(
-        4, arrayOf(
-            intArrayOf(1, 0),
-            intArrayOf(2, 0),
-            intArrayOf(3, 1),
-            intArrayOf(3, 2)
-        )
-    ).print()
-    Solution().findOrder(
-        1, arrayOf(
-        )
-    ).print()
-}
+```
+
+## Conclusion
+如果你同我一样热爱数据结构、算法、LeetCode，可以关注我 GitHub 上的 LeetCode 题解：[awesome-kotlin-leetcode][akl]
+
+[title]: https://leetcode.cn/problems/course-schedule-ii/
+[akl]: https://github.com/NightXlt/awesome-kotlin-leetcode
