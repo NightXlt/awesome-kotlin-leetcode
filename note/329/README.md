@@ -53,5 +53,5 @@ class Solution {
 ## Conclusion
 如果你同我一样热爱数据结构、算法、LeetCode，可以关注我 GitHub 上的 LeetCode 题解：[awesome-kotlin-leetcode][akl]
 
-[title]: https://leetcode-cn.com/problems/remove-k-digits/
+[title]: https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/
 [akl]: https://github.com/NightXlt/awesome-kotlin-leetcode
