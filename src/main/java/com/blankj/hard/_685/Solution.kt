@@ -13,9 +13,7 @@ class Solution {
         var conflict = -1
         var cycle = -1
         for (i in 0 until n) {
-            val edge = edges[i]
-            val node1 = edge[0]
-            val node2 = edge[1]
+            val (node1, node2) = edges[i]
             if (parent[node2] != node2) {
                 conflict = i
             } else {
@@ -27,11 +25,12 @@ class Solution {
                 }
             }
         }
+        // 不存在入度 > 2 的情况，必定是成环指向了根节点
         return if (conflict < 0) { // 指向根节点
             intArrayOf(edges[cycle][0], edges[cycle][1])
         } else { // 入度 > 2 的情况
             val conflictEdge = edges[conflict]
-            if (cycle >= 0) { // 如果同时也成环了
+            if (cycle >= 0) { // 如果同时也成环了, 找到出现入度为 2 的边的终点的父亲，
                 intArrayOf(parent[conflictEdge[1]], conflictEdge[1])
             } else {
                 intArrayOf(conflictEdge[0], conflictEdge[1])
@@ -39,14 +38,12 @@ class Solution {
         }
     }
 
-    private fun merge(find: IntArray, x: Int, y: Int): Boolean {
+    private fun merge(find: IntArray, x: Int, y: Int) {
         val fx = find(find, x)
         val fy = find(find, y)
         if (fx != fy) {
             find[fx] = fy
-            return true
         }
-        return false
     }
 
     private fun find(find: IntArray, x: Int): Int {
@@ -61,7 +58,7 @@ class Solution {
 
 fun main() {
     Solution().findRedundantDirectedConnection(
-        MultiDimensionArray.createTestData("[[2,1],[3,1],[4,2],[1,4]]")
+        MultiDimensionArray.createTestData("[[3,1],[2,1],[4,2],[1,4]]")
     ).print()
     Solution().findRedundantDirectedConnection(
         MultiDimensionArray.createTestData("[[1,2],[1,3],[2,3]]")
