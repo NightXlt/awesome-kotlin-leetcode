@@ -4,6 +4,7 @@ import kotlin.math.max
 
 
 class Solution {
+    // bfs + res(temp array) stores result set
     fun networkDelayTime(times: Array<IntArray>, n: Int, k: Int): Int {
         val graph = mutableMapOf<Int, MutableList<IntArray>>()
         repeat(n) { graph[it + 1] = mutableListOf() }

@@ -4,6 +4,9 @@ import com.blankj.ext.print
 import com.blankj.structure.MultiDimensionArray
 
 class Solution {
+    /**
+     *  bfs + res(temp array) stores CheapestPrice of (src to cur)
+     */
     fun findCheapestPrice(
         n: Int,
         flights: Array<IntArray>,
