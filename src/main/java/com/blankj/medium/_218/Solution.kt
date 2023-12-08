@@ -71,6 +71,7 @@ class Solution {
                 }
             }
             val height = max(h1, h2)
+            // 重复的解不要加入
             if (res.isEmpty() || height != res.last()[1]) {
                 res.add(
                         listOf(

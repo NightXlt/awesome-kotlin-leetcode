@@ -1,6 +1,7 @@
 # [The Skyline Problem][title]
 
 ## Solution
+debug 一次就能回忆起来了
 归并的思想。当只有一个块(x, y, h)时比较好理解，将 （x, h）, (y, 0) 添加到结果集中。当有两个块合并时遵循下列规则
 伪代码如下
 ```
@@ -105,6 +106,7 @@ class Solution {
                 }
             }
             val height = max(h1, h2)
+            // 重复的解不要加入
             if (res.isEmpty() || height != res.last()[1]) {
                 res.add(
                         listOf(
