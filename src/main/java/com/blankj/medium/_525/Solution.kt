@@ -4,16 +4,18 @@ import com.blankj.ext.print
 import kotlin.math.max
 
 class Solution {
+
     fun findMaxLength(nums: IntArray): Int {
         var sum = 0
         val map = mutableMapOf(0 to -1)
-        var res = Int.MIN_VALUE
+        var res = 0
         for ((i, num) in nums.withIndex()) {
             sum += if (num == 0) -1 else 1
-            if (map.contains(num)) {
-                res = max(res, i - map.getValue(num))
+            if (map.contains(sum)) {
+                res = max(res, i - map.getValue(sum))
+            } else {
+                map[sum] = i
             }
-            map[sum] = i
         }
         return res
     }
