@@ -3,6 +3,7 @@ package com.blankj.medium._647
 import com.blankj.ext.print
 
 class Solution {
+    // similar with leetcode-5 (longestPalindrome)
     fun countSubstrings(s: String): Int {
         if (s.isEmpty()) return 0
         var count = 0
