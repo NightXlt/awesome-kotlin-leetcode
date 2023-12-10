@@ -11,8 +11,8 @@ class Solution {
                 !Character.isLetterOrDigit(s[i]) -> i++
                 !Character.isLetterOrDigit(s[j]) -> j--
                 else -> {
-                    val leftChar = s[i].toLowerCase()
-                    val rightChar = s[j].toLowerCase()
+                    val leftChar = s[i].lowercaseChar()
+                    val rightChar = s[j].lowercaseChar()
                     if (leftChar != rightChar) return false
                     i++
                     j--

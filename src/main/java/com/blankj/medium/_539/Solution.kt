@@ -10,7 +10,7 @@ class Solution {
         if (timePoints.size > ONE_DAY_MINUTE) {
             return 0
         }
-        val minuteFlag = BooleanArray(1440)
+        val minuteFlag = BooleanArray(ONE_DAY_MINUTE)
         for (time in timePoints) {
             val (hour, minute) = time.split(":")
             val min = hour.toInt() * 60 + minute.toInt()

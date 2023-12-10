@@ -14,6 +14,9 @@ class RandomizedSet {
         return true
     }
 
+    /**
+     * 这个删除有点意思， 如果按照刻板印象做 list 删除是需要 O(n) 时间复杂度的， 但如果交换到末尾就是 O(1) 了呀
+     */
     fun remove(`val`: Int): Boolean {
         if (!numToLocation.contains(`val`)) return false
         val index = numToLocation.getValue(`val`)
