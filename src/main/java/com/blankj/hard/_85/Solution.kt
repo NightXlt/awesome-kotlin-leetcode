@@ -6,10 +6,8 @@ import kotlin.math.max
 class Solution {
     fun maximalRectangle(matrix: Array<CharArray>): Int {
         if (matrix.isEmpty()) return 0
-        val row = matrix.size
-        val col = matrix[0].size
         var res = 0
-        val heights = IntArray(col)
+        val heights = IntArray(matrix[0].size)
         for (row in matrix) {
             for (i in row.indices) {
                 if (row[i] == '0') {
