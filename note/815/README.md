@@ -30,119 +30,68 @@ Output: -1
 
 那么点和点之间可以构成一个图， 解决本题其实是在尝试找到从始发点到终点的最短路径。图中的最短路径首先想到 BFS.
 
+通过 hashmap 构建每个 station 和公车线路的图 graph。
+队列中入队起始站点，visitedStation 记录访问过的公交车站点， visitedRoutes 记录访问过的公交车线路（Boolean array）。 
+visited 都是作为剪枝而存在
+每次层序遍历结束一层后， res++。
+如果发现当前出栈的站点为目标站点时可以直接返回 res 了， 否则访问包含当前站点出现的线路中， 未访问过的线路中的站点。
 
-将「起点」和「终点」所能进入的路线分别放入两个方向的队列，如果「遇到公共的路线」或者「当前路线包含了目标位置」，说明找到了最短路径。
-
-另外，双向 BFS 在无解的情况下不如单向 BFS。因此我们可以先使用「并查集」进行预处理，判断「起点」和「终点」是否连通，如果不联通，直接返回 −1，有解才调用双向 BFS。
-
-由于使用「并查集」预处理的复杂度与建图是近似的，增加这样的预处理并不会越过我们时空复杂度的上限，因此这样的预处理是有益的。一定程度上可以最大化双向 BFS 减少搜索空间的效益。
-
+此外需要注意的一点是操作 graph 获取 station 时，是可能越界的， 因为输入的 source 可能非法。
 
 ```kotlin
 
 class Solution {
-    private var find = IntArray(N.toInt())
+
     private lateinit var routes: Array<IntArray>
     private var source: Int = 0
     private var target: Int = 0
+
+    /**
+     * 单向 bfs 且以 station 作为访问入口， 更易懂且高效
+     */
     fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int {
         if (routes.isEmpty()) return 0
         if (source == target) return 0
         this.routes = routes
         this.source = source
         this.target = target
-        find.indices.forEach { find[it] = it }
-        for (route in routes) {
-            for (index in route) {
-                merge(find, index, route[0])
-            }
-        }
-        if (find(find, source) != find(find, target)) {
-            return -1
-        }
-        return doubleBfs()
+        return bfs()
     }
 
-    // graph of station and lines number mapping
-    private val graph = mutableMapOf<Int, MutableSet<Int>>()
-    private fun doubleBfs(): Int {
-        val m1 = mutableMapOf<Int, Int>()
-        val m2 = mutableMapOf<Int, Int>()
-        val d1 = ArrayDeque<Int>()
-        val d2 = ArrayDeque<Int>()
-        for ((i, route) in routes.withIndex()) {
-            for (station in route) {
-                // 将从起点可以进入的路线加入正向队列
-                if (station == source) {
-                    m1[i] = 1
-                    d1.add(i)
-                }
-                // 将从终点可以进入的路线加入反向队列
-                if (station == target) {
-                    m2[i] = 1
-                    d2.add(i)
-                }
+    private fun bfs(): Int {
+        val graph = mutableMapOf<Int, MutableSet<Int>>()
+        val queue = ArrayDeque<Int>()
+        val visitedStation = mutableSetOf<Int>()
+        val visitedRoutes = BooleanArray(routes.size)
+        for (route in routes.indices) {
+            for (station in routes[route]) {
                 val set = graph.getOrPut(station) { mutableSetOf() }
-                set.add(i)
+                set.add(route)
             }
         }
-        val s1 = graph.getValue(source)
-        val s2 = graph.getValue(target)
-        val total = s1.toMutableSet()
-        total.retainAll(s2)
-        // has intersection means in the same line
-        if (total.isNotEmpty()) return 1
-        while (d1.isNotEmpty() && d2.isNotEmpty()) {
-            val res = if (d1.size < d2.size) {
-                update(d1, m1, m2)
-            } else {
-                update(d2, m2, m1)
-            }
-            if (res != -1) return res
-        }
-        return -1
-    }
-
-    private fun update(d: ArrayDeque<Int>, cur: MutableMap<Int, Int>, other: MutableMap<Int, Int>): Int {
-        val size = d.size
-        repeat(size) {
-            // 取出当前所在的路线，与进入该路线所花费的距离
-            val curLine = d.removeFirst()
-            val step = cur.getValue(curLine)
-            // 遍历该路线所包含的车站
-            for (station in routes[curLine]) {
-                // 遍历将由该线路的车站发起的路线
-                val lines = graph[station] ?: continue
-                for (line in lines) {
-                    if (cur.containsKey(line)) continue
-                    if (other.containsKey(line)) return step + other.getValue(line)
-                    cur[line] = step + 1
-                    d.add(line)
+        queue.add(source)
+        visitedStation.add(source)
+        var res = 0
+        while (queue.isNotEmpty()) {
+            val size = queue.size
+            repeat(size) {
+                val station = queue.removeFirst()
+                if (station == target) return res
+                // 输入的 source 可能是非法的
+                val routesOfCurStation = graph[station] ?: return@repeat
+                for (route in routesOfCurStation) {
+                    if (visitedRoutes[route]) continue
+                    visitedRoutes[route] = true
+                    for (nextStation in routes[route]) {
+                        if (nextStation in visitedStation) continue
+                        visitedStation.add(nextStation)
+                        queue.add(nextStation)
+                    }
                 }
             }
+            res++
         }
         return -1
-    }
-
-    private fun merge(find: IntArray, x: Int, y: Int) {
-        val fx = find(find, x)
-        val fy = find(find, y)
-        if (fx != fy) {
-            find[fx] = fy
-            find[x] = fy
-        }
-    }
-
-    private fun find(find: IntArray, x: Int): Int {
-        var temp = x
-        while (find[temp] != temp) {
-            temp = find[temp]
-        }
-        return temp
-    }
-
-    companion object {
-        private const val N = 1e6 + 10
     }
 }
 

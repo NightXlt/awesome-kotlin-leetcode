@@ -2,111 +2,61 @@ package com.blankj.hard._815
 
 import com.blankj.ext.print
 import com.blankj.structure.MultiDimensionArray
+import java.util.*
+import kotlin.collections.ArrayDeque
 
 class Solution {
 
-    private var find = IntArray(N.toInt())
     private lateinit var routes: Array<IntArray>
     private var source: Int = 0
     private var target: Int = 0
+
+    /**
+     * 单向 bfs 且以 station 作为访问入口， 更易懂且高效
+     */
     fun numBusesToDestination(routes: Array<IntArray>, source: Int, target: Int): Int {
         if (routes.isEmpty()) return 0
         if (source == target) return 0
         this.routes = routes
         this.source = source
         this.target = target
-        find.indices.forEach { find[it] = it }
-        for (route in routes) {
-            for (index in route) {
-                merge(find, index, route[0])
-            }
-        }
-        if (find(find, source) != find(find, target)) {
-            return -1
-        }
-        return doubleBfs()
+        return bfs()
     }
 
-    // graph of station and lines number mapping
-    private val graph = mutableMapOf<Int, MutableSet<Int>>()
-    private fun doubleBfs(): Int {
-        val m1 = mutableMapOf<Int, Int>()
-        val m2 = mutableMapOf<Int, Int>()
-        val d1 = ArrayDeque<Int>()
-        val d2 = ArrayDeque<Int>()
-        for ((i, route) in routes.withIndex()) {
-            for (station in route) {
-                // 将从起点可以进入的路线加入正向队列
-                if (station == source) {
-                    m1[i] = 1
-                    d1.add(i)
-                }
-                // 将从终点可以进入的路线加入反向队列
-                if (station == target) {
-                    m2[i] = 1
-                    d2.add(i)
-                }
+    private fun bfs(): Int {
+        val graph = mutableMapOf<Int, MutableSet<Int>>()
+        val queue = ArrayDeque<Int>()
+        val visitedStation = mutableSetOf<Int>()
+        val visitedRoutes = BooleanArray(routes.size)
+        for (route in routes.indices) {
+            for (station in routes[route]) {
                 val set = graph.getOrPut(station) { mutableSetOf() }
-                set.add(i)
+                set.add(route)
             }
         }
-        val s1 = graph.getValue(source)
-        val s2 = graph.getValue(target)
-        val total = s1.toMutableSet()
-        total.retainAll(s2)
-        // has intersection means in the same line
-        if (total.isNotEmpty()) return 1
-        while (d1.isNotEmpty() && d2.isNotEmpty()) {
-            val res = if (d1.size < d2.size) {
-                update(d1, m1, m2)
-            } else {
-                update(d2, m2, m1)
-            }
-            if (res != -1) return res
-        }
-        return -1
-    }
-
-    private fun update(d: ArrayDeque<Int>, cur: MutableMap<Int, Int>, other: MutableMap<Int, Int>): Int {
-        val size = d.size
-        repeat(size) {
-            // 取出当前所在的路线，与进入该路线所花费的距离
-            val curLine = d.removeFirst()
-            val step = cur.getValue(curLine)
-            // 遍历该路线所包含的车站
-            for (station in routes[curLine]) {
-                // 遍历将由该线路的车站发起的路线
-                val lines = graph[station] ?: continue
-                for (line in lines) {
-                    if (cur.containsKey(line)) continue
-                    if (other.containsKey(line)) return step + other.getValue(line)
-                    cur[line] = step + 1
-                    d.add(line)
+        queue.add(source)
+        visitedStation.add(source)
+        var res = 0
+        while (queue.isNotEmpty()) {
+            val size = queue.size
+            repeat(size) {
+                val station = queue.removeFirst()
+                if (station == target) return res
+                // 输入的 source 可能是非法的
+                val routesOfCurStation = graph[station] ?: return@repeat
+                for (route in routesOfCurStation) {
+                    if (visitedRoutes[route]) continue
+                    visitedRoutes[route] = true
+                    for (nextStation in routes[route]) {
+                        if (nextStation in visitedStation) continue
+                        visitedStation.add(nextStation)
+                        queue.add(nextStation)
+                    }
                 }
             }
+            res++
         }
         return -1
-    }
-
-    private fun merge(find: IntArray, x: Int, y: Int) {
-        val fx = find(find, x)
-        val fy = find(find, y)
-        if (fx != fy) {
-            find[fx] = fy
-            find[x] = fy
-        }
-    }
-
-    private fun find(find: IntArray, x: Int): Int {
-        var temp = x
-        while (find[temp] != temp) {
-            temp = find[temp]
-        }
-        return temp
-    }
-
-    companion object {
-        private const val N = 1e6 + 10
     }
 }
 
