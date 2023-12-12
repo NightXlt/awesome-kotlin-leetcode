@@ -1,7 +1,7 @@
 package com.blankj.medium._347
 
 import com.blankj.ext.print
-import java.util.PriorityQueue
+import java.util.*
 
 class Solution {
     fun topKFrequent(nums: IntArray, k: Int): IntArray {
@@ -14,7 +14,7 @@ class Solution {
         for (entry in map) {
             if (queue.size < k) {
                 queue.add(entry)
-            }else if (entry.value > queue.peek().value) {
+            } else if (entry.value > queue.peek().value) {
                 queue.poll()
                 queue.offer(entry)
             }
@@ -26,7 +26,7 @@ class Solution {
 }
 
 fun main() {
-    Solution().topKFrequent(intArrayOf(1,1,1,2,2,3), 2).print()
+    Solution().topKFrequent(intArrayOf(1, 1, 1, 2, 2, 3), 2).print()
     Solution().topKFrequent(intArrayOf(1), 1).print()
 
     PriorityQueue<Int>().run {
