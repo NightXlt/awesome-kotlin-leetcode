@@ -110,5 +110,5 @@ class Solution {
 
 
 
-[title]: 
+[title]: https://leetcode.cn/problems/the-maze-iii/
 [akl]: https://github.com/NightXlt/awesome-kotlin-leetcode

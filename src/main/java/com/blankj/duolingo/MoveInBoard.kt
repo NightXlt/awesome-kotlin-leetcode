@@ -93,6 +93,7 @@ data class Move(val board: List<String>, val sequence: String) {
 }
 
 fun main() {
+    val start = System.currentTimeMillis()
     val start1 = listOf("R", "_", "B", "B")
     val end1 = listOf("B", "_", "B", "R")
     val path1 = MoveInBoard().findPath(start1, end1)
@@ -104,4 +105,11 @@ fun main() {
     val path2 = MoveInBoard().findPath(start2, end2)
     println("\nExample #2:")
     path2?.print()
+    println(System.currentTimeMillis() - start)
+
+    val elements = listOf(Int.MAX_VALUE, Int.MAX_VALUE, 3)
+    val elements1 = listOf(Int.MAX_VALUE, 3, Int.MAX_VALUE)
+    println(elements.hashCode())
+    println(elements1.hashCode())
+
 }
