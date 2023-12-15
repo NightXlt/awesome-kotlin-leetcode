@@ -5,10 +5,9 @@ import com.blankj.ext.print
 
 class Solution {
     fun subsets(nums: IntArray): List<List<Int>> {
-        val lists: MutableList<List<Int>> = mutableListOf()
-        val list: List<Int> = listOf()
-        dfs(nums, 0, lists, list)
-        return lists
+        val res: MutableList<List<Int>> = mutableListOf()
+        dfs(nums, 0, res, listOf())
+        return res
     }
 
     private fun dfs(nums: IntArray, start: Int, lists: MutableList<List<Int>>, list: List<Int>) {
