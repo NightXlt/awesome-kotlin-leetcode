@@ -1,4 +1,4 @@
-package com.blankj.hard._2227
+package com.blankj.duolingo
 
 import com.blankj.ext.print
 
@@ -62,7 +62,6 @@ class Trie {
     }
 
 }
-
 fun main() {
     val encrypter = Encrypter(
         charArrayOf('a', 'b', 'c', 'd'),
