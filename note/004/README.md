@@ -47,7 +47,7 @@ The median is (2 + 3)/2 = 2.5
 
 特别地，我们选取 `m = k / 2`，下面是我画的草图，希望能帮助大家理解。
 
-![](https://raw.githubusercontent.com/Blankj/awesome-java-leetcode/master/note/004/my_draw.jpg)
+![](my_draw.jpg)
 
 借助上面的理论，你能写出相关代码了吗？
 
