@@ -20,18 +20,6 @@ class Trie {
     }
 
 
-    fun findPrefix(string: String): String {
-        var cur = this
-        val builder = StringBuilder()
-        for (c in string) {
-            if (cur.isWord || !cur.children.containsKey(c)) {
-                break
-            }
-            cur = cur.children[c]!!
-            builder.append(c)
-        }
-        return if (cur.isWord) builder.toString() else ""
-    }
 }
 
 class MagicDictionary() {
