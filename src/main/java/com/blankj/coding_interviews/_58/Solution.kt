@@ -4,7 +4,7 @@ import com.blankj.ext.print
 
 class Solution {
     fun reverseWords(s: String): String {
-        if (s.isNullOrEmpty()) return ""
+        if (s.isEmpty()) return ""
         val strings: List<String> = s.split(" ")//匹配
         val sb = StringBuilder()
         var t: String

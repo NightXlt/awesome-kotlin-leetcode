@@ -1,5 +1,7 @@
 package com.blankj.coding_interviews._57
 
+import com.blankj.ext.print
+
 
 class Solution {
     fun findContinuousSequence(target: Int): Array<IntArray> {
@@ -43,7 +45,7 @@ class Solution {
                 sum == target ->
                     return intArrayOf(nums[low], nums[high])
                 sum < target -> low++
-                sum > target -> high--
+                else -> high--
             }
         }
         return intArrayOf()
@@ -51,8 +53,8 @@ class Solution {
 }
 
 fun main() {
-//    Solution().findContinuousSequence(9).print()
-//    Solution().findContinuousSequence(15).print()
+    Solution().findContinuousSequence(9).print()
+    Solution().findContinuousSequence(15).print()
     Solution().twoSum(intArrayOf(2, 7, 11, 15), 9)
     Solution().twoSum(intArrayOf(10, 26, 30, 31, 47, 60), 40)
 }
