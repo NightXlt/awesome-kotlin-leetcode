@@ -2,14 +2,13 @@ package com.blankj.coding_interviews._006
 
 import com.blankj.ext.print
 import com.blankj.structure.ListNode
-import java.util.*
 
 class Solution {
     fun reversePrint(head: ListNode?): IntArray {
         var p: ListNode? = head ?: return intArrayOf()
         val stack = ArrayDeque<Int>()
         while (p != null) {
-            stack.push(p.`val`)
+            stack.add(p.`val`)
             p = p.next
         }
         return stack.toIntArray()
