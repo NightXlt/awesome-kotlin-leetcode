@@ -117,6 +117,61 @@ class Solution {
 }
 ```
 
+老老实实做模拟， 留意的是针对一行中有多个单词时，多余的空格是分布在前面的单词上的，（非最后一行）。
+前面的包含多余空格的单词连接完后需要连接平均空格时这之间也需要补平均空格的哈， 这里可能会有问题。
+
+```kotlin
+class Solution {
+    fun fullJustify(words: Array<String>, maxWidth: Int): List<String> {
+        val res = mutableListOf<String>()
+        var left: Int
+        var right = 0
+        while (true) {
+            left = right
+            var sumLength = 0
+            while (right < words.size && sumLength + words[right].length + (right - left) <= maxWidth) {
+                sumLength += words[right++].length
+            }
+            if (right == words.size) {
+                val lastLine = join(words, left, words.size, " ")
+                lastLine.append(" ".repeat(maxWidth - lastLine.length))
+                res.add(lastLine.toString())
+                return res
+            }
+            val numWords = right - left
+            val numSpaces = maxWidth - sumLength
+            if (numWords == 1) {
+                res.add(buildString {
+                    append(words[left])
+                    append(" ".repeat(numSpaces))
+                })
+                continue
+            }
+
+            val avgSpaces = numSpaces / (numWords - 1)
+            val extraSpaces = numSpaces % (numWords - 1)
+            res.add(buildString {
+                // 多余空格连接到 extraSpace 个数
+                append(join(words, left, left + extraSpaces + 1, " ".repeat(avgSpaces + 1)))
+                // 补充连接空格
+                append(" ".repeat(avgSpaces))
+                // 平均空格连接到结尾
+                append(join(words, left + extraSpaces + 1, right, " ".repeat(avgSpaces)))
+            })
+        }
+    }
+
+    private fun join(words: Array<String>, left: Int, right: Int, separator: String): StringBuilder {
+        val builder = StringBuilder(words[left])
+        for (i in left + 1..<right) {
+            builder.append(separator)
+            builder.append(words[i])
+        }
+        return builder
+    }
+}
+
+```
 
 ## 结语
 
