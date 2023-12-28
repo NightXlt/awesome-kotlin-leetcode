@@ -35,7 +35,7 @@ class Solution {
             cur.next = null
             return head
         }
-        throw IllegalArgumentException("deleted node isn't in list")
+        error("deleted node isn't in list")
     }
 }
 
