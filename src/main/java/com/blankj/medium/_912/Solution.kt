@@ -22,15 +22,15 @@ class Solution {
         var index = left + (length * Random.nextFloat()).toInt()
         swap(nums, index, right)
         // partition point last element smaller than rightest element
-        var partition = left - 1
+        var pivot = left - 1
         for (i in left..<right) {
             if (nums[i] >= nums[right]) continue
-            partition++
-            swap(nums, partition, i)
+            pivot++
+            swap(nums, pivot, i)
         }
-        partition++
-        swap(nums, partition, right)
-        return partition
+        pivot++
+        swap(nums, pivot, right)
+        return pivot
     }
 
     private fun swap(nums: IntArray, left: Int, right: Int) {

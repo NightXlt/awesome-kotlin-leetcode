@@ -23,9 +23,8 @@ class Solution {
         for (i in 0..9) {
             str.append(i)
             dfs(n, curIndex + 1, str)
-            if (str.isNotEmpty()) {
-                str.deleteCharAt(str.lastIndex)
-            }
+            // trimstart 会新建一个 charsequence， 所以直接 delete 一定可以
+            str.deleteCharAt(str.lastIndex)
         }
     }
 }
