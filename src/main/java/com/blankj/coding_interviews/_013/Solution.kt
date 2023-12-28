@@ -2,7 +2,7 @@ package com.blankj.coding_interviews._013
 
 import com.blankj.ext.print
 
-
+// https://leetcode.cn/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/
 class Solution {
     fun movingCount(m: Int, n: Int, k: Int): Int {
         if (k < 0) error("Illegal argument exception")
