@@ -14,7 +14,7 @@ class Solution {
         var pMultiply3 = 0
         var pMultiply5 = 0
         while (nextUglyNumIndex < n) {
-            val nextUglyNum = min(result[pMultiply2] * 2, result[pMultiply3] * 3, result[pMultiply5] * 5) // 求出下一个丑数中最小的一个，保证比当前丑数更小的丑数已经在数组中了
+            val nextUglyNum = minOf(result[pMultiply2] * 2, result[pMultiply3] * 3, result[pMultiply5] * 5) // 求出下一个丑数中最小的一个，保证比当前丑数更小的丑数已经在数组中了
             result[nextUglyNumIndex] = nextUglyNum
             if (result[pMultiply2] * 2 <= nextUglyNum) {
                 pMultiply2++
@@ -30,9 +30,6 @@ class Solution {
         return result[n - 1]
     }
 
-    private fun min(i: Int, i1: Int, i2: Int): Int {
-        return min(min(i, i1), i2)
-    }
 }
 
 fun main() {
