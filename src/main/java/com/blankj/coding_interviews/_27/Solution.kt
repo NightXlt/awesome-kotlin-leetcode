@@ -2,7 +2,6 @@ package com.blankj.coding_interviews._27
 
 import com.blankj.ext.print
 import com.blankj.structure.TreeNode
-import java.util.*
 
 
 class Solution {
@@ -24,11 +23,11 @@ class Solution {
         val stack = ArrayDeque<TreeNode?>()
         stack.add(root)
         while (!stack.isEmpty()) {
-            val node = stack.pop()
+            val node = stack.removeLast()
             node?.left?.apply { stack.add(this) }
             node?.right?.apply { stack.add(this) }
-            root.left = root.right.also {
-                root.right = root.left
+            node?.left = node?.right.also {
+                node?.right = node?.left
             }
         }
         return root
@@ -36,6 +35,7 @@ class Solution {
 }
 
 fun main() {
+    Solution().mirrorTree(TreeNode.createTestData("[4,2,7,1,3,6,9]"))?.print() // normal case
     Solution().mirrorTree(null)?.print()
     Solution().mirrorTree(TreeNode(2))?.print()
     Solution().mirrorTree(TreeNode.createTestData("[1,2,2,null,3,null,3]"))?.print() // normal case
