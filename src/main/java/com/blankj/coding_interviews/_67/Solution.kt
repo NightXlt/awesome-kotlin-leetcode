@@ -40,7 +40,7 @@ class Solution {
             digit = digit * 10 + c.toLong() - '0'.toLong()
             digitLen++
             // digit is more than Int.MAX_VALUE length
-            if (digitLen > 11) {
+            if (digitLen > 10) {
                 break
             }
         }
