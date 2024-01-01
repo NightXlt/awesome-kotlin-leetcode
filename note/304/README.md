@@ -1,4 +1,4 @@
-# Range Sum Query 2D - Immutable][title]
+# [Range Sum Query 2D - Immutable][title]
 
 ## Description
 
