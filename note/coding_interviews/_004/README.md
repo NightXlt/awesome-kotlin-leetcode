@@ -4,6 +4,8 @@
 我觉的这个老哥讲的一语中的，[评论第一条][link_1]. 从右上角看这个矩阵就是二叉搜索树，左子树都比它小， 右子树都比他大。
 留意测试用例的编写逻辑，一个最小值，一个最大值，一个不存在的值， 空数组的情况。kotlin 中可以通过声明避免空数据的情况。 
 
+时间复杂度： O(m+n) m: 行数 n: 列数
+空间复杂度： O(1)
 ```kotlin
 class Solution {
     fun findNumberIn2DArray(matrix: Array<IntArray>, target: Int): Boolean {
