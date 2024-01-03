@@ -45,5 +45,5 @@ class Solution {
 
 
 
-[title]: https://leetcode.cn/problems/finding-mk-average/description/?company_slug=google
+[title]: https://leetcode.cn/problems/longest-repeating-character-replacement/
 [akl]: https://github.com/NightXlt/awesome-kotlin-leetcode

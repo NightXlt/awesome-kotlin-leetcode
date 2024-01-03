@@ -4,19 +4,17 @@ import com.blankj.ext.print
 
 class Solution {
     var result = 0
-    var maxValue = Int.MIN_VALUE
 
     fun trap(height: IntArray): Int {
         if (height.isEmpty() || height.size == 1) return 0
         val index = height.indices.maxByOrNull { height[it] }!!
-        maxValue = Int.MIN_VALUE
         calculateDiff(height, 0 until index)
-        maxValue = Int.MIN_VALUE
         calculateDiff(height, height.size - 1 downTo index + 1)
         return result
     }
 
     private fun calculateDiff(height: IntArray, range: Iterable<Int>) {
+        var maxValue = Int.MIN_VALUE
         for (i in range) {
             if (height[i] > maxValue) {
                 maxValue = height[i]

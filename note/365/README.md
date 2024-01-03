@@ -59,5 +59,5 @@ class CanMeasureWater {
 
 
 
-[title]: https://leetcode.cn/problems/employee-free-time/description/?company_slug=google
+[title]: https://leetcode.cn/problems/water-and-jug-problem/
 [akl]: https://github.com/NightXlt/awesome-kotlin-leetcode
