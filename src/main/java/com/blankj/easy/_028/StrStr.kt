@@ -49,12 +49,11 @@ class StrStr {
     }
 
     private fun initNext(needle: String): IntArray {
-        if (needle.isBlank()) {
-            return  IntArray(1)
-        }
+        if (needle.isBlank()) return  IntArray(1)
         val next = IntArray(needle.length + 1)
         var i = 1
         var j = 0
+        // 这里取不到 = 号
         while (i < needle.length) {
             if (j == 0 || needle[i - 1] == needle[j - 1]) {
                 next[++i] = ++j

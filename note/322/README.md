@@ -2,6 +2,9 @@
 
 ## Solution
 背包问题(动态规划的一种)
+因为每个物品可以无限取, 是完全背包问题.
+完全背包外层遍历 num, 内层正序遍历 target.
+
 我记得很多年前 LCY 老师讲过这类问题，但记不太清当时咋解的，无脑贪心会有问题。
 比如当优先取了大额零钱若干张后会导致后续取小额零钱可能凑不到目标值。但如果由若干张小额零钱拼凑是可以组成目标值的。
 参考：https://leetcode-cn.com/problems/coin-change/solution/yi-pian-wen-zhang-chi-tou-bei-bao-wen-ti-sq9n/
