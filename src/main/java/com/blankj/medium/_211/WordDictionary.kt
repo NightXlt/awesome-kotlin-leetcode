@@ -2,7 +2,7 @@ package com.blankj.medium._211
 
 class Trie {
 
-    var children = HashMap<Char, Trie>()
+    var children = mutableMapOf<Char, Trie>()
         private set
 
     var isFinished = false
