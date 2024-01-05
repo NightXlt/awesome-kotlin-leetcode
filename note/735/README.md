@@ -26,7 +26,7 @@ class Solution {
             // equals case, handle all collision case
             if (stack.isNotEmpty() && asteroid < 0 && stack.last() == -asteroid) {
                 stack.removeLast()
-                // stack is empty after collision, asteroid goes right or stack last elements is less than 0.
+                // stack is empty after collision, asteroid goes right or stack last elements goes left.
             } else if (stack.isEmpty() || asteroid > 0 || stack.last() < 0) {
                 stack.add(asteroid)
             }
