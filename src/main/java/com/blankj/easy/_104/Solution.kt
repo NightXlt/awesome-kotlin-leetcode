@@ -1,26 +1,31 @@
-package com.blankj.easy._104;
+package com.blankj.easy._104
 
-
-import com.blankj.structure.TreeNode;
+import com.blankj.structure.TreeNode
+import kotlin.math.max
 
 /**
  * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2017/10/09
- *     desc  :
- * </pre>
+ * author: Blankj
+ * blog  : http://blankj.com
+ * time  : 2017/10/09
+ * desc  :
+</pre> *
  */
-public class Solution {
-    public int maxDepth(TreeNode root) {
-        if (root == null) return 0;
-        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+class Solution {
+    fun maxDepth(root: TreeNode?): Int {
+        return if (root == null) 0 else (1 + max(
+            maxDepth(root.left),
+            maxDepth(root.right)
+        ))
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.maxDepth(TreeNode.createTestData("[]")));
-        System.out.println(solution.maxDepth(TreeNode.createTestData("[1,2,2,3,4,4,3]")));
-        System.out.println(solution.maxDepth(TreeNode.createTestData("[9,-42,-42,null,76,76,null,null,13,null,13]")));
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val solution = Solution()
+            println(solution.maxDepth(TreeNode.createTestData("[]")))
+            println(solution.maxDepth(TreeNode.createTestData("[1,2,2,3,4,4,3]")))
+            println(solution.maxDepth(TreeNode.createTestData("[9,-42,-42,null,76,76,null,null,13,null,13]")))
+        }
     }
 }
