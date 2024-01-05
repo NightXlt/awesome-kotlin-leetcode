@@ -3,9 +3,9 @@ package com.blankj.medium._005
 import com.blankj.ext.print
 
 class LongestPalindrome {
-    var leftIndex = 0
-    var rightIndex = 0
-    var maxLength = 0
+    private var leftIndex = 0
+    private var rightIndex = 0
+    private var maxLength = 0
 
     fun longestPalindrome(s: String): String {
         if (s.isNullOrEmpty() || s.length <= 1) return s
