@@ -2,9 +2,13 @@ package com.blankj.hard._127
 
 class Solution {
 
-    var count = 0
+    private var count = 0
 
     // 这道题因为不需要记录完整的路径，所以不需要啥 map
+    /**
+     * TC: O(N*(C^2)) 其中 N 为 wordList 的长度，C 为列表中单词的长度
+     * SC: O(N*(C^2)) 其中 N 为 wordList 的长度，C 为列表中单词的长度
+     */
     fun ladderLength(beginWord: String, endWord: String, wordList: List<String>): Int {
         val dict = HashSet(wordList)
         if (!dict.contains(endWord)) {
@@ -21,7 +25,7 @@ class Solution {
         return count
     }
 
-    fun doubleBfs(unVisited: HashSet<String>, begin: Set<String>, end: Set<String>): Boolean {
+    private fun doubleBfs(unVisited: HashSet<String>, begin: Set<String>, end: Set<String>): Boolean {
         if (begin.isEmpty()) {
             return false
         }
@@ -30,16 +34,14 @@ class Solution {
         }
         unVisited.removeAll(begin)
         unVisited.removeAll(end)
-        var isTraversalEnd = false //是否遍历结束
         val validNeibors = HashSet<String>()
         count++
         for (word in begin) {
             val neighbors: List<String> = getNeighbors(word)
             for (neighborWord in neighbors) {
                 if (end.contains(neighborWord)) {
-                    isTraversalEnd = true
+                    return true
                 }
-                if (isTraversalEnd) return true
                 if (!unVisited.contains(neighborWord)) continue
                 validNeibors.add(neighborWord)
             }

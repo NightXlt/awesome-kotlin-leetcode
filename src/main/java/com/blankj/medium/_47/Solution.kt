@@ -22,7 +22,7 @@ class Solution {
             return
         }
         for (i in start until nums.size) {
-            if (!isSwapped(nums, start, i)) {
+            if (!(start..<i).any { nums[it] == nums[i] }) {
                 swap(nums, i, start)
                 dfs(nums, start + 1, lists)
                 swap(nums, i, start)
@@ -30,11 +30,6 @@ class Solution {
         }
     }
 
-    private fun isSwapped(nums: IntArray, start: Int, end: Int): Boolean {
-        val range = start..<end
-        return nums.indices.filter { it in range }
-            .any { nums[it] == nums[end] }
-    }
 }
 
 fun main() {
