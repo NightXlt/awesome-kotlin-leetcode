@@ -132,8 +132,8 @@ private class UnionFind(n: Int) {
     }
 
     fun calWeight(x: Int, y: Int): Double {
-        val fx = find(x);
-        val fy = find(y);
+        val fx = find(x)
+        val fy = find(y)
         return if (fx == fy) {
             weights[x] / weights[y]
         } else {

@@ -24,9 +24,11 @@ class FindMedianSortedArrays {
                 i < high && nums1[i] < nums2[j - 1] -> {
                     low = i + 1
                 }
+
                 i > low && nums2[j] < nums1[i - 1] -> {
                     high = i - 1
                 }
+
                 else -> {
                     val maxLeftValue = when {
                         i == 0 -> nums2[j - 1]
@@ -95,11 +97,11 @@ class FindMedianSortedArrays {
 
 fun main() {
     FindMedianSortedArrays().findMedianSortedArraysWithKth(
-            intArrayOf(1, 3),
-            intArrayOf(2)
+        intArrayOf(1, 2, 3, 4, 5),
+        intArrayOf(6, 7, 8, 9)
     ).print()
     FindMedianSortedArrays().findMedianSortedArraysWithKth(
-            intArrayOf(1, 2),
-            intArrayOf(3, 4)
+        intArrayOf(1, 2),
+        intArrayOf(3, 4)
     ).print()
 }
