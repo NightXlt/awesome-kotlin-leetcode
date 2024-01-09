@@ -9,36 +9,40 @@
 
 ```kotlin
 class Solution {
-    fun findStrobogrammatic(n: Int): List<String> {
-        if (n < 1) return emptyList()
-        val res = findStrobogrammaticWithPrefixZero(n)
+    fun strobogrammaticInRange(low: String, high: String): Int {
+        val res = findStrobogrammaticWithPrefixZero(high.length, low.toLong(), high.toLong())
         return res.filterNot {
             it.length > 1 && it.first() == '0'
-        }
+        }.size
     }
 
-    private fun findStrobogrammaticWithPrefixZero(n: Int): MutableList<String> {
+    private fun findStrobogrammaticWithPrefixZero(n: Int, low: Long, high: Long) : List<String>{
         val queue = ArrayDeque<String>()
         val start = n % 2
-        // 确定首位从哪里开始
-        if (start == 0) {
-            queue.add("")
-        } else {
-            queue.addAll(listOf("0", "1", "8"))
-        }
+        val res = mutableListOf<String>()
+        queue.addAll(listOf("", "0", "1", "8"))
         for (i in start..<n step 2) {
             val size = queue.size
             repeat(size) {
-                val prevStrobogrammatic = queue.removeFirst()
-                queue.add("0" + prevStrobogrammatic + "0")
-                queue.add("1" + prevStrobogrammatic + "1")
-                queue.add("6" + prevStrobogrammatic + "9")
-                queue.add("8" + prevStrobogrammatic + "8")
-                queue.add("9" + prevStrobogrammatic + "6")
+                val str = queue.removeFirst()
+                var prevStrobogrammatic = str.toLongOrNull()
+                if (prevStrobogrammatic in low..high) {
+                    res.add(str)
+                }
+                if ((prevStrobogrammatic ?: 0) > high) {
+                    return res
+                }
+                queue.add("0" + str + "0")
+                queue.add("1" + str + "1")
+                queue.add("6" + str + "9")
+                queue.add("8" + str + "8")
+                queue.add("9" + str + "6")
             }
         }
-        return queue.toMutableList()
+        res.addAll(queue.filter { it.toLongOrNull() in low..high })
+        return res
     }
+
 }
 
 ```
