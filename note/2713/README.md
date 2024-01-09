@@ -1,5 +1,7 @@
 # [Maximum Strictly Increasing Cells in a Matrix][title]
 
+题目指的是从 一个点可以横向，纵向跳到一个更大的元素上， 最长的长度是多少。
+
 ## Solution
 按元素值从小往大计算。 定义 f[i] 表示到达 mat[i][j] 时所访问的单元格的最大数量。那么答案就是所有 f[i][j] 的最大
 值。
@@ -16,72 +18,45 @@
 
 代码实现时 f[i][j] 可以省略，因为只需要每行每列的f值的最大值。
 对于相同元素，在全部计算出最大值后，再更新到 rowMax 和 colMax 中。
+此外在 Java 中我们通过 TreeMap 维护值的递增，我们只需要关注 row 和 col 的最大值变化即可。
 
+时间复杂度：O(mnlogn)，其中 m 和 n 分别为的行数和列数。瓶颈在排序上。
+空间复杂度：O(mn)
+
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```kotlin
-import java.util.*
-import kotlin.collections.ArrayDeque
-
-class MKAverage(private val m: Int, private val k: Int) {
-
-    private var sum = 0L
-
-    private val queue = ArrayDeque<Int>()
-
-    private val countMap = TreeMap<Int, Int>()
-
-    fun addElement(num: Int) {
-        countMap.merge(num, 1, Integer::sum)
-        queue.add(num)
-        sum += num
-        if (queue.size <= m) return
-        val lruElement = queue.removeFirst()
-        sum -= lruElement
-        countMap.merge(lruElement, -1, Integer::sum)
-        if (countMap[lruElement] == 0) {
-            countMap.remove(lruElement)
-        }
-    }
-
-    fun calculateMKAverage(): Int {
-        if (queue.size < m) return -1
-        return ((sum - getSumMaxK() - getSumMinK()) / (m - 2 * k)).toInt()
-    }
-
-
-    private fun getSumMaxK(): Long {
-        var kSum = 0L
-        var max = Int.MAX_VALUE
-        var i = k
-        while (i > 0) {
-            val (value, count) = countMap.floorEntry(max)
-            if (count > i) {
-                kSum += i * value
-                return kSum
+class MaxIncreasingCells {
+    fun maxIncreasingCells(mat: Array<IntArray>): Int {
+        val graph = TreeMap<Int, MutableList<IntArray>>()
+        for (i in mat.indices) {
+            for (j in mat.first().indices) {
+                // 相同元素放在同一组，统计位置
+                graph.getOrPut(mat[i][j]) { mutableListOf() }
+                    .add(intArrayOf(i, j))
             }
-            kSum += count * value
-            i -= count
-            max = value - 1
         }
-        return kSum
-    }
-
-    private fun getSumMinK(): Long {
-        var kSum = 0L
-        var min = Int.MIN_VALUE
-        var i = k
-        while (i > 0) {
-            val (value, count) = countMap.ceilingEntry(min)
-            if (count > i) {
-                kSum += i * value
-                return kSum
+        val rowMax = IntArray(mat.size)
+        val colMax = IntArray(mat.first().size)
+        var res = 0
+        for (positions in graph.values) {
+            val mx = IntArray(positions.size)
+            for (i in positions.indices) {
+                // 先把最大值算出来，再更新 rowMax 和 colMax
+                mx[i] = max(rowMax[positions[i][0]], colMax[positions[i][1]]) + 1
+                res = max(res, mx[i])
             }
-            kSum += count * value
-            i -= count
-            min = value + 1
+
+            for (k in positions.indices) {
+                val i = positions[k][0]
+                val j = positions[k][1]
+                rowMax[i] = max(mx[k], rowMax[i])
+                colMax[j] = max(mx[k], colMax[j])
+            }
         }
-        return kSum
+        return res
     }
 }
+
 
 ```
 
