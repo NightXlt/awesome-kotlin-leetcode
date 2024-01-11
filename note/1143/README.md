@@ -2,7 +2,7 @@
 
 双序列问题的输入有两个或更多的序列，通常是两个字符串或数组。
 由于输入是两个序列，因此状态转移方程通常有两个参数，即f（i，j），定义第1个序列中下标从0到i的子序列和第2个序列中下标从0到j的子序列的最优解（或解的个数）。
-一旦找到了f（i，j）与f（i-1，j-1）、f（i-1，j）和f（i，j-1）的关系，通常问题也就迎刃而解。
+一旦找到了 f（i，j）与 f（i-1，j-1）、 f（i-1，j） 和 f（i，j-1）的关系，通常问题也就迎刃而解。
 
 ## Solution
 用函数f（i，j）表示第1个字符串中下标从0到i的子字符串（记为s1[0..i]）和第2个字符串中下标从0到j的子字符串（记为s2[0..j]）的最长公共子序列的长度。
@@ -47,6 +47,37 @@ class Solution {
             }
         }
         return dp[len1 % 2][len2]
+    }
+}
+```
+
+之前第一遍写的时候想的不是很明白怎么把两行压缩成了单行， 后面再写时想明白了。
+单行的话， 最难想通的点是 dp[i - 1][j - 1] 咋记录啊， 当我访问到 dp[i][j] 时， dp[i - 1][j - 1] 已经被更新为了 dp[i][j - 1] 的情况了。
+看了代码理解的一点是，我们用一个变量暂存 dp[i-1][j-1] 的值就好， 每次更新当前 dp[j + 1] 为 cur 时， 同时提前更新 prev 为 dp[j + 1]。
+
+```kotlin
+
+class Solution {
+    fun longestCommonSubsequence(text1: String, text2: String): Int {
+        val length1 = text1.length
+        val length2 = text2.length
+        if (length1 < length2) {
+            return longestCommonSubsequence(text2, text1)
+        }
+        val dp = IntArray(length2 + 1)
+        for (i in text1.indices) {
+            var prev = dp[0]
+            for (j in text2.indices) {
+                val cur = if (text1[i] == text2[j]) {
+                    prev + 1 
+                } else {
+                    max(dp[j], dp[j + 1])
+                }
+                prev = dp[j + 1]
+                dp[j + 1] = cur
+            }
+        }
+        return dp.last()
     }
 }
 ```
