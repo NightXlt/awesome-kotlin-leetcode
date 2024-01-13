@@ -5,7 +5,7 @@ import com.blankj.structure.MultiDimensionArray
 
 class Solution {
     private fun setColor(
-        graph: MutableMap<Int, MutableList<Int>>,
+        graph: Map<Int, List<Int>>,
         colors: IntArray,
         i: Int,
         color: Int
