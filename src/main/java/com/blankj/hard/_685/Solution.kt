@@ -51,6 +51,7 @@ class Solution {
         while (find[index] != index) {
             index = find[index]
         }
+        find[x] = index // compress path
         return index
     }
 }
