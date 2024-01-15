@@ -1,5 +1,6 @@
 package com.blankj.google
 
+
 import java.util.*
 
 // 2402
@@ -10,10 +11,10 @@ class MostBooked_2402 {
         val available = PriorityQueue<Int>()
         repeat(n) { available.add(it) }
         val finishTimes = PriorityQueue<TimeIndexPair> { o1, o2 ->
-            return@PriorityQueue if (o1?.time != o2?.time) {
-                (o1?.time.orEmpty()) - (o2?.time.orEmpty())
+            return@PriorityQueue if (o1.time != o2.time) {
+                o1.time - o2.time
             } else {
-                o1?.index.orEmpty() - o2?.index.orEmpty()
+                o1.index - o2.index
             }
         }
         for (meeting in meetings) {
@@ -40,8 +41,4 @@ class MostBooked_2402 {
         val time: Int,
         val index: Int
     )
-
-    private fun Int?.orEmpty(): Int {
-        return this ?: 0
-    }
 }
