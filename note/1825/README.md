@@ -6,6 +6,8 @@
 3、 sum 所有元素的总和；
 4、 利用 TreeMap 的 ceilingEntry、floorEntry 方法可以很容易的找到 k 个最大数、最小数，并计算对应的总和；
 
+Time: addElement O(logm) calculateMKAverage: O(k)
+Space: O(m)
 
 ```kotlin
 import java.util.*
