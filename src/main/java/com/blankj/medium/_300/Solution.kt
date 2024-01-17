@@ -1,10 +1,12 @@
 package com.blankj.medium._300
 
 import com.blankj.ext.print
+import java.util.*
 import kotlin.math.max
 
 
 class Solution {
+
     fun lengthOfLIS(nums: IntArray): Int {
         val dp = IntArray(nums.size)
         var res = 0
@@ -42,8 +44,30 @@ class Solution {
         }
         return res
     }
+
+    fun lengthOfLISWithBruteForce(nums: IntArray) : Int {
+        val map = TreeMap<Int, Int>()
+        var res = 1
+        for (num in nums) {
+            // Get the nearest num
+            var entry: Map.Entry<Int, Int>? = map.floorEntry(num - 1)
+            if (entry == null) {
+                map[num] = 1
+                continue
+            }
+            // Update longest length of num
+            while (entry != null) {
+                map[num] = max(map.getOrDefault(num, 0), entry.value + 1)
+                // Update longest length
+                res = maxOf(res, map.getValue(num))
+                entry = map.floorEntry(entry.key - 1)
+            }
+        }
+        return res
+    }
+
 }
 
 fun main() {
-    Solution().lengthOfLIS(intArrayOf(10, 9, 2, 5, 3, 7, 101, 18)).print()
+    Solution().lengthOfLIS(intArrayOf(0,1,0,3,2,3)).print()
 }
