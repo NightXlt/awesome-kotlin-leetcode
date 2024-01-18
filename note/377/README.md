@@ -1,4 +1,4 @@
-# [Coin Change][title]
+# [Combination Sum IV][title]
 
 ## Solution
 背包问题, 组合
@@ -34,5 +34,5 @@ class Solution {
 ## Conclusion
 如果你同我一样热爱数据结构、算法、LeetCode，可以关注我 GitHub 上的 LeetCode 题解：[awesome-kotlin-leetcode][akl]
 
-[title]: https://leetcode-cn.com/problems/coin-change/
+[title]: https://leetcode.cn/problems/combination-sum-iv/
 [akl]: https://github.com/NightXlt/awesome-kotlin-leetcode

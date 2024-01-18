@@ -13,7 +13,7 @@ class Solution {
             if (map.containsKey(sum - k)) {
                 count += map[sum - k]!!
             }
-            map[sum] = map.getOrDefault(sum, 0) + 1
+            map.merge(sum, 1, Integer::sum)
         }
         return count
     }

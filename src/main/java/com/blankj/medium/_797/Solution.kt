@@ -5,8 +5,8 @@ import com.blankj.ext.print
 
 class Solution {
     fun allPathsSourceTarget(graph: Array<IntArray>): List<List<Int>> {
-        var res = mutableListOf<List<Int>>()
-        var path = ArrayDeque<Int>()
+        val res = mutableListOf<List<Int>>()
+        val path = ArrayDeque<Int>()
         dfs(graph, 0, path, res)
         return res
     }

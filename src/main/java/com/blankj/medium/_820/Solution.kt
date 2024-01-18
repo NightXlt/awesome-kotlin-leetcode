@@ -5,15 +5,12 @@ class Trie {
     var children = HashMap<Char, Trie>()
         private set
 
-    private var isWord = false
-
     /** Inserts a word into the trie. */
     fun insert(word: String) {
         var cur = this
         for (i in word.indices.reversed()) {
             cur = cur.children.getOrPut(word[i]) { Trie() }
         }
-        cur.isWord = true
     }
 }
 

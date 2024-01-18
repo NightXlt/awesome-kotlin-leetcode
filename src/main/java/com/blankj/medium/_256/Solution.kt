@@ -19,7 +19,7 @@ class Solution {
             }
         }
         val lastIndex = (costs.lastIndex) % 2
-        return min(dp[0][lastIndex], min(dp[1][lastIndex], dp[2][lastIndex]))
+        return minOf(dp[0][lastIndex], dp[1][lastIndex], dp[2][lastIndex])
     }
 }
 

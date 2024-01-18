@@ -2,7 +2,7 @@ package com.blankj.medium._648
 
 class Trie {
 
-    private var children = HashMap<Char, Trie>()
+    private var children = mutableMapOf<Char, Trie>()
     private var isWord = false
 
     /** Inserts a word into the trie. */

@@ -5,15 +5,15 @@ import com.blankj.structure.Interval
 
 class EmployeeFreeTime {
     fun employeeFreeTime(schedule: ArrayList<ArrayList<Interval>>): ArrayList<Interval> {
-        val events = mutableListOf<IntArray>()
         val open = -1
         val closed = 1
-        schedule.flatten().forEach {
-            events.add(intArrayOf(it.start, open))
-            events.add(intArrayOf(it.end, closed))
-        }
+        // flatten: 把二维列表打平
+        // flatMap：先对元素做 map, 做进行 flatten. 因此 flatMap 的返回值需要是一个 Iterable 接口
+        val events = schedule.asSequence().flatten().flatMap {
+            listOf(intArrayOf(it.start, open), intArrayOf(it.end, closed))
+        }.toMutableList()
         events.sortWith(compareBy({ it[0] }, { it[1] }))
-        var res = arrayListOf<Interval>()
+        val res = arrayListOf<Interval>()
         var prev = -1
         var balanced = 0
         for (event in events) {

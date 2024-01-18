@@ -16,7 +16,7 @@ class Solution {
         for (i in start until nums.size) {
             integers.add(nums[i])
             dfs(nums, i + 1, lists, integers)
-            integers.removeAt(integers.size - 1)
+            integers.removeLast()
         }
     }
 }

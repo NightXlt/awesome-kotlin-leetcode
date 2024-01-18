@@ -95,19 +95,6 @@ class FindLadders {
         queue.removeLast()
     }
 
-    private fun getNeighbors(word: String): List<String> {
-        val builder = StringBuilder(word)
-        val res = mutableListOf<String>()
-        for ((i, c) in word.withIndex()) {
-            for (newChar in 'a'..'z') {
-                if (newChar == c) continue
-                builder[i] = newChar
-                res.add(builder.toString())
-            }
-            builder[i] = c
-        }
-        return res
-    }
 }
 
 fun main() {

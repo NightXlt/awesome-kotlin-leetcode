@@ -42,10 +42,10 @@ class Solution {
     private fun subsetSum(nums: IntArray, target: Int): Boolean {
         val dp = BooleanArray(target + 1)
         dp[0] = true
-        for (i in 1 until nums.size) {
-            for (j in target downTo nums[i - 1]) {
+        for (num in nums) {
+            for (j in target downTo num) {
                 if (!dp[j]) {
-                    dp[j] = dp[j - nums[i - 1]]
+                    dp[j] = dp[j - num]
                 }
             }
         }

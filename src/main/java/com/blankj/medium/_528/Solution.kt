@@ -5,7 +5,7 @@ import kotlin.random.Random
 
 class Solution(w: IntArray) {
     private val sums = IntArray(w.size)
-    private var total = w.foldIndexed(0) { index, value, acc ->
+    private var total = w.foldIndexed(0) { index, acc, value ->
         sums[index] = value + acc
         sums[index]
     }

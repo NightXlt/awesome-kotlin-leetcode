@@ -50,7 +50,7 @@ class Solution {
     /**
      * 寻找每个节点的邻居节点
      */
-    fun doubleBfs(
+    private fun doubleBfs(
         dict: HashSet<String>,
         begin: Set<String>,
         end: Set<String>,

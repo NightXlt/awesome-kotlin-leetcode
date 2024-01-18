@@ -4,7 +4,7 @@ import com.blankj.ext.print
 
 class Trie {
 
-    var children = HashMap<Char, Trie>()
+    var children = mutableMapOf<Char, Trie>()
         private set
 
     var isWord = false

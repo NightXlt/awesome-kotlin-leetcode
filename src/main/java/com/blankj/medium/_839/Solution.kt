@@ -36,12 +36,12 @@ class Solution {
         return false
     }
 
+    // 路径压缩
     private fun find(find: IntArray, x: Int): Int {
-        var index = x
-        while (find[index] != index) {
-            index = find[index]
+        if (x != find[x]) {
+            find[x] = find(find, find[x])
         }
-        return index
+        return find[x]
     }
 }
 

@@ -33,7 +33,7 @@ class Solution {
             if (cycle >= 0) { // 如果同时也成环了, 找到出现入度为 2 的边的终点的父亲，
                 intArrayOf(parent[conflictEdge[1]], conflictEdge[1])
             } else {
-                intArrayOf(conflictEdge[0], conflictEdge[1])
+                conflictEdge
             }
         }
     }

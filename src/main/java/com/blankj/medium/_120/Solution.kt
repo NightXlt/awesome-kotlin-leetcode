@@ -11,7 +11,7 @@ class Solution {
         val dp = IntArray(triangle.size)
         dp[0] = triangle[0][0]
         for (i in 1 until triangle.size) {
-            for (j in triangle[i].size - 1 downTo 0) {
+            for (j in triangle[i].lastIndex downTo 0) {
                 when {
                     j == 0 -> {
                         dp[0] += triangle[i][0]

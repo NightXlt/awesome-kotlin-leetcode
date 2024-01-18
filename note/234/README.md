@@ -7,6 +7,11 @@
 1221， 反转后 1212，比较 1==1，2==2. 比较结束后要记得反转回来呀！！！
 
 通过快慢指针找到中间节点，把中间节点后面的后半段链表进行反转，一半的链表进行逐节点比较。比较节点结束后再将节点反转回来。
+```text
+fast.next != null && fast.next.next != null: 针对偶数节点数目时， 是找到中间节点左边一个， 这道题需要 reverse 后恢复链表
+fast != null && fast.next != null: 针对偶数节点时， 是找到中间节点的右边一个。 reverse 后没法恢复了
+```
+
 ```kotlin
 class Solution {
     fun isPalindrome(head: ListNode?): Boolean {

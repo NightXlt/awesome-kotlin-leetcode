@@ -10,7 +10,7 @@ class Solution {
      * SC: O(N*(C^2)) 其中 N 为 wordList 的长度，C 为列表中单词的长度
      */
     fun ladderLength(beginWord: String, endWord: String, wordList: List<String>): Int {
-        val dict = HashSet(wordList)
+        val dict = wordList.toMutableSet()
         if (!dict.contains(endWord)) {
             return 0
         }
@@ -25,7 +25,7 @@ class Solution {
         return count
     }
 
-    private fun doubleBfs(unVisited: HashSet<String>, begin: Set<String>, end: Set<String>): Boolean {
+    private fun doubleBfs(unVisited: MutableSet<String>, begin: Set<String>, end: Set<String>): Boolean {
         if (begin.isEmpty()) {
             return false
         }
@@ -34,7 +34,7 @@ class Solution {
         }
         unVisited.removeAll(begin)
         unVisited.removeAll(end)
-        val validNeibors = HashSet<String>()
+        val validNeibors = mutableSetOf<String>()
         count++
         for (word in begin) {
             val neighbors: List<String> = getNeighbors(word)

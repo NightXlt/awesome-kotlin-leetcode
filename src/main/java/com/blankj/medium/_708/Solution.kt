@@ -49,22 +49,14 @@ class Solution {
     private fun insertCore(head: Node?, insertVal: Int) {
         var cur = head
         var biggestNode = head
-        var smallestNode = head
-        while (cur?.next != head) {
+        while (!(cur?.`val`.orEmpty() <= insertVal && cur?.next?.`val`.orEmpty() > insertVal) && cur?.next != head) {
             cur = cur?.next
-            if (cur?.`val`.orEmpty() < smallestNode?.`val`.orEmpty()) {
-                smallestNode = cur
-            }
-        }
-        cur = smallestNode
-        while (!(cur?.`val`.orEmpty() <= insertVal && cur?.next?.`val`.orEmpty() > insertVal) && cur?.next != smallestNode) {
-            cur = cur?.next
-            if (cur?.`val`.orEmpty() >= biggestNode?.`val`.orEmpty()) {
+            if (cur?.`val`.orEmpty() >= biggestNode?.`val`.orEmpty() && cur?.next?.`val`.orEmpty() < cur?.`val`.orEmpty() ) {
                 biggestNode = cur
             }
         }
         val node = Node(insertVal)
-        if (cur?.next != smallestNode) {
+        if (cur?.`val`.orEmpty() <= insertVal && cur?.next?.`val`.orEmpty() > insertVal) {
             node.next = cur?.next
             cur?.next = node
         } else {
@@ -80,7 +72,7 @@ fun Int?.orEmpty(): Int {
 
 fun main() {
     Solution().insert(
-        Node.createTestData("[1,3,3]"),
+        Node.createTestData("[3,1,3]"),
         4
     )
 }

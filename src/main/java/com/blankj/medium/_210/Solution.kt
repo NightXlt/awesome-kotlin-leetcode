@@ -1,7 +1,6 @@
 package com.blankj.medium._210
 
 import com.blankj.ext.print
-import java.util.*
 
 class Solution {
     /**
@@ -13,22 +12,21 @@ class Solution {
     fun findOrder(numCourses: Int, prerequisites: Array<IntArray>): IntArray {
         if (numCourses <= 0) return intArrayOf()
         val inDegree = IntArray(numCourses)
+        val graph = mutableMapOf<Int, MutableList<Int>>()
         for (prerequisite in prerequisites) {
             inDegree[prerequisite[0]]++
+            graph.getOrPut(prerequisite[1]) { mutableListOf() }.add(prerequisite[0])
         }
-        val queue: Queue<Int> = ArrayDeque()
-        for ((index, i) in inDegree.withIndex()) {
-            if (i == 0) queue.offer(index)
-        }
+        val queue = ArrayDeque<Int>()
+        queue.addAll(inDegree.indices.filter { inDegree[it] == 0 })
         val res = mutableListOf<Int>()
         while (queue.isNotEmpty()) {
-            val curElement = queue.poll()
-            res.add(curElement)
-            for (prerequisite in prerequisites) {
-                if (prerequisite[1] == curElement) {
-                    inDegree[prerequisite[0]]--
-                    if (inDegree[prerequisite[0]] == 0) queue.add(prerequisite[0])
-                }
+            val course = queue.removeFirst()
+            res.add(course)
+            if (course !in graph) continue
+            for (next in graph.getValue(course)) {
+                inDegree[next]--
+                if (inDegree[next] == 0) queue.add(next)
             }
         }
         if (res.size != numCourses) return intArrayOf()

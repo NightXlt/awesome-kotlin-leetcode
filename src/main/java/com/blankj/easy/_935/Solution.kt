@@ -8,7 +8,7 @@ class Solution {
         for ((i, c) in order.withIndex()) {
             orderArray[c - 'a'] = i
         }
-        for (i in 0..<words.size - 1) {
+        for (i in 0..<words.lastIndex) {
             if (!isSorted(words[i], words[i + 1], orderArray)) {
                 return false
             }

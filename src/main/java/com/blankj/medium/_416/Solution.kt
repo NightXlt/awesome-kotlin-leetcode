@@ -15,13 +15,13 @@ class Solution {
     private fun subsetSum(nums: IntArray, target: Int): Boolean {
         val dp = BooleanArray(target + 1)
         dp[0] = true
-        for (i in 1 until nums.size) {
-            for (j in target downTo nums[i - 1]) {
+        for (num in nums) {
+            for (j in target downTo num) {
                 // 正向迭代下面的 dp 一定会有问题, 所以上面才是倒着来写的
                 // 正向迭代意味着每个数字可以重复取, 而倒序则意味着每个数字只能取 0,1 次.
                 if (!dp[j]) {
                     // 留意啊, (j - nums[i - 1]) 一定是在 j 的左侧, j 左侧的元素是上一行的值, 对应的是二维数组的 dp[i - 1][j - nums[i -1]]
-                    dp[j] = dp[j - nums[i - 1]]
+                    dp[j] = dp[j - num]
                 }
             }
         }

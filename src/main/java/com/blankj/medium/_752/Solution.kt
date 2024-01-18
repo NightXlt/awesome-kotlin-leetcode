@@ -10,27 +10,25 @@ class Solution {
         if (dead.contains(target) || dead.contains(init)) return -1
         var steps = 0
         var queue1 = ArrayDeque<String>()
-        // queue2 的目的是记录下一层级的所有节点，等到上一层级访问结束后再访问 queue2 存储的元素
-        var queue2 = ArrayDeque<String>()
         val visited = mutableSetOf<String>()
         queue1.add(init)
         visited.add(init)
         while (queue1.isNotEmpty()) {
-            val cur = queue1.removeFirst()
-            // if we find target, return steps
-            if (cur == target) return steps
-            val neighbors = getNeighbors(cur)
-            for (neighbor in neighbors) {
-                if (!dead.contains(neighbor) && !visited.contains(neighbor)) {
-                    queue2.add(neighbor)
-                    visited.add(neighbor)
+            val size = queue1.size
+            repeat(size) {
+                val cur = queue1.removeFirst()
+                // if we find target, return steps
+                if (cur == target) return steps
+                val neighbors = getNeighbors(cur)
+                for (neighbor in neighbors) {
+                    if (!dead.contains(neighbor) && !visited.contains(neighbor)) {
+                        queue1.add(neighbor)
+                        visited.add(neighbor)
+                    }
                 }
             }
-            if (queue1.isEmpty()) {
-                steps++
-                queue1 = queue2
-                queue2 = ArrayDeque()
-            }
+            steps++
+
         }
         return -1
     }
