@@ -9,6 +9,7 @@ class Solution {
 
     fun lengthOfLIS(nums: IntArray): Int {
         val dp = IntArray(nums.size)
+        // res 是长度， res - 1 才是右边界的下标。
         var res = 0
         for (num in nums) {
             var left = 0
