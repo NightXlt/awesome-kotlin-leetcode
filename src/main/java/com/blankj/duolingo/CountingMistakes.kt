@@ -18,14 +18,8 @@ class CountingMistakes {
             val mostCommonMistakes = sortedList.lastOrNull { it.value < sortedList.last().value } ?: continue
             res.addAll(sortedList.filter { it.value == mostCommonMistakes.value }.map { it.key to it.value })
         }
-        return res.sortedWith { o1, o2 ->
-            if (o1.second != o2.second) {
-                return@sortedWith o2.second - o1.second
-            }
-            return@sortedWith o1.first.compareTo(o2.first)
-        }.map {
-            it.first
-        }
+        res.sortWith(compareBy({ -it.second }, { it.first }))
+        return res.map { it.first }
     }
 }
 
