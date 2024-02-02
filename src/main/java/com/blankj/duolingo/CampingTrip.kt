@@ -14,7 +14,7 @@ class CampingTrip {
             if (trail.first == START_POINT || trail.second == START_POINT) {
                 isStartValid = true
             }
-            if (trail.first == END_POINT || trail.first == START_POINT) {
+            if (trail.first == END_POINT || trail.second == END_POINT) {
                 isEndValid = true
             }
             if (trail.first in attractions) {
@@ -35,9 +35,9 @@ class CampingTrip {
         trailChoice = mutableMapOf()
         for (trail in trails) {
             val destToCount = trailChoice.getOrPut(trail.first) { mutableMapOf() }
-            destToCount[trail.second] = destToCount.getOrDefault(trail.second, 0) + 1
+            destToCount.merge(trail.second, 1, Integer::sum)
             val destToCountReversed = trailChoice.getOrPut(trail.second) { mutableMapOf() }
-            destToCountReversed[trail.first] = destToCountReversed.getOrDefault(trail.first, 0) + 1
+            destToCountReversed.merge(trail.first, 1, Integer::sum)
         }
         val visited = mutableMapOf<String, MutableSet<String>>()
         return dfs(START_POINT, visited)
@@ -53,7 +53,7 @@ class CampingTrip {
         }
         for (nextStop in trailChoice.getValue(cur)) {
             var (dest, count) = nextStop
-            if (count == 0 && (dest in visited.getOrPut(cur) { mutableSetOf() } || cur in visited.getOrPut(dest) { mutableSetOf() })) continue
+            if (count == 0 && (visited[cur]?.contains(dest) == true || visited[dest]?.contains(cur) == true)) continue
             count--
             trailChoice.getValue(cur)[dest] = count
             trailChoice.getValue(dest)[cur] = count

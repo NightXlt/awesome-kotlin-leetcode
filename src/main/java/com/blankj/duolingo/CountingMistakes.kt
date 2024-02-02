@@ -9,7 +9,7 @@ class CountingMistakes {
             val map = mutableMapOf<String, Int>().withDefault { 0 }
             map[s] = map.getValue(s) + 1
             for (i in 1..<submissions.size) {
-                map[submissions[i][index]] = map.getValue(submissions[i][index]) + 1
+                map.merge(submissions[i][index], 1, Integer::sum)
             }
             val sortedList = map.asSequence().sortedBy {
                 it.value
