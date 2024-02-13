@@ -16,6 +16,18 @@ class Solution {
         }
         return dp[nums.lastIndex % 2]
     }
+    fun robWithTwoVar(nums: IntArray): Int {
+        if (nums.isEmpty()) return 0
+        if (nums.size == 1) return nums.first()
+        var first = nums[0]
+        var second = max(nums[0], nums[1])
+        for (i in 2..<nums.size) {
+            val temp = second
+            second = max(first + nums[i], second)
+            first = temp
+        }
+        return second
+    }
 }
 
 fun main() {
