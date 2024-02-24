@@ -22,6 +22,7 @@ class Solution {
 }
 
 fun main() {
+    Solution().firstMissingPositive(intArrayOf(1,  2, 0)).print()
     Solution().firstMissingPositive(intArrayOf(3, 4, -1, 1)).print()
     Solution().firstMissingPositive(intArrayOf(1, 2, 3, 4)).print()
 }
