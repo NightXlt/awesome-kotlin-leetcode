@@ -7,7 +7,7 @@ import kotlin.math.min
 
 class Solution {
 
-    // O(n*log(n))
+    // O(n)
     fun minSubArrayLen(target: Int, nums: IntArray): Int {
         if (nums.isEmpty()) error("Empty array!")
         var minLength = Int.MAX_VALUE
@@ -24,7 +24,7 @@ class Solution {
         return if (minLength == Int.MAX_VALUE) 0 else minLength
     }
 
-    // O(n)
+    // O(n*log(n))
     fun minSubArrayLenWithPrefixSum(s: Int, nums: IntArray): Int {
         val n = nums.size
         if (n == 0) {
@@ -46,7 +46,7 @@ class Solution {
                 bound = -bound - 1
             }
             if (bound <= n) {
-                ans = min(ans.toDouble(), (bound - (i - 1)).toDouble()).toInt()
+                ans = min(ans, bound - i + 1)
             }
         }
         return if (ans == Int.MAX_VALUE) 0 else ans
