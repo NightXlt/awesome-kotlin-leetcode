@@ -1,6 +1,6 @@
 package com.blankj.medium._029
 
-private class Solu {
+private class Solution {
     fun divide(dividend: Int, divisor: Int): Int {
         if (dividend == Int.MIN_VALUE && divisor == -1) return Int.MAX_VALUE
         if (divisor == 0) {

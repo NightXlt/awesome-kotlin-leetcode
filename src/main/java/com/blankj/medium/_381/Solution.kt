@@ -8,27 +8,21 @@ class RandomizedCollection {
     private val numToLocation = mutableMapOf<Int, MutableSet<Int>>()
 
     fun insert(`val`: Int): Boolean {
-        numToLocation.putIfAbsent(`val`, mutableSetOf())
-        numToLocation.getValue(`val`).add(nums.size)
+        numToLocation.getOrPut(`val`) { mutableSetOf() }.add(nums.size)
         nums.add(`val`)
         return numToLocation[`val`]?.size.orEmpty() == 1
     }
 
     fun remove(`val`: Int): Boolean {
-        if (!numToLocation.contains(`val`)) return false
-        val index = numToLocation.getValue(`val`).first()
-        val lastElement = nums.last()
-        nums[index] = lastElement.also { nums[nums.lastIndex] = nums[index] }
-        numToLocation[lastElement]?.remove(nums.lastIndex)
-        numToLocation[`val`]?.remove(index)
-        if (index != nums.lastIndex) {
-            numToLocation[lastElement]?.add(index)
-        }
-        if (numToLocation.getValue(`val`).isEmpty()) {
-            numToLocation.remove(`val`)
-        }
+        val set = numToLocation[`val`] ?: return false
+        val t = set.firstOrNull() ?: return false
+        val res = set.remove(t)
+        nums[t] = nums.last()
+        numToLocation[`val`]?.remove(t)
+        numToLocation[nums[t]]?.add(t)
+        numToLocation[nums[t]]?.remove(nums.lastIndex)
         nums.removeLast()
-        return true
+        return res
     }
 
     fun getRandom(): Int {
