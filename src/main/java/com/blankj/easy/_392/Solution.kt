@@ -16,6 +16,31 @@ class Solution {
         }
         return i == s.length
     }
+
+    fun isSubsequenceFollowUp(s: String, t: String): Boolean {
+        val m = t.length
+        val dp = Array(m + 1) { IntArray(26) }
+        for (i in 0..<26) {
+            dp[m][i] = m
+        }
+        for (i in t.indices.reversed()) {
+            for (j in 0..<26) {
+                if (t[i] == 'a' + j) {
+                    dp[i][j] = i
+                } else {
+                    dp[i][j] = dp[i + 1][j]
+                }
+            }
+        }
+        var indexOfT = 0
+        for (i in s.indices) {
+            if (dp[indexOfT][s[i] - 'a'] == m) {
+                return false
+            }
+            indexOfT = dp[indexOfT][s[i] - 'a'] + 1
+        }
+        return true
+    }
 }
 
 fun main() {
