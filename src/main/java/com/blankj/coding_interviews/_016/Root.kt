@@ -1,6 +1,7 @@
 package com.blankj.coding_interviews._016
 
 import kotlin.math.abs
+import kotlin.math.pow
 
 class Root {
 
@@ -10,6 +11,7 @@ class Root {
             var right = x
             while (right - left >= 0.00001) {
                 val mid = (left + right) / 2
+                mid.pow(n.toDouble())
                 val root = getPow(mid, n)
                 if (abs(x - root) <= 0.001) {
                     return mid

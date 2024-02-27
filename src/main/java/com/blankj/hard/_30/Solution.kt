@@ -9,7 +9,7 @@ class Solution {
         val w = words.first().length
         val n = s.length
         val count = mutableMapOf<String, Int>()
-        words.forEach { count[it] = count.getOrDefault(it, 0) + 1 }
+        words.forEach { count.merge(it, 1, Integer::sum) }
         val res = mutableListOf<Int>()
         for (i in 0..<w) {
             val curMap = mutableMapOf<String, Int>()

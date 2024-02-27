@@ -1,6 +1,7 @@
 package com.blankj.hard._124
 
 import com.blankj.structure.TreeNode
+import kotlin.math.max
 
 class Solution {
     var res = Int.MIN_VALUE
@@ -13,9 +14,9 @@ class Solution {
 
     private fun dfs(root: TreeNode?): Int {
         root ?: return 0
-        val leftMaxSum = dfs(root.left)
-        val rightMaxSum = dfs(root.right)
-        res = maxOf(res, leftMaxSum.coerceAtLeast(0) + rightMaxSum.coerceAtLeast(0) + root.`val`)
-        return maxOf(0, leftMaxSum, rightMaxSum) + root.`val`
+        val leftMaxSum = max(dfs(root.left), 0)
+        val rightMaxSum = max(dfs(root.right), 0)
+        res = max(res, leftMaxSum + rightMaxSum + root.`val`)
+        return max(leftMaxSum, rightMaxSum) + root.`val`
     }
 }

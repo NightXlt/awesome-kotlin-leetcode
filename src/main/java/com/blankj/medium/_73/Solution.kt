@@ -3,7 +3,7 @@ package com.blankj.medium._73
 import com.blankj.ext.print
 
 class Solution {
-    fun setZeroes(matrix: Array<IntArray>): Unit {
+    fun setZeroes(matrix: Array<IntArray>) {
         if (matrix.isEmpty() || matrix[0].isEmpty()) return
         val rowsZero = BooleanArray(matrix.size)
         val colsZero = BooleanArray(matrix[0].size)
@@ -24,16 +24,12 @@ class Solution {
         }
     }
 
-    fun setZeroesWithConstantSpaceConsuming(matrix: Array<IntArray>): Unit {
+    fun setZeroesWithoutConstantSpaceConsuming(matrix: Array<IntArray>) {
         if (matrix.isEmpty() || matrix[0].isEmpty()) return
         var flagRowZero = false
         var flagColZero = false
         flagRowZero = matrix[0].contains(0)
-        matrix.forEach {
-            if (it[0] == 0) {
-                flagColZero = true
-            }
-        }
+        flagColZero = matrix.any { it[0] == 0 }
         for (i in 1..matrix.lastIndex) {
             for (j in 1..matrix[0].lastIndex) {
                 if (matrix[i][j] == 0) {

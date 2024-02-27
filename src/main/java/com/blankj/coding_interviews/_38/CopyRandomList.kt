@@ -5,7 +5,7 @@ class CopyRandomList {
 //    fun copyRandomList(head: Node?): Node? {
 //        if (head == null) return null
 //        var cur = head
-//        val map: MutableMap<Node, Node> = HashMap()
+//        val map = mutableMapOf<Node, Node>()
 //        while (cur != null) {
 //            map[cur] = Node(cur.`val`)
 //            cur = cur.next
