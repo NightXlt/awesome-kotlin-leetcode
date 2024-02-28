@@ -21,6 +21,9 @@ fun Any.print() {
         is DoubleArray -> {
             println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
         }
+        is Array<*> -> {
+            println(this.joinToString(prefix = "[", postfix = "]", separator = ","))
+        }
         else -> println(this.toString())
 
     }
