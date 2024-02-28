@@ -30,7 +30,7 @@ dp[i][j] 表示 X[i:] 与 Y[j:] 的最小变化距离， 这与编辑距离 dp[i
 动规方程
 
 ```
-i: 0 ~ X.length - 1  j: 0 ~ Y.length -1
+i: X.length - 1 ~ 0  j: Y.length -1 ~ 0 
                 dp[i+1][j+1]                           X[i] = Y[j] 
 dp[i][j] =   {
                 1 + min(dp[i+1][j], dp[i][j + 1])      X[i - 1] != Y[j - 1]
