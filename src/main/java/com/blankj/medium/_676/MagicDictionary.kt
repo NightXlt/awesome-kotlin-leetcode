@@ -40,9 +40,9 @@ class MagicDictionary() {
         }
         if (i < searchWord.length && editCount <= 1) {
             var found: Boolean
-            repeat(26) { j ->
-                val next = if ('a' + j == searchWord[i]) editCount else editCount + 1
-                found = dfs(searchWord, trie.children['a' + j], i + 1, next)
+            for (c in 'a'..'z') {
+                val next = if (c == searchWord[i]) editCount else editCount + 1
+                found = dfs(searchWord, trie.children[c], i + 1, next)
                 if (found) {
                     return true
                 }
