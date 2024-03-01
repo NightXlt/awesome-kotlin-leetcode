@@ -3,7 +3,7 @@ package com.blankj.medium._47
 import com.blankj.ext.print
 
 class Solution {
-    fun permute(nums: IntArray): List<List<Int>> {
+    fun permuteUnique(nums: IntArray): List<List<Int>> {
         val lists: MutableList<List<Int>> = mutableListOf()
         dfs(nums, 0, lists)
         return lists
@@ -22,7 +22,7 @@ class Solution {
             return
         }
         for (i in start until nums.size) {
-            if (!(start..<i).any { nums[it] == nums[i] }) {
+            if (!isSwapped(nums, start, i)) {
                 swap(nums, i, start)
                 dfs(nums, start + 1, lists)
                 swap(nums, i, start)
@@ -30,8 +30,13 @@ class Solution {
         }
     }
 
+    private fun isSwapped(nums: IntArray, start: Int, end: Int): Boolean {
+        val range = start..<end
+        return nums.indices.filter { it in range }
+            .any { nums[it] == nums[end] }
+    }
 }
 
 fun main() {
-    Solution().permute(intArrayOf(1,1,2)).print()
+    Solution().permuteUnique(intArrayOf(1,1,2)).print()
 }

@@ -19,7 +19,7 @@ class Solution {
             if (i > start && nums[i] == nums[i - 1]) continue
             integers.add(nums[i])
             dfs(nums, i + 1, lists, integers)
-            integers.removeAt(integers.size - 1)
+            integers.removeLast()
         }
     }
 }
