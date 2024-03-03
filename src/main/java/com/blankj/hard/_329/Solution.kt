@@ -18,13 +18,14 @@ class Solution {
         return res
     }
 
+    private val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))
+
     private fun dfs(
         matrix: Array<IntArray>,
         i: Int, j: Int,
         lengths: Array<IntArray>
     ): Int {
         if (lengths[i][j] > 0) return lengths[i][j]
-        val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(-1, 0), intArrayOf(0, -1))
         var length = 1
         for (dir in dirs) {
             val row = i + dir[0]
