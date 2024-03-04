@@ -30,10 +30,11 @@ class Solution {
 
     private fun find(find: IntArray, x: Int): Int {
         var index = x
-        while (find[index] != index) {
-            index = find[index]
+        if (index != find[index]) {
+            val parent = find[index]
+            find[index] = find(find, parent)
         }
-        return index
+        return find[index]
     }
 }
 
