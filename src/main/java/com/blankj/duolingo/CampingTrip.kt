@@ -2,6 +2,11 @@ package com.blankj.duolingo
 
 import com.blankj.ext.print
 
+/**
+ * Time Complexity: O(n + V + E)
+ * Space Complexity: O(n + E + V)
+ * Here, n represents the number of trails, V represents the number of vertices (attractions or stops), E represents the number of edges (trails)
+ */
 class CampingTrip {
 
     private var attractionsSet = mutableSetOf<String>()
@@ -55,8 +60,7 @@ class CampingTrip {
             var (dest, count) = nextStop
             if (count == 0 && (visited[cur]?.contains(dest) == true || visited[dest]?.contains(cur) == true)) continue
             count--
-            trailChoice.getValue(cur)[dest] = count
-            trailChoice.getValue(dest)[cur] = count
+            updateCount(cur, dest, count)
             if (count == 0) {
                 visited.getOrPut(cur) { mutableSetOf() }.add(dest)
             }
@@ -75,10 +79,14 @@ class CampingTrip {
                 visited.getValue(cur).remove(dest)
             }
             count++
-            trailChoice.getValue(cur)[dest] = count
-            trailChoice.getValue(dest)[cur] = count
+            updateCount(cur, dest, count)
         }
         return false
+    }
+
+    private fun updateCount(cur: String, dest: String, count: Int) {
+        trailChoice.getValue(cur)[dest] = count
+        trailChoice.getValue(dest)[cur] = count
     }
 
     companion object {

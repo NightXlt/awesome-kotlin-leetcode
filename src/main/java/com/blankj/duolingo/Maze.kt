@@ -2,6 +2,11 @@ package com.blankj.duolingo
 
 import com.blankj.ext.print
 
+/**
+ * Time Complexity: O(n^2 + k)
+ * Space Complexity: O(n^2)
+ * Here, n represents the size of the maze, and k represents the number of moves/tracks.
+ */
 class Maze {
 
     data class Node(

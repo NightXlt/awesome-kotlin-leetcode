@@ -2,6 +2,10 @@ package com.blankj.duolingo
 
 import com.blankj.ext.print
 
+/**
+ * Overall, the time complexity of the algorithm is O(n^2) in the worst-case scenario, where n is the total number of pages.
+ * Space Complexity: O(n^2)
+ */
 class StoryBook {
 
     var visited = mutableMapOf<Int, MutableSet<Int>>()

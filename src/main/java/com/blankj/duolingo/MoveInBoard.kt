@@ -2,6 +2,14 @@ package com.blankj.duolingo
 
 import com.blankj.ext.print
 
+/**
+ * Time Complexity: O(4^n * n)
+ * Space Complexity: O(4^n)
+ *
+ * Here, n represents the size of the board.
+ *
+ */
+
 class MoveInBoard {
 
     /**
