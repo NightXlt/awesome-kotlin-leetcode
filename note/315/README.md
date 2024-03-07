@@ -16,7 +16,11 @@ To the right of 1 there is 0 smaller element.
 ## Solution
 這道題和逆序对那道题类似，我们可以往归并方向思考
 但不同的点在于我在进行归并时，如何找到排序后当前元素的原始位置，因为我需要记录结果到数组中，这是第一个点，我们可以记录每个元素的索引，每次元素交换时同时索引也跟着更新，那我们就可以以 O(1) 的时间访问到原始索引。
-第二个点是当我找到 nums[i] <= nums[j] 时, 意味着 j 左边到 mid 位置的元素都是小于 j 的， 那 res[indexes[i]] += j - mid -1
+第二个点是当我找到 nums[i] <= nums[j] 时, 意味着 j 左边到 mid 位置的元素都是小于 j 的，
+可是怎么能保证 j 左边的元素是小于 i 的呢？ 归并算法的特性：
+归并过程中，通过 num[i] <= nums[j] 只移动 i 来保证的， 直到 nums[i] > nums[j] 才会停止。这就意味着访问 (i, j) 时 j 左侧的元素一定是小于 i 的， 但 nums[j] 本身是 > nums[i]
+那么 j 左侧的元素个数总共有 (mid+1..j-1) = j - 1 - mid - 1 + 1 = j - mid - 1
+那 res[indexes[i]] += j - mid -1
 
 ```kotlin
 class Solution {
