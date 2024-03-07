@@ -23,7 +23,6 @@
 时间复杂度：O(mnlogn)，其中 m 和 n 分别为的行数和列数。瓶颈在排序上。
 空间复杂度：O(mn)
 
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```kotlin
 class MaxIncreasingCells {
     fun maxIncreasingCells(mat: Array<IntArray>): Int {
@@ -47,6 +46,7 @@ class MaxIncreasingCells {
             }
 
             for (k in positions.indices) {
+                // position 的 k 映射到 rowMax 的 row, colMax 的 col
                 val i = positions[k][0]
                 val j = positions[k][1]
                 rowMax[i] = max(mx[k], rowMax[i])
