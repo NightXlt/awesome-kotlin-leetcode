@@ -6,6 +6,11 @@ import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 import kotlin.math.max
 
+/**
+ * 假设 beginword 和 endword 之间的距离是 d。每个节点可以扩展出 k 个节点。
+ * 那么正常的时间复杂就是 k^d
+ * 双向搜索的时间复杂度就是 k^(d/2) + k^(d/2)
+ */
 class Solution {
     fun findLadders(
         beginWord: String,
