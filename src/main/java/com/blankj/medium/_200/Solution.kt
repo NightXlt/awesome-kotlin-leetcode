@@ -66,17 +66,21 @@ class Solution {
         return count
     }
 
+    val dirs = arrayOf(
+        intArrayOf(0, 1),
+        intArrayOf(0, -1),
+        intArrayOf(-1, 0),
+        intArrayOf(1, 0),
+    )
     fun dfs(grid: Array<CharArray>, r: Int, c: Int) {
-        val nr = grid.size
-        val nc: Int = grid[0].size
-        if (r < 0 || c < 0 || r >= nr || c >= nc || grid[r][c] == '0') {
-            return
+        for ((rowDiff, colDiff) in dirs) {
+            val newRow = r + rowDiff
+            val newCol = c + colDiff
+            if (newRow in grid.indices && newCol in grid.first().indices && grid[newRow][newCol] == '1') {
+                grid[newRow][newCol] = '0'
+                dfs(grid, newRow, newCol)
+            }
         }
-        grid[r][c] = '0'
-        dfs(grid, r - 1, c)
-        dfs(grid, r + 1, c)
-        dfs(grid, r, c - 1)
-        dfs(grid, r, c + 1)
     }
 }
 

@@ -37,7 +37,9 @@ class SortKMessArray {
         }
         val iterator = heap.iterator()
         while (iterator.hasNext()) {
-            arr[index++] = heap.remove()
+            arr[index++] = iterator.next()
+            // remove 是移除掉上次 next 出来的 index
+            iterator.remove()
         }
         return arr
     }
