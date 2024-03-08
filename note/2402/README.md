@@ -35,6 +35,9 @@
 
 遍历结束之后，即可得到每个会议被分配的会议室与每个会议室举办的会议数量，遍历所有会议室举办的会议数量即可得到举办最多会议的会议室编号。
 
+时间复杂度：O(n+m(logn+logm))，其中 m 为 meetings 的长度。注意每个会议至多入堆出堆各一次。
+空间复杂度：O(n)
+
 ```kotlin
 import java.util.*
 
@@ -46,6 +49,7 @@ class MostBooked_2402 {
         val available = PriorityQueue<Int>()
         repeat(n) { available.add(it) }
         // 获取最早结束时间和会议室
+        // 很奇怪的是下面的代码不能改写为 compareBy, 在一个边界 case 上会报错（https://leetcode.cn/problems/meeting-rooms-iii/submissions/509337670/）
         val finishTimes = PriorityQueue<TimeIndexPair> { o1, o2 ->
             return@PriorityQueue if (o1?.time != o2?.time) {
                 (o1?.time.orEmpty()) - (o2?.time.orEmpty())
