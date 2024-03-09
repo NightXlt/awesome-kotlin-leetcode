@@ -147,7 +147,7 @@ class Solution {
                 })
                 continue
             }
-
+            // 两个数字间才有一个 空格， 所以需要减一
             val avgSpaces = numSpaces / (numWords - 1)
             val extraSpaces = numSpaces % (numWords - 1)
             res.add(buildString {
