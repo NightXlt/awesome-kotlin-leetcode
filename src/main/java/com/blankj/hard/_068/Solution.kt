@@ -30,11 +30,11 @@ class Solution {
             }
 
             val avgSpaces = numSpaces / (numWords - 1)
-            val extraSpaces = numSpaces % (numWords - 1)
+            val countWithextraSpaces = numSpaces % (numWords - 1)
             res.add(buildString {
-                append(join(words, left, left + extraSpaces + 1, " ".repeat(avgSpaces + 1)))
+                append(join(words, left, left + countWithextraSpaces + 1, " ".repeat(avgSpaces + 1)))
                 append(" ".repeat(avgSpaces))
-                append(join(words, left + extraSpaces + 1, right, " ".repeat(avgSpaces)))
+                append(join(words, left + countWithextraSpaces + 1, right, " ".repeat(avgSpaces)))
             })
         }
     }
