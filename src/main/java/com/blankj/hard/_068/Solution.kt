@@ -39,6 +39,7 @@ class Solution {
         }
     }
 
+    // Join string from left to (right - 1)
     private fun join(words: Array<String>, left: Int, right: Int, separator: String): StringBuilder {
         val builder = StringBuilder(words[left])
         for (i in left + 1..<right) {
