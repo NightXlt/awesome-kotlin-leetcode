@@ -13,8 +13,8 @@ class Solution {
         for (i in 1 until words.size) {
             val w1 = words[i - 1]
             val w2 = words[i]
-            // 如果 sta 排在了 star 前面肯定是有问题的， 直接返回空串。
-            if (w1.startsWith(w2) && w1 != w2) return ""
+            // 如果 star 排在了 sta 前面肯定是有问题的， 直接返回空串。
+            if (w1.startsWith(w2) && w1.length != w2.length) return ""
             var j = 0
             while (j < w1.length && j < w2.length) {
                 val c1 = w1[j]
