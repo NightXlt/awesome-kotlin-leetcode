@@ -22,6 +22,8 @@ To the right of 1 there is 0 smaller element.
 那么 j 左侧的元素个数总共有 (mid+1..j-1) = j - 1 - mid - 1 + 1 = j - mid - 1
 那 res[indexes[i]] += j - mid -1
 
+T: O(N*logN)
+S: O(N)
 ```kotlin
 class Solution {
     var copy = intArrayOf()

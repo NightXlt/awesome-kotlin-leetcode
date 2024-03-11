@@ -26,6 +26,12 @@ Output: 18
 left <= right. 如果满足条件 right = mid - 1, 否则 left = mid + 1.
 最后退出循环条件的 left 就是最小值。类似搜索插入位置那道题。
 
+3. check 的逻辑
+模拟计算每个子数组的和， 如果发现 count 超过 k, 或者其中某个元素比 sum 都要大时， 返回 false, 表明当前的值小了。
+
+T: O(N*logSum) N：是元素长度， Sum 是所有元素之和
+S: O(1)
+
 ```kotlin
 package com.blankj.hard._410
 
