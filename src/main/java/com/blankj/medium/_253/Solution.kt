@@ -1,14 +1,15 @@
 package com.blankj.medium._253
 
+import com.blankj.ext.print
 import java.util.*
 
 class Solution {
 
     fun minMeetingRooms(intervals: Array<IntArray>): Int {
         // incremental queue
-        val q = PriorityQueue<Int> { a, b -> a - b }
+        val q = PriorityQueue<Int>()
         // sorted by start time
-        Arrays.sort(intervals) { l, r -> l[0] - r[0] }
+        intervals.sortBy { it[0] }
         var res = 0
         for (i in intervals) {
             // reuse last meeting room
@@ -26,10 +27,12 @@ class Solution {
 }
 
 fun main() {
-    Solution().minMeetingRooms(arrayOf(
-            intArrayOf(0,30),
-            intArrayOf(5,10),
-            intArrayOf(15,20),
+    Solution().minMeetingRooms(
+        arrayOf(
+            intArrayOf(0, 30),
+            intArrayOf(5, 10),
+            intArrayOf(15, 20),
             intArrayOf(25, 40)
-    ))
+        )
+    ).print()
 }
