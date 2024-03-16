@@ -13,23 +13,9 @@ class CampingTrip {
     private var trailChoice = mutableMapOf<String, MutableMap<String, Int>>()
 
     private fun isValidInput(trails: List<Pair<String, String>>, attractions: MutableSet<String>): Boolean {
-        var isStartValid = false
-        var isEndValid = false
-        for (trail in trails) {
-            if (trail.first == START_POINT || trail.second == START_POINT) {
-                isStartValid = true
-            }
-            if (trail.first == END_POINT || trail.second == END_POINT) {
-                isEndValid = true
-            }
-            if (trail.first in attractions) {
-                attractions.remove(trail.first)
-            }
-            if (trail.second in attractions) {
-                attractions.remove(trail.second)
-            }
-
-        }
+        val isStartValid = trails.any { it.first == START_POINT || it.second == START_POINT }
+        val isEndValid = trails.any { it.first == END_POINT || it.second == END_POINT }
+        attractions.removeAll(trails.flatMap { listOf(it.first, it.second) }.toSet())
         return isStartValid && isEndValid && attractions.isEmpty()
     }
 
@@ -64,10 +50,7 @@ class CampingTrip {
             if (count == 0) {
                 visited.getOrPut(cur) { mutableSetOf() }.add(dest)
             }
-            val isRemoved = dest in attractionsSet
-            if (isRemoved) {
-                attractionsSet.remove(dest)
-            }
+            val isRemoved = attractionsSet.remove(dest)  // remove 当元素不在集合时， 会返回 false
             val res = dfs(dest, visited)
             if (res) {
                 return true

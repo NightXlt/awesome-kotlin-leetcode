@@ -21,17 +21,13 @@ data class Rotation(val name: String, val startTime: Int, val endTime: Int)
 
 fun getOnCallRotationTable(rotations: List<Rotation>): List<Triple<Int, Int, List<String>>> {
     // Sort rotations by start time
-    val orderedIntervals = rotations.fold(mutableListOf<Triple<Int, Int, String>>()) { acc, rotation ->
-        acc.add(Triple(rotation.startTime, -1, rotation.name))
-        acc.add(Triple(rotation.endTime, 1, rotation.name))
-        acc
-    }
-    orderedIntervals.sortWith { i1, i2 ->
-        if (i1.first != i2.first) {
-            return@sortWith i1.first - i2.first
-        }
-        return@sortWith i1.second - i2.second
-    }
+    val orderedIntervals = rotations.asSequence().flatMap { rotation ->
+        listOf(
+            Triple(rotation.startTime, -1, rotation.name),
+            Triple(rotation.endTime, 1, rotation.name)
+        )
+    }.toMutableList()
+    orderedIntervals.sortWith(compareBy({ it.first }, { it.second }))
     val curOnCall = mutableSetOf<String>()
     // Initialize result list
     val result = mutableListOf<Triple<Int, Int, List<String>>>()
