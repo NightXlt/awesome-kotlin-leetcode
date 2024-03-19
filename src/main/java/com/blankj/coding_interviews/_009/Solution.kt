@@ -53,9 +53,7 @@ class CStack {
     }
 
     /** Returns whether the stack is empty. */
-    fun empty(): Boolean {
-        return queue.isEmpty()
-    }
+    fun empty(): Boolean = queue.isEmpty()
 }
 
 fun main() {

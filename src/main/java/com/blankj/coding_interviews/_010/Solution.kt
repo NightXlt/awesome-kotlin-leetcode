@@ -6,13 +6,13 @@ class Solution {
     fun fib(n: Int): Int {
         val fib = intArrayOf(0, 1)
         if (n in 0..1) return fib[n]
-        var fibOne = 1
-        var fibTwo = 0
-        var fibN = fibTwo
+        var fibMinusOne = 1
+        var fibMinusTwo = 0
+        var fibN = fibMinusTwo
         for (i in 2..n) {
-            fibN = (fibOne + fibTwo) % 1000000007
-            fibTwo = fibOne
-            fibOne = fibN
+            fibN = (fibMinusOne + fibMinusTwo) % 1000000007
+            fibMinusTwo = fibMinusOne
+            fibMinusOne = fibN
         }
         return fibN
     }

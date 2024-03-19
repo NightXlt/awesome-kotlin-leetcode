@@ -17,22 +17,27 @@ class CountingMistakes {
             for (i in 1..<submissions.size) {
                 map.merge(submissions[i][index], 1, Integer::sum)
             }
-            var correctWordCount = Int.MIN_VALUE
-            var mostCommonMistakes = Int.MIN_VALUE
-            for (count in map.values) {
-                if (count > correctWordCount) {
-                    mostCommonMistakes = correctWordCount
-                    correctWordCount = count
-                } else if (count > mostCommonMistakes && count != correctWordCount) {
-                    mostCommonMistakes = count
-                }
-            }
+            var mostCommonMistakes = getMostCommonMistakes(map)
             if (mostCommonMistakes == Int.MIN_VALUE) continue
             //val mostCommonMistakes = sortedList.lastOrNull { it.value < sortedList.last().value } ?: continue
             res.addAll(map.filter { it.value == mostCommonMistakes }.entries)
         }
         res.sortWith(compareBy({ -it.value }, { it.key }))
         return res.map { it.key }
+    }
+
+    private fun getMostCommonMistakes(map: MutableMap<String, Int>): Int {
+        var correctWordCount = Int.MIN_VALUE
+        var mostCommonMistakes = Int.MIN_VALUE
+        for (count in map.values) {
+            if (count > correctWordCount) {
+                mostCommonMistakes = correctWordCount
+                correctWordCount = count
+            } else if (count > mostCommonMistakes && count != correctWordCount) {
+                mostCommonMistakes = count
+            }
+        }
+        return mostCommonMistakes
     }
 }
 

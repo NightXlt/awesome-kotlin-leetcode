@@ -31,9 +31,7 @@ class Solution {
     }
 
     private fun isSwapped(nums: IntArray, start: Int, end: Int): Boolean {
-        val range = start..<end
-        return nums.indices.filter { it in range }
-            .any { nums[it] == nums[end] }
+        return (start..<end).any { nums[it] == nums[end] }
     }
 }
 

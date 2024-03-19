@@ -9,9 +9,7 @@ class Solution {
 
         val tFreq = IntArray(128)
         val windowFreq = IntArray(128)
-        t.forEach {
-            tFreq[it.code]++
-        }
+        t.forEach { tFreq[it.code]++ }
         var left = 0
         var right = 0
         var count = 0
@@ -19,11 +17,8 @@ class Solution {
         var start = 0
         while (right < s.length) {
             val c = s[right]
-            if (tFreq[c.code] == 0) {
-                right++
-                continue
-            }
-            if (windowFreq[c.code] < tFreq[c.code] ) {
+            // 移除掉考虑 tFreq[c.code] == 0 再 continue 的特殊处理， 使逻辑更加简洁
+            if (windowFreq[c.code] < tFreq[c.code]) {
                 count++
             }
             windowFreq[c.code]++
@@ -34,12 +29,8 @@ class Solution {
                     start = left
                 }
                 val leftChar = s[left]
-                if (tFreq[leftChar.code] == 0) {
-                    windowFreq[leftChar.code]--
-                    left++
-                    continue
-                }
-                if (tFreq[leftChar.code] == windowFreq[leftChar.code]){
+                // 移除掉考虑 tFreq[c.code] == 0 再 continue 的特殊处理， 使逻辑更加一致
+                if (tFreq[leftChar.code] == windowFreq[leftChar.code]) {
                     count--
                 }
                 windowFreq[leftChar.code]--
@@ -55,5 +46,8 @@ fun main() {
     Solution().minWindow("", "aa")?.print()
     Solution().minWindow(null, "aa")?.print()
     Solution().minWindow("ADOBECODEBANC", "ABC")?.print()
-    Solution().minWindow("wegdtzwabazduwwdysdetrrctotpcepalxdewzezbfewbabbseinxbqqplitpxtcwwhuyntbtzxwzyaufihclztckdwccpeyonumbpnuonsnnsjscrvpsqsftohvfnvtbphcgxyumqjzltspmphefzjypsvugqqjhzlnylhkdqmolggxvneaopadivzqnpzurmhpxqcaiqruwztroxtcnvhxqgndyozpcigzykbiaucyvwrjvknifufxducbkbsmlanllpunlyohwfsssiazeixhebipfcdqdrcqiwftutcrbxjthlulvttcvdtaiwqlnsdvqkrngvghupcbcwnaqiclnvnvtfihylcqwvderjllannflchdklqxidvbjdijrnbpkftbqgpttcagghkqucpcgmfrqqajdbynitrbzgwukyaqhmibpzfxmkoeaqnftnvegohfudbgbbyiqglhhqevcszdkokdbhjjvqqrvrxyvvgldtuljygmsircydhalrlgjeyfvxdstmfyhzjrxsfpcytabdcmwqvhuvmpssingpmnpvgmpletjzunewbamwiirwymqizwxlmojsbaehupiocnmenbcxjwujimthjtvvhenkettylcoppdveeycpuybekulvpgqzmgjrbdrmficwlxarxegrejvrejmvrfuenexojqdqyfmjeoacvjvzsrqycfuvmozzuypfpsvnzjxeazgvibubunzyuvugmvhguyojrlysvxwxxesfioiebidxdzfpumyon", "ozgzyywxvtublcl")?.print()
+    Solution().minWindow(
+        "wegdtzwabazduwwdysdetrrctotpcepalxdewzezbfewbabbseinxbqqplitpxtcwwhuyntbtzxwzyaufihclztckdwccpeyonumbpnuonsnnsjscrvpsqsftohvfnvtbphcgxyumqjzltspmphefzjypsvugqqjhzlnylhkdqmolggxvneaopadivzqnpzurmhpxqcaiqruwztroxtcnvhxqgndyozpcigzykbiaucyvwrjvknifufxducbkbsmlanllpunlyohwfsssiazeixhebipfcdqdrcqiwftutcrbxjthlulvttcvdtaiwqlnsdvqkrngvghupcbcwnaqiclnvnvtfihylcqwvderjllannflchdklqxidvbjdijrnbpkftbqgpttcagghkqucpcgmfrqqajdbynitrbzgwukyaqhmibpzfxmkoeaqnftnvegohfudbgbbyiqglhhqevcszdkokdbhjjvqqrvrxyvvgldtuljygmsircydhalrlgjeyfvxdstmfyhzjrxsfpcytabdcmwqvhuvmpssingpmnpvgmpletjzunewbamwiirwymqizwxlmojsbaehupiocnmenbcxjwujimthjtvvhenkettylcoppdveeycpuybekulvpgqzmgjrbdrmficwlxarxegrejvrejmvrfuenexojqdqyfmjeoacvjvzsrqycfuvmozzuypfpsvnzjxeazgvibubunzyuvugmvhguyojrlysvxwxxesfioiebidxdzfpumyon",
+        "ozgzyywxvtublcl"
+    )?.print()
 }

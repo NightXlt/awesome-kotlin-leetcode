@@ -1,12 +1,11 @@
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
+    id 'org.jetbrains.kotlin.jvm' version '2.1.20'
 }
 
 repositories {
     mavenCentral()
     mavenLocal()
-    maven { url "https://jitpack.io" }
     maven { url 'https://repository.mulesoft.org/nexus/content/repositories/public/' }
 }
 

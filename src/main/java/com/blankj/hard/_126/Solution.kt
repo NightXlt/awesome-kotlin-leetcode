@@ -4,7 +4,6 @@ import com.blankj.ext.print
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.collections.HashSet
-import kotlin.math.max
 
 /**
  * 假设 beginword 和 endword 之间的距离是 d。每个节点可以扩展出 k 个节点。
@@ -20,11 +19,11 @@ class Solution {
         val dict = HashSet(wordList) //未访问过的节点集合
         val res: MutableList<List<String>> = mutableListOf()
         if (!dict.contains(endWord)) return res
-        val begin = HashSet<String>()
+        val begin = mutableSetOf<String>()
         begin.add(beginWord) //从上之下集合
-        val end = HashSet<String>()
+        val end = mutableSetOf<String>()
         end.add(endWord) //从下至上集合
-        val map = HashMap<String, MutableList<String>>() //存储每个节点的邻居节点
+        val map = mutableMapOf<String, MutableList<String>>() //存储每个节点的邻居节点
         if (doubleBfs(dict, begin, end, map, true)) {
             dfs(map, res, beginWord, endWord, ArrayDeque())
         }
@@ -32,7 +31,7 @@ class Solution {
     }
 
     private fun dfs(
-        map: HashMap<String, MutableList<String>>,
+        map: MutableMap<String, MutableList<String>>,
         res: MutableList<List<String>>,
         beginWord: String,
         endWord: String,
@@ -56,10 +55,10 @@ class Solution {
      * 寻找每个节点的邻居节点
      */
     private fun doubleBfs(
-        dict: HashSet<String>,
+        dict: MutableSet<String>,
         begin: Set<String>,
         end: Set<String>,
-        map: HashMap<String, MutableList<String>>,
+        map: MutableMap<String, MutableList<String>>,
         isTopDown: Boolean
     ): Boolean {
         //当一个方向节点数为空仍未找到 中间联通节点时，返回 false
@@ -70,7 +69,7 @@ class Solution {
         dict.removeAll(begin)
         dict.removeAll(end) //去除已访问节点
         var isTraversalEnd = false //是否遍历结束
-        val visited = HashSet<String>() //记录本层新增节点（未在 begin 和 end 中出现过）
+        val validNeighbors = mutableSetOf<String>() //记录本层新增节点（未在 begin 和 end 中出现过）
         for (word in begin) { //遍历begin中每个单词
             val chars = word.toCharArray()
             for (i in chars.indices) {
@@ -90,17 +89,17 @@ class Solution {
                         neighborWords.add(value)
                     }
                     //如果找到了目标节点或者dict 中不包含该邻居节点，跳过本次循环
-                    if (isTraversalEnd || !dict.contains(neighborWord)) {
+                    if (isTraversalEnd || neighborWord !in dict) {
                         continue
                     }
-                    visited.add(neighborWord) // 记录本层访问节点
+                    validNeighbors.add(neighborWord) // 记录本层访问节点
                     neighborWords.add(value)
                 }
                 chars[i] = temp
             }
         }
         //使用短路或进行判断是否找到公共节点，找到就直接返回，否则继续以本层访问节点作为下层的 begin 继续深搜
-        return isTraversalEnd || doubleBfs(dict, visited, end, map, isTopDown)
+        return isTraversalEnd || doubleBfs(dict, validNeighbors, end, map, isTopDown)
     }
 }
 

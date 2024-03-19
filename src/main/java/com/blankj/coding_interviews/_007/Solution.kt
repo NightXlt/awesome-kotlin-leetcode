@@ -5,8 +5,8 @@ import com.blankj.structure.TreeNode
 
 class Solution {
 
-    var preOrder: IntArray = intArrayOf()
-    var inorderMap = hashMapOf<Int, Int>()
+    private var preOrder: IntArray = intArrayOf()
+    private var inorderMap = mutableMapOf<Int, Int>()
 
     fun buildTree(preOrder: IntArray, inorder: IntArray): TreeNode? {
         if (preOrder.isEmpty() || inorder.isEmpty()) return null
@@ -21,7 +21,7 @@ class Solution {
         endPreorder: Int,
         startInorder: Int,
         endInorder: Int
-    ): TreeNode? {
+    ): TreeNode {
         val root = TreeNode(preOrder[startPreorder])
         val rootInorder = inorderMap[preOrder[startPreorder]] // root index in inorder array
             ?: throw IllegalArgumentException("Could not find out preorder number ${preOrder[startPreorder]} in inorder")

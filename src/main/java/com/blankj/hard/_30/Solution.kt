@@ -24,7 +24,7 @@ class Solution {
                         curMap[prev] = curMap.getValue(prev) - 1
                     }
                 }
-                curMap[cur] = curMap.getOrDefault(cur, 0) + 1
+                curMap.merge(cur, 1, Integer::sum)
                 if (cur in count && curMap[cur] == count[cur] && curMap == count) {
                     res.add(j - (m - 1) * w)
                 }
