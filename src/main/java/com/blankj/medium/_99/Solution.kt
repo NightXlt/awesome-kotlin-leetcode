@@ -27,7 +27,7 @@ class Solution {
             pred = root
             root = root?.right
         }
-        errorNode1?.`val` = errorNode2?.`val`?.also { errorNode2.`val` = errorNode1!!.`val` }
+        errorNode1?.`val` = errorNode2?.`val`?.also { errorNode2.`val` = errorNode1!!.`val` } ?: 0
     }
 
 }

@@ -61,7 +61,7 @@ class LRUCache(private val capacity: Int) {
 }
 
 class DoubleListNode(
-    val key: Int,
+    val key: Int, // we need the key to retrieve the node within the map, and delete the least recently used node.
     var value: Int
 ) {
     var next: DoubleListNode? = null
